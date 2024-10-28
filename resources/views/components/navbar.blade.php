@@ -52,6 +52,7 @@
             <x-navlinkcontainer>
                 @auth
                     <x-navlink href="/profile">Profile</x-navlink>
+                    <x-navlink href="/dashboard">Dashboard</x-navlink>
                     <x-navlink href="/logout" class="text-red-500 hover:bg-red-500 hover:text-white">Logout</x-navlink>
                 @endauth
                 @guest

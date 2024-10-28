@@ -31,6 +31,8 @@ class RegisterController extends Controller
             'password' => bcrypt($request->password),
         ]);
 
+        $user->roles()->attach(3);
+
         Auth::login($user);
 
         session()->flash('success', 'User registered successfully!');
