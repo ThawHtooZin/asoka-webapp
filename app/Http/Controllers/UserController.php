@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -10,7 +11,8 @@ class UserController extends Controller
     public function index()
     {
         $users = User::with('roles')->get();
-        return view('dashboard.user', compact('users'));
+        $roles = Role::get();
+        return view('dashboard.user', compact('users', 'roles'));
     }
 
     public function update(Request $request)
@@ -18,13 +20,24 @@ class UserController extends Controller
         $request->validate([
             'name' => 'required',
             'email' => 'required|email',
-            'password' => 'required',
+            'phone' => 'required',
+            'role' => 'required|exists:roles,id',
         ]);
+
         $user = User::find($request->id);
 
         if ($user) {
-            $user->update($request->all());
+            $dataToUpdate = $request->only(['name', 'email', 'phone']);
+            $user->update($dataToUpdate);
+
+            $user->roles()->sync([$request->role]);
+
+            session()->flash('success', 'User updated successfully!');
+            return redirect('/dashboard/users');
         }
+
+        session()->flash('error', 'User not found');
+        return redirect('/dashboard/users');
     }
     public function destory(Request $request)
     {

@@ -68,6 +68,15 @@
                                 <label for="editUserPhone">Phone</label>
                                 <input type="text" class="form-control" id="editUserPhone" name="phone">
                             </div>
+
+                            <div class="form-group">
+                                <label for="editUserRole">Role</label>
+                                <select class="form-control" name="role" id="editUserRole">
+                                    @foreach ($roles as $role)
+                                        <option value="{{ $role->id }}">{{ $role->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                         </div>
 
                         <div class="modal-footer">
@@ -95,7 +104,7 @@
                 $('#editModal').modal('show');
 
                 // Update the form action dynamically
-                $('#editUserForm').attr('action', `/users/${id}`);
+                $('#editUserForm').attr('action', `/dashboard/users/${id}`);
             }
 
             // Function to handle delete request
