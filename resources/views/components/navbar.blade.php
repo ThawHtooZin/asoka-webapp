@@ -29,7 +29,6 @@
         <li class="group relative">
             <a href="#" class="text-lg">News & Announcement</a>
             <x-navlinkcontainer>
-                <x-navlink>Forums</x-navlink>
                 <x-navlink>New Courses</x-navlink>
                 <x-navlink>Events</x-navlink>
             </x-navlinkcontainer>

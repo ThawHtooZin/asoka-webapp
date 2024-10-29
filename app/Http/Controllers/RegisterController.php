@@ -35,7 +35,7 @@ class RegisterController extends Controller
 
         Auth::login($user);
 
-        session()->flash('success', 'User registered successfully!');
-        return redirect('/');
+        session()->flash('success', 'Registered Successfully!');
+        return redirect('/dashboard');
     }
 }

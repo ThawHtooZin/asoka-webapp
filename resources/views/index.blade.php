@@ -27,7 +27,7 @@
             <p class="mt-5 text-gray-500">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis.</p>
         </div>
         <div class="">
-            <img src="/images/pagoda1.jpg" alt="" class="w-80 mx-auto rounded-lg">
+            <img src="/images/asokapillar.jpg" alt="" class="w-80 mx-auto rounded-lg">
         </div>
     </div>
 

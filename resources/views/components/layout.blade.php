@@ -24,6 +24,20 @@
             {{ session('success') }}
         </div>
     @endif
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const alert = document.getElementById('alert');
+            if (alert) {
+                setTimeout(() => {
+                    alert.style.opacity = '0'; // Fade out
+                    setTimeout(() => {
+                        alert.remove(); // Remove from DOM after fade out
+                    }, 500); // Match duration with CSS transition
+                }, 5000); // Show for 5 seconds
+            }
+        });
+    </script>
     @vite('resources/js/app.js')
 </body>
 

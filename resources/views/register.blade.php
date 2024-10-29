@@ -78,7 +78,7 @@
                 <!-- Phone -->
                 <div class="fade-in delay-400">
                     <label class="block text-blue-700 font-semibold mb-2" for="phone">Phone</label>
-                    <input type="tel" id="phone" name="phone" required
+                    <input type="number" id="phone" name="phone" required
                         class="w-full px-4 py-2 border border-blue-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out">
                 </div>
 
