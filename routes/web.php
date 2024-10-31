@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CourseController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
@@ -13,6 +14,10 @@ Route::get('/', function () {
 });
 Route::get('/logout', [LoginController::class, 'logout']);
 Route::post('/logout', [LoginController::class, 'logout']);
+// Courses
+Route::get('/courses', [CourseController::class, 'index']);
+Route::get('/course/{id}', [CourseController::class, 'show']);
+
 Route::middleware(['guest'])->group(function () {
     Route::get('/login', [LoginController::class, 'index'])->name('login');
     Route::post('/login', [LoginController::class, 'login']);
@@ -20,7 +25,7 @@ Route::middleware(['guest'])->group(function () {
     Route::post('/register', [RegisterController::class, 'register']);
 });
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['custom'])->group(function () {
     Route::prefix('dashboard')->group(function () {
         Route::get('/', [DashboardController::class, 'index']);
 

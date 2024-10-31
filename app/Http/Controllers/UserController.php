@@ -10,7 +10,7 @@ class UserController extends Controller
 {
     public function index()
     {
-        $users = User::with('roles')->get();
+        $users = User::get();
         $roles = Role::get();
         return view('dashboard.user', compact('users', 'roles'));
     }
