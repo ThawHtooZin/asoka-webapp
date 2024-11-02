@@ -13,14 +13,29 @@
                     <x-navlink>Motto</x-navlink>
                 </x-navlinkcontainer>
             </li>
-            <li><a href="/courses" class="text-lg">Courses</a></li>
+            <li class="group relative">
+                <a href="#" class="text-lg">Learning</a>
+                <div>
+                    <x-navlinkcontainer
+                        class="absolute left-0 hidden group-hover:flex flex-col bg-asokablue mt-2 p-2 rounded shadow-lg">
+                        <x-navlink href="/courses">Courses</x-navlink>
+                        <x-navlink href="/elibrary">E-Library</x-navlink>
+                    </x-navlinkcontainer>
+                </div>
+            </li>
+            <li class="group relative">
+                <a href="#" class="text-lg">News & Announcement</a>
+                <x-navlinkcontainer
+                    class="absolute left-0 hidden group-hover:flex flex-col bg-asokablue mt-2 p-2 rounded shadow-lg">
+                    <x-navlink href="/news">News</x-navlink>
+                    <x-navlink href="/announcement">Announcement</x-navlink>
+                </x-navlinkcontainer>
+            </li>
             <li class="group relative">
                 <a href="#" class="text-lg">Resources</a>
                 <x-navlinkcontainer
                     class="absolute left-0 hidden group-hover:flex flex-col bg-asokablue mt-2 p-2 rounded shadow-lg">
-                    <x-navlink href="/announcement">Announcement</x-navlink>
-                    <x-navlink href="/article">Article</x-navlink>
-                    <x-navlink href="/elibrary">E-Library</x-navlink>
+                    <x-navlink href="/articles">Article</x-navlink>
                     <x-navlink href="/videos">Videos</x-navlink>
                 </x-navlinkcontainer>
             </li>
@@ -54,7 +69,7 @@
         <a href="#" class="text-md block py-2">Resources</a>
         <div class="flex flex-col space-y-1 pl-4">
             <x-navlink href="/announcement">Announcement</x-navlink>
-            <x-navlink href="/article">Article</x-navlink>
+            <x-navlink href="/articles">Article</x-navlink>
             <x-navlink href="/elibrary">E-Library</x-navlink>
             <x-navlink href="/videos">Videos</x-navlink>
         </div>

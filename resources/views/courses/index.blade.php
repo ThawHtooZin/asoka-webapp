@@ -23,7 +23,7 @@
                 <div class="space-y-3">
                     @foreach ($categories as $category)
                         <button onclick="showCourses({{ $category->id }})"
-                            class="block w-full text-left px-4 py-2 rounded-lg bg-gradient-to-r from-gray-100 to-white shadow-md hover:shadow-lg transition duration-300 hover:from-asokablue hover:to-blue-600 hover:text-white">
+                            class="block w-full text-left px-4 py-2 rounded-lg bg-gradient-to-r from-gray-100 to-white shadow-md hover:shadow-lg transition duration-300 hover:from-blue-600 hover:to-white hover:text-white">
                             {{ $category->name }}
                         </button>
                     @endforeach
@@ -35,7 +35,7 @@
                 <h2 class="text-xl font-semibold mb-4 text-gray-700">Courses</h2>
                 <div id="courses-container" class="grid gap-4 sm:grid-cols-1 md:grid-cols-2">
                     @foreach ($courses as $course)
-                        <div id="course-{{ $course->category_id }}"
+                        <div id="course-{{ $course->course_category_id }}"
                             class="course-card bg-white p-4 rounded-md shadow-md">
                             <!-- Course Image -->
                             <img src="{{ asset($course->image) }}" alt="{{ $course->name }}"

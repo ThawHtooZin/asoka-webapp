@@ -8,7 +8,7 @@ class Course extends Model
 {
     protected $guarded = [];
 
-    public function instructor()
+    public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
     }
@@ -16,6 +16,16 @@ class Course extends Model
     // Relationship with Category model
     public function category()
     {
-        return $this->belongsTo(Category::class);
+        return $this->belongsTo(CourseCategory::class);
+    }
+
+    public function videos()
+    {
+        return $this->hasMany(Video::class);
+    }
+
+    public function chapters()
+    {
+        return $this->hasMany(Chapter::class);
     }
 }

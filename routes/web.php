@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\LibraryController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\RoleController;
@@ -17,6 +19,32 @@ Route::post('/logout', [LoginController::class, 'logout']);
 // Courses
 Route::get('/courses', [CourseController::class, 'index']);
 Route::get('/course/{id}', [CourseController::class, 'show']);
+
+// Articles
+Route::get('/articles', [ArticleController::class, 'index']);
+Route::get('/article/{id}', [ArticleController::class, 'show']);
+
+// E-Library
+Route::prefix('elibrary')->group(function () {
+    // Route to display all books
+    Route::get('/', [LibraryController::class, 'index'])->name('elibrary.index');
+
+    // Route to show a specific book
+    Route::get('/book/{id}', [LibraryController::class, 'show'])->name('elibrary.show');
+
+    // Route to read free book
+    Route::get('/book/{id}/read', [LibraryController::class, 'read'])->name('elibrary.show');
+
+    // Route to show the buy page for a specific book
+    Route::get('/book/{id}/buy', [LibraryController::class, 'buy'])->name('elibrary.buy');
+
+    // Route to process the payment
+    Route::post('/process-payment', [LibraryController::class, 'processPayment'])->name('elibrary.processPayment');
+
+    // Route to show the success page after payment
+    Route::get('/payment-success', [LibraryController::class, 'success'])->name('elibrary.success');
+});
+
 
 Route::middleware(['guest'])->group(function () {
     Route::get('/login', [LoginController::class, 'index'])->name('login');

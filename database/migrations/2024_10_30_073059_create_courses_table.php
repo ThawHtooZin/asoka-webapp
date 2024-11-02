@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\Category;
+use App\Models\CourseCategory;
 use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -19,7 +19,7 @@ return new class extends Migration
             $table->text('description');
             $table->string('image');
             $table->foreignIdFor(User::class);
-            $table->foreignIdFor(Category::class);
+            $table->foreignIdFor(CourseCategory::class);
             $table->text('language');
             $table->text('duration');
             $table->integer('price');

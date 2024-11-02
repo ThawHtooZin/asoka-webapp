@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Course;
+use App\Models\CourseCategory;
 use Illuminate\Http\Request;
 
 class CourseController extends Controller
@@ -20,7 +21,7 @@ class CourseController extends Controller
         }
 
         $courses = $query->get();
-        $categories = Category::all(); // Assuming categories are displayed as well
+        $categories = CourseCategory::all(); // Assuming categories are displayed as well
 
         return view('courses.index', compact('courses', 'categories'));
     }

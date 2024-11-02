@@ -46,7 +46,6 @@
                         <li>Course Chapter 3</li>
                     </ul>
                 </div>
-
             </div>
         </div>
     </div>
