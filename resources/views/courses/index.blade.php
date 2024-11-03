@@ -61,7 +61,7 @@
                                     Log in to View Details
                                 </a>
                             @else
-                                <a href="/course/{{ $course->id }}"
+                                <a href="/course/{{ $course->id }}/show"
                                     class="mt-4 block w-full px-4 py-2 bg-asokablue text-white text-center rounded-lg hover:bg-blue-700 transition duration-300">
                                     View Details
                                 </a>

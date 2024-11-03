@@ -8,6 +8,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\VideoController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -17,8 +18,16 @@ Route::get('/', function () {
 Route::get('/logout', [LoginController::class, 'logout']);
 Route::post('/logout', [LoginController::class, 'logout']);
 // Courses
-Route::get('/courses', [CourseController::class, 'index']);
-Route::get('/course/{id}', [CourseController::class, 'show']);
+Route::prefix('course')->group(function () {
+    // Show All Courses
+    Route::get('/', [CourseController::class, 'index']);
+    // Show a single course
+    Route::get('/{id}/show', [CourseController::class, 'show']);
+    // Show a video from chapter
+    Route::get('/{id}/chapter/{chapterid}/', [VideoController::class, 'chaptershow']);
+    // Show a video
+    Route::get('/{id}/chapter/{chapterid}/video/{videoid}', [VideoController::class, 'videoshow']);
+});
 
 // Articles
 Route::get('/articles', [ArticleController::class, 'index']);

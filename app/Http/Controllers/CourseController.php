@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Chapter;
 use App\Models\Course;
 use App\Models\CourseCategory;
 use Illuminate\Http\Request;
@@ -28,7 +29,8 @@ class CourseController extends Controller
 
     public function show($id)
     {
-        $course = Course::findOrFail($id); // Retrieve course by ID
-        return view('courses.show', compact('course'));
+        $course = Course::find($id);
+        $chapters = Chapter::where('course_id', $id)->get();
+        return view('courses.show', compact('course', 'chapters'));
     }
 }

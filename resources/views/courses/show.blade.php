@@ -21,29 +21,40 @@
                     <p class="mb-2"><strong>Name:</strong> {{ $course->name }}</p>
                     <p class="mb-2"><strong>People Enrolled:</strong> {{ $course->enrolled }}</p>
                     <p class="mb-2"><strong>Duration:</strong> {{ $course->duration }}</p>
-                    <p class="mb-2"><strong>Total Views:</strong> 10 </p>
-                    <p class="mb-2"><strong>Rating:</strong> 5 out of 5</p>
+                    <p class="mb-2 text-green-500"><strong>Price:</strong>
+                        @if ($course->price == 0)
+                            {{ 'FREE' }}
+                        @else
+                            {{ $course->price }}
+                        @endif
+                    </p>
                 </div>
 
                 {{-- Start Learning --}}
-                <a href="/"
-                    class="w-full inline-block text-lg px-6 py-3 mt-4 rounded-lg shadow-md bg-green-500 text-white hover:bg-green-400 hover:shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-1 text-center">
-                    Start Learning
-                </a>
+                @if ($course->price == 0)
+                    <a href="/course/{{ $course->id }}/chapter/1"
+                        class="w-full inline-block text-lg px-6 py-3 mt-4 rounded-lg shadow-md bg-green-500 text-white hover:bg-green-400 hover:shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-1 text-center">
+                        Start Learning
+                    </a>
+                @else
+                    <a href="/course/{{ $course->id }}/buy"
+                        class="w-full inline-block text-lg px-6 py-3 mt-4 rounded-lg shadow-md bg-primary text-white hover:shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-1 text-center">
+                        Start Learning
+                    </a>
+                @endif
 
 
 
                 {{-- Course Chapter Section --}}
                 <div class="bg-gray-100 rounded-lg p-6 overflow-hidden mt-4 shadow-lg">
                     <h4 class="text-lg font-semibold mb-4">Course Chapters:</h4>
-                    <ul class="list-disc pl-5 space-y-2">
+                    <ul class="space-y-2">
                         {{-- Uncomment and replace with dynamic data --}}
-                        {{-- @foreach ($course->chapter as $chapter) --}}
-                        {{-- <li>{{ $chapter->name }}</li> --}}
-                        {{-- @endforeach --}}
-                        <li>Course Chapter 1</li>
-                        <li>Course Chapter 2</li>
-                        <li>Course Chapter 3</li>
+                        @foreach ($chapters as $chapter)
+                            <li class="py-2 px-4 border-2 bg-white rounded-lg"><a
+                                    href="/course/{{ $course->id }}/chapter/{{ $chapter->id }}">{{ $chapter->title }}</a>
+                            </li>
+                        @endforeach
                     </ul>
                 </div>
             </div>

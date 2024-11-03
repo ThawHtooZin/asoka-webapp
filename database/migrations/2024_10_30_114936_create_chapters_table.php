@@ -15,10 +15,9 @@ return new class extends Migration
     {
         Schema::create('chapters', function (Blueprint $table) {
             $table->id();
-            $table->text('name');
+            $table->text('title');
             $table->text('description');
             $table->foreignIdFor(Course::class);
-            $table->foreignIdFor(Video::class);
             $table->timestamps();
         });
     }

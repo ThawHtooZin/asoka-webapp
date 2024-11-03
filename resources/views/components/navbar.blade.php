@@ -18,7 +18,7 @@
                 <div>
                     <x-navlinkcontainer
                         class="absolute left-0 hidden group-hover:flex flex-col bg-asokablue mt-2 p-2 rounded shadow-lg">
-                        <x-navlink href="/courses">Courses</x-navlink>
+                        <x-navlink href="/course">Courses</x-navlink>
                         <x-navlink href="/elibrary">E-Library</x-navlink>
                     </x-navlinkcontainer>
                 </div>
