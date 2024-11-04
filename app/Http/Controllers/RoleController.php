@@ -45,7 +45,7 @@ class RoleController extends Controller
         session()->flash('error', 'User not found');
         return redirect('/dashboard/roles');
     }
-    public function destory(Request $request)
+    public function destroy(Request $request)
     {
         $role = Role::find($request->id);
         $role->delete();

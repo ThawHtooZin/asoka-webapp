@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Article extends Model
 {
+
+    protected $guarded = [];
+
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
@@ -14,6 +17,6 @@ class Article extends Model
     // Relationship with Category model
     public function category()
     {
-        return $this->belongsTo(CourseCategory::class);
+        return $this->belongsTo(ArticleCategory::class, 'article_category_id');
     }
 }

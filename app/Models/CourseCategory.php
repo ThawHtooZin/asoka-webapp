@@ -8,6 +8,11 @@ class CourseCategory extends Model
 {
     protected $guarded = [];
 
+    public function article()
+    {
+        return $this->hasMany(Article::class,);
+    }
+
     public function courses()
     {
         return $this->hasMany(Course::class);

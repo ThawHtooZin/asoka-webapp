@@ -67,10 +67,13 @@ class UserController extends Controller
         session()->flash('error', 'User not found');
         return redirect('/dashboard/users');
     }
-    public function destory(Request $request)
+    public function destroy(Request $request)
     {
         $user = User::find($request->id);
-        $user->delete();
-        return redirect()->back();
+        if ($user) {
+            $user->delete();
+            return redirect()->back()->with('success', 'User deleted successfully!');
+        }
+        return redirect()->back()->with('error', 'User not found');
     }
 }
