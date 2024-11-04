@@ -83,5 +83,7 @@ Route::middleware(['custom'])->group(function () {
         Route::post('/roles', [RoleController::class, 'store']);
         Route::put('/roles/{id}', [RoleController::class, 'update']);
         Route::delete('/roles/{id}', [RoleController::class, 'destory']);
+
+        // 
     });
 });

@@ -110,7 +110,7 @@ return [
     */
 
     'preloader' => [
-        'enabled' => true,
+        'enabled' => false,
         'mode' => 'fullscreen',
         'img' => [
             'path' => '/images/logo.png',
@@ -197,7 +197,7 @@ return [
     'classes_content_header' => '',
     'classes_content' => '',
     'classes_sidebar' => 'sidebar-dark-primary elevation-4',
-    'classes_sidebar_nav' => '',
+    'classes_sidebar_nav' => 'nav-legacy animated-nav',
     'classes_topnav' => 'navbar-white navbar-light',
     'classes_topnav_nav' => 'navbar-expand',
     'classes_topnav_container' => 'container',
@@ -328,7 +328,7 @@ return [
                 ],
             ],
         ],
-        ['header' => 'Configurations'],
+        ['header' => 'Users Configuration'],
         [
             'text' => 'Users',
             'icon' => 'fas fa-fw fa-users-cog',
@@ -336,12 +336,77 @@ return [
                 [
                     'text' => 'Manage Users',
                     'url' => 'dashboard/users',
-                    'icon' => 'fas fa-fw fa-users',
                 ],
                 [
                     'text' => 'Manage Roles',
                     'url' => 'dashboard/roles',
-                    'icon' => 'fas fa-fw fa-user-tag',
+                ],
+            ],
+        ],
+
+        [
+            'header' => 'Content Management',
+        ],
+        [
+            'text' => 'Article Management',
+            'icon' => 'fas fa-fw fa-file-alt',
+            'submenu' => [
+                [
+                    'text' => 'All Articles',
+                    'url' => 'dashboard/articles',
+                    'icon' => 'fas fa-fw fa-book',
+                ],
+                [
+                    'text' => 'Article Categories',
+                    'url' => 'dashboard/articles/categories',
+                    'icon' => 'fas fa-fw fa-tags',
+                ],
+            ],
+        ],
+        [
+            'text' => 'Course Management',
+            'icon' => 'fas fa-fw fa-graduation-cap',
+            'submenu' => [
+                [
+                    'text' => 'All Courses',
+                    'url' => 'dashboard/courses',
+                    'icon' => 'fas fa-fw fa-book-reader',
+                ],
+                [
+                    'text' => 'Course Categories',
+                    'url' => 'dashboard/courses/categories',
+                    'icon' => 'fas fa-fw fa-layer-group',
+                ],
+                [
+                    'text' => 'Chapters',
+                    'url' => 'dashboard/courses/chapters',
+                    'icon' => 'fas fa-fw fa-list-alt',
+                ],
+                [
+                    'text' => 'Videos',
+                    'url' => 'dashboard/courses/videos',
+                    'icon' => 'fas fa-fw fa-video',
+                ],
+            ],
+        ],
+        [
+            'text' => 'E-Library Management',
+            'icon' => 'fas fa-fw fa-book',
+            'submenu' => [
+                [
+                    'text' => 'All eBooks',
+                    'url' => 'dashboard/ebooks',
+                    'icon' => 'fas fa-fw fa-book-open',
+                ],
+                [
+                    'text' => 'Free eBooks',
+                    'url' => 'dashboard/ebooks/free',
+                    'icon' => 'fas fa-fw fa-gift',
+                ],
+                [
+                    'text' => 'Paid eBooks',
+                    'url' => 'dashboard/ebooks/paid',
+                    'icon' => 'fas fa-fw fa-credit-card',
                 ],
             ],
         ],
