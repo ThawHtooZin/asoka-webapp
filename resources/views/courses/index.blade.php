@@ -43,7 +43,12 @@
 
                             <h3 class="text-lg font-semibold">{{ $course->name }}</h3>
                             <p class="text-sm">Duration: {{ $course->duration }}</p>
-                            <p class="text-sm">Price: ${{ $course->price }}</p>
+                            <p class="text-sm">Price: @if ($course->price == 0)
+                                    <span class="text-green-600">FREE</span>
+                                @else
+                                    <span class="text-primary">${{ $course->price }}</span>
+                                @endif
+                            </p>
                             <p class="text-sm">Rating:
                                 @for ($i = 0; $i < 5; $i++)
                                     @if ($i < $course->rating)
@@ -61,7 +66,7 @@
                                     Log in to View Details
                                 </a>
                             @else
-                                <a href="/course/{{ $course->id }}/show"
+                                <a href="/courses/{{ $course->id }}/show"
                                     class="mt-4 block w-full px-4 py-2 bg-asokablue text-white text-center rounded-lg hover:bg-blue-700 transition duration-300">
                                     View Details
                                 </a>

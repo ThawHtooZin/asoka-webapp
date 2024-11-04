@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Chapter;
+use App\Models\Course;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -16,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->text('title');
             $table->foreignIdFor(Chapter::class);
+            $table->foreignIdFor(Course::class);
             $table->text('video_url');
             $table->text('description');
             $table->timestamps();

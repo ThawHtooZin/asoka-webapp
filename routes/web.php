@@ -18,15 +18,21 @@ Route::get('/', function () {
 Route::get('/logout', [LoginController::class, 'logout']);
 Route::post('/logout', [LoginController::class, 'logout']);
 // Courses
-Route::prefix('course')->group(function () {
+Route::prefix('courses')->group(function () {
     // Show All Courses
-    Route::get('/', [CourseController::class, 'index']);
+    Route::get('/', [CourseController::class, 'index']); // Matches your index.blade.php
+
     // Show a single course
-    Route::get('/{id}/show', [CourseController::class, 'show']);
-    // Show a video from chapter
-    Route::get('/{id}/chapter/{chapterid}/', [VideoController::class, 'chaptershow']);
-    // Show a video
-    Route::get('/{id}/chapter/{chapterid}/video/{videoid}', [VideoController::class, 'videoshow']);
+    Route::get('/{id}/show', [CourseController::class, 'show']); // Matches show.blade.php
+
+    // Buying a course
+    Route::get('/{id}/buy', [CourseController::class, 'buy']); // Add buy method in CourseController
+
+    // Show all videos in a chapter of a specific course
+    Route::get('/{course}/chapters/{chapter}/videos', [VideoController::class, 'chaptershow'])->name('chaptershow');
+
+    // Show a specific video in a chapter of a specific course
+    Route::get('/{course}/chapters/{chapter}/videos/{video}', [VideoController::class, 'videoshow'])->name('videoshow');
 });
 
 // Articles

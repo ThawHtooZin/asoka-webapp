@@ -32,16 +32,17 @@
 
                 {{-- Start Learning --}}
                 @if ($course->price == 0)
-                    <a href="/course/{{ $course->id }}/chapter/1"
+                    <a href="/courses/{{ $course->id }}/chapters/{{ $chapters[0]->id }}/videos"
                         class="w-full inline-block text-lg px-6 py-3 mt-4 rounded-lg shadow-md bg-green-500 text-white hover:bg-green-400 hover:shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-1 text-center">
                         Start Learning
                     </a>
                 @else
-                    <a href="/course/{{ $course->id }}/buy"
+                    <a href="/courses/{{ $course->id }}/buy"
                         class="w-full inline-block text-lg px-6 py-3 mt-4 rounded-lg shadow-md bg-primary text-white hover:shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-1 text-center">
                         Start Learning
                     </a>
                 @endif
+
 
 
 
@@ -52,7 +53,7 @@
                         {{-- Uncomment and replace with dynamic data --}}
                         @foreach ($chapters as $chapter)
                             <li class="py-2 px-4 border-2 bg-white rounded-lg"><a
-                                    href="/course/{{ $course->id }}/chapter/{{ $chapter->id }}">{{ $chapter->title }}</a>
+                                    href="/courses/{{ $course->id }}/chapters/{{ $chapter->id }}/videos">{{ $chapter->title }}</a>
                             </li>
                         @endforeach
                     </ul>

@@ -18,7 +18,7 @@
                 <div>
                     <x-navlinkcontainer
                         class="absolute left-0 hidden group-hover:flex flex-col bg-asokablue mt-2 p-2 rounded shadow-lg">
-                        <x-navlink href="/course">Courses</x-navlink>
+                        <x-navlink href="/courses">Courses</x-navlink>
                         <x-navlink href="/elibrary">E-Library</x-navlink>
                     </x-navlinkcontainer>
                 </div>
@@ -65,13 +65,20 @@
             <x-navlink>Objectives</x-navlink>
             <x-navlink>Motto</x-navlink>
         </div>
-        <a href="/courses" class="text-md block py-2">Courses</a>
+        <a href="#" class="text-md block py-2">Learning</a>
+        <div class="flex flex-col space-y-1 pl-4">
+            <x-navlink href="/courses">Courses</x-navlink>
+            <x-navlink href="/elibrary">E-Library</x-navlink>
+        </div>
+        <a href="#" class="text-md block py-2">News and Announcement</a>
+        <div class="flex flex-col space-y-1 pl-4">
+            <x-navlink href="/new">News</x-navlink>
+            <x-navlink href="/announcement">Announcement</x-navlink>
+        </div>
         <a href="#" class="text-md block py-2">Resources</a>
         <div class="flex flex-col space-y-1 pl-4">
-            <x-navlink href="/announcement">Announcement</x-navlink>
-            <x-navlink href="/articles">Article</x-navlink>
-            <x-navlink href="/elibrary">E-Library</x-navlink>
-            <x-navlink href="/videos">Videos</x-navlink>
+            <x-navlink href="/articles">Articles</x-navlink>
+            <x-navlink href="/video">Videos</x-navlink>
         </div>
         <a href="#" class="text-md block py-2">Gallery</a>
         <a href="#" class="text-md block py-2">Contact Us</a>
