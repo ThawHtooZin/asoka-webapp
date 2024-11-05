@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\DashboardArticleCategoryController;
 use App\Http\Controllers\DashboardArticleController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LibraryController;
@@ -72,5 +73,11 @@ Route::middleware(['custom'])->group(function () {
         Route::post('articles', [DashboardArticleController::class, 'store'])->name('articles.store'); // Store article
         Route::put('articles/{id}', [DashboardArticleController::class, 'update'])->name('articles.update'); // Update article
         Route::delete('articles/{id}', [DashboardArticleController::class, 'destroy'])->name('articles.destroy'); // Delete article
+
+        // Article Categories Management
+        Route::get('articles/categories', [DashboardArticleCategoryController::class, 'index']); // List articles
+        Route::post('articles/categories', [DashboardArticleCategoryController::class, 'store']); // Store article
+        Route::put('articles/categories/{id}', [DashboardArticleCategoryController::class, 'update']); // Update article
+        Route::delete('articles/categories/{id}', [DashboardArticleCategoryController::class, 'destroy']); // Delete article
     });
 });

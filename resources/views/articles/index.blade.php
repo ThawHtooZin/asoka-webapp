@@ -1,75 +1,102 @@
 <x-layout>
-    <div class="container mx-auto p-6 space-y-8">
-        <!-- Search Input -->
-        <form action="/articles" method="GET" class="flex items-center mb-6 shadow-lg rounded-lg overflow-hidden">
-            <input type="text" name="search" placeholder="Search for articles..."
-                class="w-full p-4 border-0 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-asokablue transition duration-300" />
-            <button type="submit"
-                class="p-4 bg-asokablue text-white hover:bg-blue-700 transition duration-300 flex items-center justify-center">
-                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor"
-                    class="bi bi-search" viewBox="0 0 16 16">
-                    <path
-                        d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
-                </svg>
-            </button>
-        </form>
+    <!-- Pseudo-element for the blade effect -->
+    <style>
+        .category-blade {
+            position: relative;
+            overflow: hidden;
+        }
 
-        <!-- Categories Section -->
-        <div class="mb-6">
-            <h2 class="text-xl font-semibold mb-4 text-gray-700">Categories</h2>
-            <div class="flex flex-wrap gap-4">
-                @foreach ($categories as $category)
-                    <button onclick="showArticles({{ $category->id }})"
-                        class="category-box px-10 py-8 border-2 border-primary rounded-lg bg-gradient-to-r from-gray-100 to-white shadow-md transition duration-300 hover:shadow-2xl hover:shadow-asokablue text-center">
-                        {{ $category->name }}
-                    </button>
-                @endforeach
-            </div>
-        </div>
+        .category-blade::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -15px;
+            width: 30px;
+            height: 100%;
+            background-color: #007bff;
+            /* Set blade color here */
+            transform: skewX(-20deg);
+            /* Adjust skew for the diagonal effect */
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
 
-        <!-- Main Content: Articles -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <h2 class="text-xl font-semibold mb-4 text-gray-700 md:col-span-3">Articles</h2>
-            <div id="articles-container" class="grid gap-4 sm:grid-cols-1 md:grid-cols-2 md:col-span-3">
+        .category-blade:hover::before {
+            opacity: 1;
+        }
+    </style>
+
+    <div class="container mx-auto p-6 grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Articles Section (Left, 2/3) -->
+        <div class="md:col-span-2">
+            <h2 class="text-2xl font-extrabold text-gray-800 text-center md:text-left" id="category-title">Articles</h2>
+            <div id="articles-container" class="space-y-2">
                 @foreach ($articles as $article)
                     <div id="article-{{ $article->article_category_id }}"
-                        class="article-card bg-white p-4 rounded-md shadow-md">
+                        class="article-card bg-white p-6 rounded-lg shadow-md transition transform hover:scale-105">
                         <!-- Article Image -->
                         @if ($article->image)
                             <img src="{{ asset($article->image) }}" alt="{{ $article->title }}"
-                                class="w-full h-40 object-cover rounded-md mb-2" />
+                                class="w-full h-48 object-cover rounded-lg mb-4 shadow-md" />
                         @endif
 
-                        <h3 class="text-lg font-semibold">{{ $article->title }}</h3>
-                        <p class="text-sm">By: {{ $article->user->name }}</p>
-                        <p class="text-sm">Published on: {{ $article->created_at->format('F j, Y') }}</p>
-                        <p class="text-sm mt-2">{{ Str::limit($article->description) }}</p>
+                        <h3 class="text-lg font-bold text-asokablue mb-2">{{ $article->title }}</h3>
+                        <p class="text-sm text-gray-500 mb-1">By: {{ $article->user->name }}</p>
+                        <p class="text-sm text-gray-500">Published on: {{ $article->created_at->format('F j, Y') }}</p>
+                        <p class="text-gray-600 mt-4">{{ Str::limit($article->description, 200) }}</p>
 
-                        @guest
-                            <a href="/login"
-                                class="mt-4 block w-full px-4 py-2 bg-asokablue text-white text-center rounded-lg hover:bg-blue-700 transition duration-300">
-                                Log in to View Details
-                            </a>
-                        @else
-                            <a href="/article/{{ $article->id }}"
-                                class="mt-4 block w-full px-4 py-2 bg-asokablue text-white text-center rounded-lg hover:bg-blue-700 transition duration-300">
-                                Read More
-                            </a>
-                        @endguest
+                        <a href="/article/{{ $article->id }}"
+                            class="mt-4 inline-block px-4 py-2 bg-asokablue text-white text-center rounded-lg hover:bg-blue-700 transition duration-300 text-sm">
+                            Read More...
+                        </a>
                     </div>
                 @endforeach
             </div>
         </div>
+
+        <!-- Sidebar Section (Right, 1/3) -->
+        <aside class="space-y-6">
+            <!-- Small Search Bar -->
+            <form action="/articles" method="GET"
+                class="flex items-center shadow-lg rounded-full overflow-hidden bg-white">
+                <input type="text" name="search" placeholder="Search..."
+                    class="w-full p-3 border-0 rounded-l-full focus:outline-none focus:ring-2 focus:ring-asokablue transition duration-300 text-gray-700 placeholder-gray-500" />
+                <button type="submit"
+                    class="p-3 bg-asokablue text-white hover:bg-blue-700 transition duration-300 flex items-center justify-center rounded-r-full">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"
+                        class="bi bi-search" viewBox="0 0 16 16">
+                        <path
+                            d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
+                    </svg>
+                </button>
+            </form>
+
+            <!-- Categories List -->
+            <div class="bg-white rounded-lg p-6 shadow-md">
+                <h3 class="text-lg font-semibold text-gray-800 mb-4">Categories</h3>
+                <div class="flex flex-col space-y-4">
+                    @foreach ($categories as $category)
+                        <button onclick="showArticles({{ $category->id }}, '{{ $category->name }}')"
+                            class="category-blade relative text-left px-4 py-2 bg-gradient-to-r from-gray-50 to-white rounded-lg border border-asokablue shadow-md hover:bg-asokablue hover:text-white transition duration-300 overflow-hidden">
+                            {{ $category->name }}
+                        </button>
+                    @endforeach
+                </div>
+            </div>
+        </aside>
     </div>
 
     <script>
-        function showArticles(categoryId) {
+        function showArticles(categoryId, categoryName) {
+            // Update the category title
+            document.getElementById('category-title').innerText = categoryName;
+
             // Hide all article cards
             document.querySelectorAll('.article-card').forEach(card => {
                 card.classList.add('hidden');
             });
 
-            // Show article cards for the selected category
+            // Show only articles in the selected category
             document.querySelectorAll(`#article-${categoryId}`).forEach(card => {
                 card.classList.remove('hidden');
             });

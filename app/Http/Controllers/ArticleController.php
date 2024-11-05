@@ -16,10 +16,10 @@ class ArticleController extends Controller
             $search = $request->input('search');
 
             // Filter articles by name or description based on search term
-            $query->where('title', 'LIKE', '%' . $search . '%');
+            $query->where('title', 'LIKE', '%' . $search . '%')->orderBy('created_at', 'desc');
         }
 
-        $articles = $query->get();
+        $articles = $query->orderBy('created_at', 'desc')->get();
         $categories = ArticleCategory::all(); // Assuming categories are displayed as well
 
         return view('articles.index', compact('articles', 'categories'));
