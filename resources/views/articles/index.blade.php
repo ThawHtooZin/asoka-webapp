@@ -1,31 +1,37 @@
 <x-layout>
-    <!-- Pseudo-element for the blade effect -->
     <style>
+        /* Base styles for the button and blade effect */
         .category-blade {
             position: relative;
             overflow: hidden;
+            color: inherit;
         }
 
         .category-blade::before {
-            content: '';
+            content: "";
             position: absolute;
             top: 0;
-            left: -15px;
-            width: 30px;
+            left: -110%;
+            width: 100%;
             height: 100%;
             background-color: #007bff;
-            /* Set blade color here */
+            /* Primary color */
             transform: skewX(-20deg);
-            /* Adjust skew for the diagonal effect */
-            opacity: 0;
-            transition: opacity 0.3s ease;
+            transition: all 0.4s ease-in-out;
         }
 
+        /* Hover effect to animate the blade flowing from left to right */
         .category-blade:hover::before {
-            opacity: 1;
+            left: -70;
+            transition: left 0.4s ease;
+        }
+
+        /* Make sure text is above the blade effect */
+        .category-blade span {
+            position: relative;
+            z-index: 10;
         }
     </style>
-
     <div class="container mx-auto p-6 grid grid-cols-1 md:grid-cols-3 gap-8">
         <!-- Articles Section (Left, 2/3) -->
         <div class="md:col-span-2">
@@ -77,12 +83,13 @@
                 <div class="flex flex-col space-y-4">
                     @foreach ($categories as $category)
                         <button onclick="showArticles({{ $category->id }}, '{{ $category->name }}')"
-                            class="category-blade relative text-left px-4 py-2 bg-gradient-to-r from-gray-50 to-white rounded-lg border border-asokablue shadow-md hover:bg-asokablue hover:text-white transition duration-300 overflow-hidden">
-                            {{ $category->name }}
+                            class="category-blade relative text-left px-4 py-2 bg-gradient-to-r from-gray-50 to-white rounded-lg border border-asokablue shadow-md hover:text-white transition duration-300 overflow-hidden">
+                            <span class="relative z-10">{{ $category->name }}</span>
                         </button>
                     @endforeach
                 </div>
             </div>
+
         </aside>
     </div>
 
