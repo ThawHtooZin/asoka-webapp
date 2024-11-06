@@ -5,6 +5,8 @@ use App\Http\Controllers\CourseController;
 use App\Http\Controllers\DashboardArticleCategoryController;
 use App\Http\Controllers\DashboardArticleController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DashboardCourseCategoryController;
+use App\Http\Controllers\DashboardCourseController;
 use App\Http\Controllers\LibraryController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
@@ -79,5 +81,17 @@ Route::middleware(['custom'])->group(function () {
         Route::post('articles/categories', [DashboardArticleCategoryController::class, 'store']); // Store article
         Route::put('articles/categories/{id}', [DashboardArticleCategoryController::class, 'update']); // Update article
         Route::delete('articles/categories/{id}', [DashboardArticleCategoryController::class, 'destroy']); // Delete article
+
+        // Courses Management
+        Route::get('courses', [DashboardCourseController::class, 'index'])->name('courses.index'); // List articles
+        Route::post('courses', [DashboardCourseController::class, 'store'])->name('courses.store'); // Store article
+        Route::put('courses/{id}', [DashboardCourseController::class, 'update'])->name('courses.update'); // Update article
+        Route::delete('courses/{id}', [DashboardCourseController::class, 'destroy'])->name('courses.destroy'); // Delete article
+
+        // Course Categories Management
+        Route::get('articles/categories', [DashboardCourseCategoryController::class, 'index']); // List articles
+        Route::post('articles/categories', [DashboardCourseCategoryController::class, 'store']); // Store article
+        Route::put('articles/categories/{id}', [DashboardCourseCategoryController::class, 'update']); // Update article
+        Route::delete('articles/categories/{id}', [DashboardCourseCategoryController::class, 'destroy']); // Delete article
     });
 });
