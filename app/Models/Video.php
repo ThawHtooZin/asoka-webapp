@@ -8,8 +8,13 @@ class Video extends Model
 {
     protected $guarded = [];
 
-    public function chapter()
+    public function chapters()
     {
         return $this->belongsTo(Chapter::class);
+    }
+
+    public function courses()
+    {
+        return $this->belongsTo(Course::class);
     }
 }
