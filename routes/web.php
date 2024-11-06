@@ -89,9 +89,9 @@ Route::middleware(['custom'])->group(function () {
         Route::delete('courses/{id}', [DashboardCourseController::class, 'destroy'])->name('courses.destroy'); // Delete article
 
         // Course Categories Management
-        Route::get('articles/categories', [DashboardCourseCategoryController::class, 'index']); // List articles
-        Route::post('articles/categories', [DashboardCourseCategoryController::class, 'store']); // Store article
-        Route::put('articles/categories/{id}', [DashboardCourseCategoryController::class, 'update']); // Update article
-        Route::delete('articles/categories/{id}', [DashboardCourseCategoryController::class, 'destroy']); // Delete article
+        Route::get('courses/categories', [DashboardCourseCategoryController::class, 'index']); // List courses
+        Route::post('courses/categories', [DashboardCourseCategoryController::class, 'store']); // Store article
+        Route::put('courses/categories/{id}', [DashboardCourseCategoryController::class, 'update']); // Update article
+        Route::delete('courses/categories/{id}', [DashboardCourseCategoryController::class, 'destroy']); // Delete article
     });
 });

@@ -49,7 +49,7 @@ class DashboardArticleCategoryController extends Controller
         }
 
         session()->flash('error', 'Categories not found');
-        return redirect('/dashboard/categories');
+        return redirect('/dashboard/articles/categories');
     }
 
     public function destroy(Request $request)
