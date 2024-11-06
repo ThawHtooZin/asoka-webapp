@@ -4,6 +4,7 @@ use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\DashboardArticleCategoryController;
 use App\Http\Controllers\DashboardArticleController;
+use App\Http\Controllers\DashboardChapterController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DashboardCourseCategoryController;
 use App\Http\Controllers\DashboardCourseController;
@@ -93,5 +94,11 @@ Route::middleware(['custom'])->group(function () {
         Route::post('courses/categories', [DashboardCourseCategoryController::class, 'store']); // Store article
         Route::put('courses/categories/{id}', [DashboardCourseCategoryController::class, 'update']); // Update article
         Route::delete('courses/categories/{id}', [DashboardCourseCategoryController::class, 'destroy']); // Delete article
+
+        // Course Chapters Management
+        Route::get('courses/chapters', [DashboardChapterController::class, 'index']); // List courses
+        Route::post('courses/chapters', [DashboardChapterController::class, 'store']); // Store article
+        Route::put('courses/chapters/{id}', [DashboardChapterController::class, 'update']); // Update article
+        Route::delete('courses/chapters/{id}', [DashboardChapterController::class, 'destroy']); // Delete article
     });
 });

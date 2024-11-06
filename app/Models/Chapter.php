@@ -11,11 +11,6 @@ class Chapter extends Model
 
     public function courses()
     {
-        return $this->belongsTo(Course::class);
-    }
-
-    public function videos()
-    {
-        return $this->hasMany(Video::class);
+        return $this->belongsTo(Course::class, 'course_id', 'id');
     }
 }
