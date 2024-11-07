@@ -24,7 +24,7 @@ class DashboardCourseController extends Controller
             'name' => 'required|string|max:255',
             'description' => 'required|string',
             'category_id' => 'required|exists:course_categories,id',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048', // Image validation
+            'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Image validation
             'language' => 'required|string',
             'duration' => 'required|string',
             'price' => 'required|numeric',

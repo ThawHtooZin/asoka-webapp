@@ -12,6 +12,7 @@
                 <tr>
                     <th>ID</th>
                     <th>Title</th>
+                    <th>Course</th>
                     <th>Chapter</th>
                     <th>Video</th>
                     <th>Description</th>
@@ -23,13 +24,14 @@
                     <tr>
                         <td>{{ $video->id }}</td>
                         <td>{{ $video->title }}</td>
+                        <td>{{ $video->courses()->first()->name }}</td>
                         <td>{{ $video->chapter()->first()->title }}</td>
                         <td>{{ $video->video_url }}</td>
                         <td>{{ $video->description }}</td>
                         <td>
                             <!-- Edit Button -->
                             <button
-                                onclick="openEditModal({{ $video->id }}, '{{ $video->title }}', '{{ $video->description }}', '{{ $video->video_url }}')"
+                                onclick="openEditModal({{ $video->id }}, '{{ $video->title }}', '{{ $video->description }}', '{{ $video->video_url }}', '{{ $video->chapter_id }}', '{{ $video->course_id }}')"
                                 class="btn btn-info">Edit</button>
 
                             <!-- Delete Button -->
@@ -154,7 +156,11 @@
 
         <script>
             $(document).ready(function() {
-                $('#videotable').DataTable();
+                $('#videotable').DataTable({
+                    paging: true,
+                    pageLength: 4,
+                    lengthMenu: [5, 10, 25, 50, 100]
+                });
             });
 
             $('#VideoChapter').hide();
@@ -203,11 +209,13 @@
             }
 
             // Function to open Edit Modal with pre-filled Category data
-            function openEditModal(id, title, description, video_url) {
+            function openEditModal(id, title, description, video_url, chapterid, courseid) {
                 $('#editVideoId').val(id);
                 $('#editVideoTitle').val(title);
                 $('#editVideoDescription').val(description);
                 $('#editVideoFile').val(video_url);
+                $('#editVideoChapter').val(chapterid);
+                $('#editVideoCourse').val(courseid);
 
                 $('#editModal').modal('show');
 

@@ -27,7 +27,7 @@
                         <td>
                             <!-- Edit Button -->
                             <button
-                                onclick="openEditModal({{ $chapter->id }}, '{{ $chapter->title }}', '{{ $chapter->description }}')"
+                                onclick="openEditModal({{ $chapter->id }}, '{{ $chapter->title }}', '{{ $chapter->description }}', '{{ $chapter->course_id }}')"
                                 class="btn btn-info">Edit</button>
 
                             <!-- Delete Button -->
@@ -61,7 +61,8 @@
                                 <label for="ChapterCourse">Course</label>
                                 <select name="course_id" id="ChapterCourse" class="form-control">
                                     @foreach ($courses as $course)
-                                        <option value="{{ $course->id }}">{{ $course->name }}</option>
+                                        <option value="{{ $course->id }}">
+                                            {{ $course->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -100,7 +101,8 @@
                                 <label for="ChapterCourse">Course</label>
                                 <select name="course_id" id="editChapterCourse" class="form-control">
                                     @foreach ($courses as $course)
-                                        <option value="{{ $course->id }}">{{ $course->name }}</option>
+                                        <option value="{{ $course->id }}">
+                                            {{ $course->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -125,10 +127,11 @@
             }
 
             // Function to open Edit Modal with pre-filled Category data
-            function openEditModal(id, title, description) {
+            function openEditModal(id, title, description, courseid) {
                 $('#editChapterId').val(id);
                 $('#editChapterTitle').val(title);
                 $('#editChapterDescription').val(description);
+                $('#editChapterCourse').val(courseid);
 
                 $('#editModal').modal('show');
 

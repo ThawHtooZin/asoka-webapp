@@ -64,7 +64,10 @@
                                             <label for="AuthorCategory">Article Category</label>
                                             <select class="form-control" name="category_id" id="AuthorCategory" required>
                                                 @foreach ($categories as $category)
-                                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                                    <option value="{{ $category->id }}"
+                                                        @if ($category->id == $article->article_category_id) : {{ 'selected' }} @endif>
+                                                        {{ $category->name }}
+                                                    </option>
                                                 @endforeach
                                             </select>
                                         </div>

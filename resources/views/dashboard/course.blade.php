@@ -32,7 +32,7 @@
                         <td><a href="{{ $course->image }}" target="__blank"><img src="{{ $course->image }}" alt=""
                                     class="w-40 h-20"></a>
                         </td>
-                        <td>{{-- $course->category()->first()->name --}}</td>
+                        <td>{{ $course->category()->first()->name }}</td>
                         <td>{{ $course->language }}</td>
                         <td>{{ $course->duration }}</td>
                         <td>{{ $course->price }}</td>
@@ -75,13 +75,14 @@
                                             <label for="CourseCategory">Course Category</label>
                                             <select class="form-control" name="category_id" id="CourseCategory" required>
                                                 @foreach ($categories as $category)
-                                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                                    <option value="{{ $category->id }}"
+                                                        @if ($course->course_category_id == $category->id) {{ 'selected' }} @endif>
+                                                        {{ $category->name }}</option>
                                                 @endforeach
                                             </select>
 
                                             <label for="editCourseImage">Course Image</label>
-                                            <input type="file" class="form-control" id="editCourseImage" name="image"
-                                                required>
+                                            <input type="file" class="form-control" id="editCourseImage" name="image">
                                             <img src="{{ $course->image }}" alt="" class="w-40 h-20">
 
                                             <label for="editCourseLanguage">Course Language</label>
@@ -99,9 +100,15 @@
                                             <label for="editCourseStatus">Course Status</label>
                                             <select name="status" class="form-control" id="editCourseStatus"
                                                 name="status">
-                                                <option value="public">Public</option>
-                                                <option value="closed">Closed</option>
-                                                <option value="waiting">Waiting</option>
+                                                <option value="public"
+                                                    @if ($course->status == 'public') {{ 'selected' }} @endif>Public
+                                                </option>
+                                                <option value="closed"
+                                                    @if ($course->status == 'closed') {{ 'selected' }} @endif>Closed
+                                                </option>
+                                                <option value="waiting"
+                                                    @if ($course->status == 'waiting') {{ 'selected' }} @endif>Waiting
+                                                </option>
                                             </select>
                                         </div>
                                     </div>
