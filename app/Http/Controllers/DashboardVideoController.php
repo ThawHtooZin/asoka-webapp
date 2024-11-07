@@ -12,50 +12,56 @@ class DashboardVideoController extends Controller
     public function index()
     {
         $videos = Video::get();
-        $courses = Course::get();
         $chapters = Chapter::get();
-        return view('dashboard.video', compact('videos', 'courses', 'chapters'));
+        $courses = Course::get();
+        return view('dashboard.video', compact('videos', 'chapters', 'courses'));
     }
 
     public function store(Request $request)
     {
         $data = $request->validate([
             'title' => 'required',
-            'description' => 'required',
             'course_id' => 'required',
+            'chapter_id' => 'required',
+            'video' => 'required',
+            'description' => 'required',
         ]);
 
-        // Create the Chapter
-        Chapter::create($data);
+        $dataToUpdate = $request->only(['title', 'description', 'course_id', 'chapter_id']);
+        $dataToUpdate['video_url'] = $data['video'];
 
-        session()->flash('success', 'Chapter created successfully!');
-        return redirect('/dashboard/courses/chapter');
+        Video::create($dataToUpdate);
+
+        session()->flash('success', 'Video created successfully!');
+        return redirect('/dashboard/courses/videos');
     }
-
-
 
     public function update(Request $request)
     {
-        $request->validate([
+        $data = $request->validate([
             'title' => 'required',
-            'description' => 'required',
             'course_id' => 'required',
+            'chapter_id' => 'required',
+            'video' => 'required',
+            'description' => 'required',
         ]);
 
+
         // Retrieve the article to be updated
-        $chapter = Chapter::find($request->id);
+        $video = Video::find($request->id);
 
-        if ($chapter) {
-            $dataToUpdate = $request->only(['title', 'description', 'course_id']);
+        if ($video) {
+            $dataToUpdate = $request->only(['title', 'description', 'course_id', 'chapter_id']);
+            $dataToUpdate['video_url'] = $data['video'];
             // Update the Chapter
-            $chapter->update($dataToUpdate);
+            $video->update($dataToUpdate);
 
-            session()->flash('success', 'Chapter updated successfully!');
-            return redirect('/dashboard/courses/chapters');
+            session()->flash('success', 'Video updated successfully!');
+            return redirect('/dashboard/courses/videos');
         }
 
-        session()->flash('error', 'Categories not found');
-        return redirect('/dashboard/courses/categories');
+        session()->flash('error', 'Videos not found');
+        return redirect('/dashboard/courses/videos');
     }
 
     public function destroy(Request $request)

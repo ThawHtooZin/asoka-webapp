@@ -27,7 +27,7 @@ class DashboardChapterController extends Controller
         Chapter::create($data);
 
         session()->flash('success', 'Chapter created successfully!');
-        return redirect('/dashboard/courses/chapter');
+        return redirect('/dashboard/courses/chapters');
     }
 
 
@@ -52,8 +52,8 @@ class DashboardChapterController extends Controller
             return redirect('/dashboard/courses/chapters');
         }
 
-        session()->flash('error', 'Categories not found');
-        return redirect('/dashboard/courses/categories');
+        session()->flash('error', 'Chapter not found');
+        return redirect('/dashboard/courses/chapters');
     }
 
     public function destroy(Request $request)

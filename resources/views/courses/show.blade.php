@@ -4,8 +4,10 @@
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
             <!-- Course Image (spans 2 columns on large screens) -->
             <div class="lg:col-span-2">
-                <img src="{{ asset($course->image) }}" alt="{{ $course->name }}"
-                    class="w-full h-auto rounded-lg shadow-lg" />
+                <div class="relative w-full h-[400px]">
+                    <img src="{{ asset($course->image) }}" alt="{{ $course->name }}"
+                        class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 object-contain max-w-full max-h-full" />
+                </div>
 
                 <!-- Description Section -->
                 <div class="border-4 border-gray-200 rounded-lg p-6 overflow-hidden lg:col-span-2 mt-4">
@@ -32,7 +34,15 @@
 
                 {{-- Start Learning --}}
                 @if ($course->price == 0)
-                    <a href="/courses/{{ $course->id }}/chapters/{{ $chapters[0]->id }}/videos"
+                    <a href="/courses/{{ $course->id }}/chapters/<?php if (!empty($chapters[0])) {
+                        echo $chapters[0]->id;
+                    } else {
+                        echo 0;
+                    } ?>/videos/<?php if (!empty($video->id)) {
+                        echo $video->id;
+                    } else {
+                        echo 0;
+                    } ?>"
                         class="w-full inline-block text-lg px-6 py-3 mt-4 rounded-lg shadow-md bg-green-500 text-white hover:bg-green-400 hover:shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-1 text-center">
                         Start Learning
                     </a>
@@ -51,11 +61,13 @@
                     <h4 class="text-lg font-semibold mb-4">Course Chapters:</h4>
                     <ul class="space-y-2">
                         {{-- Uncomment and replace with dynamic data --}}
-                        @foreach ($chapters as $chapter)
-                            <li class="py-2 px-4 border-2 bg-white rounded-lg"><a
-                                    href="/courses/{{ $course->id }}/chapters/{{ $chapter->id }}/videos">{{ $chapter->title }}</a>
-                            </li>
-                        @endforeach
+                        @if (!empty($chapters) && !empty($chapters[0]->videos()->first()->id))
+                            @foreach ($chapters as $chapter)
+                                <li class="py-2 px-4 border-2 bg-white rounded-lg"><a
+                                        href="/courses/{{ $course->id }}/chapters/{{ $chapter->id }}/videos/{{ $chapter->videos()->first()->id }}">{{ $chapter->title }}</a>
+                                </li>
+                            @endforeach
+                        @endif
                     </ul>
                 </div>
             </div>

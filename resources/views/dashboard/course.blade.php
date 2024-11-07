@@ -166,6 +166,10 @@
                                     <option value="closed">Closed</option>
                                     <option value="waiting">Waiting</option>
                                 </select>
+
+                                @error('image')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
                             </div>
                         </div>
                         <div class="modal-footer">

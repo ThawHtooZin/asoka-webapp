@@ -98,7 +98,7 @@
                                 <textarea name="description" id="editChapterDescription" cols="30" rows="4" class="form-control" required></textarea>
 
                                 <label for="ChapterCourse">Course</label>
-                                <select name="course_id" id="editChpapterCourse" class="form-control">
+                                <select name="course_id" id="editChapterCourse" class="form-control">
                                     @foreach ($courses as $course)
                                         <option value="{{ $course->id }}">{{ $course->name }}</option>
                                     @endforeach

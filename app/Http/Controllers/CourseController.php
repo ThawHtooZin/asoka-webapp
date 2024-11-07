@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Chapter;
 use App\Models\Course;
 use App\Models\CourseCategory;
+use App\Models\Video;
 use Illuminate\Http\Request;
 
 class CourseController extends Controller
@@ -31,6 +32,7 @@ class CourseController extends Controller
     {
         $course = Course::find($id);
         $chapters = Chapter::where('course_id', $id)->get();
-        return view('courses.show', compact('course', 'chapters'));
+        $video = Video::where('course_id', $id)->first();
+        return view('courses.show', compact('course', 'chapters', 'video'));
     }
 }
