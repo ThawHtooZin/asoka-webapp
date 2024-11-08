@@ -33,21 +33,28 @@
                 </div>
 
                 {{-- Start Learning --}}
-                @if ($course->price == 0)
-                    <a href="/courses/{{ $course->id }}/chapters/<?php if (!empty($chapters[0])) {
-                        echo $chapters[0]->id;
-                    } else {
-                        echo 0;
-                    } ?>/videos/<?php if (!empty($video->id)) {
-                        echo $video->id;
-                    } else {
-                        echo 0;
-                    } ?>"
-                        class="w-full inline-block text-lg px-6 py-3 mt-4 rounded-lg shadow-md bg-green-500 text-white hover:bg-green-400 hover:shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-1 text-center">
-                        Start Learning
-                    </a>
+                @if (!empty($chapters[0]->videos()->first()->id))
+                    @if ($course->price == 0)
+                        <a href="/courses/{{ $course->id }}/chapters/<?php if (!empty($chapters[0])) {
+                            echo $chapters[0]->id;
+                        } else {
+                            echo 0;
+                        } ?>/videos/<?php if (!empty($video->id)) {
+                            echo $video->id;
+                        } else {
+                            echo 0;
+                        } ?>"
+                            class="w-full inline-block text-lg px-6 py-3 mt-4 rounded-lg shadow-md bg-green-500 text-white hover:bg-green-400 hover:shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-1 text-center">
+                            Start Learning
+                        </a>
+                    @else
+                        <a href="/courses/{{ $course->id }}/buy"
+                            class="w-full inline-block text-lg px-6 py-3 mt-4 rounded-lg shadow-md bg-primary text-white hover:shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-1 text-center">
+                            Start Learning
+                        </a>
+                    @endif
                 @else
-                    <a href="/courses/{{ $course->id }}/buy"
+                    <a href="/"
                         class="w-full inline-block text-lg px-6 py-3 mt-4 rounded-lg shadow-md bg-primary text-white hover:shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-1 text-center">
                         Start Learning
                     </a>
@@ -61,10 +68,10 @@
                     <h4 class="text-lg font-semibold mb-4">Course Chapters:</h4>
                     <ul class="space-y-2">
                         {{-- Uncomment and replace with dynamic data --}}
-                        @if (!empty($chapters) && !empty($chapters[0]->videos()->first()->id))
+                        @if (!empty($chapters))
                             @foreach ($chapters as $chapter)
                                 <li class="py-2 px-4 border-2 bg-white rounded-lg"><a
-                                        href="/courses/{{ $course->id }}/chapters/{{ $chapter->id }}/videos/{{ $chapter->videos()->first()->id }}">{{ $chapter->title }}</a>
+                                        href="/courses/{{ $course->id }}/chapters/{{ $chapter->id }}/videos/@if (!empty($chapter->videos()->first()->id)) {{ $chapter->videos()->first()->id }} @endif">{{ $chapter->title }}</a>
                                 </li>
                             @endforeach
                         @endif

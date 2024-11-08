@@ -1,4 +1,37 @@
 <x-layout>
+    <style>
+        /* Base styles for the button and blade effect */
+        .category-blade {
+            position: relative;
+            overflow: hidden;
+            color: inherit;
+        }
+
+        .category-blade::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -110%;
+            width: 100%;
+            height: 100%;
+            background-color: #007bff;
+            /* Primary color */
+            transform: skewX(-20deg);
+            transition: all 0.4s ease-in-out;
+        }
+
+        /* Hover effect to animate the blade flowing from left to right */
+        .category-blade:hover::before {
+            left: -70;
+            transition: left 0.4s ease;
+        }
+
+        /* Make sure text is above the blade effect */
+        .category-blade span {
+            position: relative;
+            z-index: 10;
+        }
+    </style>
     <div class="container mx-auto p-6 space-y-8">
         <!-- Search Input -->
         <form action="/courses" method="GET" class="flex items-center mb-6 shadow-lg rounded-lg overflow-hidden">
@@ -18,13 +51,13 @@
         <!-- Main Content: Categories and Courses -->
         <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
             <!-- Categories Section -->
-            <div class="md:col-span-1">
-                <h2 class="text-xl font-semibold mb-4 text-gray-700">Categories</h2>
-                <div class="space-y-3">
+            <div class="bg-white rounded-lg p-6 shadow-md">
+                <h3 class="text-lg font-semibold text-gray-800 mb-4">Categories</h3>
+                <div class="flex flex-col space-y-4">
                     @foreach ($categories as $category)
                         <button onclick="showCourses({{ $category->id }})"
-                            class="block w-full text-left px-4 py-2 rounded-lg bg-gradient-to-r from-gray-100 to-white shadow-md hover:shadow-lg transition duration-300 hover:from-blue-600 hover:to-white hover:text-white">
-                            {{ $category->name }}
+                            class="category-blade relative text-left px-4 py-2 bg-gradient-to-r from-gray-50 to-white rounded-lg border border-asokablue shadow-md hover:text-white transition duration-300 overflow-hidden">
+                            <span class="relative z-10">{{ $category->name }}</span>
                         </button>
                     @endforeach
                 </div>

@@ -5,7 +5,7 @@
 
 @section('content')
     <div class="px-10 pt-5">
-        <button class="btn btn-primary mb-3" onclick="openAddModal()">Add Chapter</button>
+        <button class="btn btn-primary mb-3" onclick="openAddModal()">Add Video</button>
 
         <table id="videotable" class="display">
             <thead>
