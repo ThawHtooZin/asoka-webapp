@@ -33,4 +33,9 @@ class Course extends Model
     {
         return $this->hasMany(Quiz::class);
     }
+
+    public function purchased()
+    {
+        return $this->hasOne(CoursePurchase::class)->where('user_id', auth()->id());
+    }
 }

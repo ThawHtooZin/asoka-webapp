@@ -46,11 +46,12 @@ class CourseController extends Controller
     public function purchase(Request $request, $id)
     {
         $data = $request->validate([
-            'payment_image' => 'required',
+            'payment_image' => 'required|image|mimes:jpg,jpeg,png|max:2048', // Add validation for image format and size
         ]);
 
         if ($request->hasFile('payment_image')) {
-            $imagePath = $request->file('image')->store('images/payments', 'public');
+            // Store the file in the 'images/payments' directory in the public disk
+            $imagePath = $request->file('payment_image')->store('images/payments', 'public');
             $data['payment_image'] = '/' . $imagePath; // Store the path in database format
         }
 
@@ -61,6 +62,6 @@ class CourseController extends Controller
         $data['status'] = 'requested';
         CoursePurchase::create($data);
 
-        return redirect('/courses/' . $id . '/show')->with('success', 'Course Purchased Successfully!');
+        return redirect('/courses/' . $id . '/show')->with('success', 'Course Requested Successfully!');
     }
 }

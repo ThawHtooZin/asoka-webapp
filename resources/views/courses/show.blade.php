@@ -48,13 +48,33 @@
                             Start Learning
                         </a>
                     @else
-                        <a href="/courses/{{ $course->id }}/buy"
-                            class="w-full inline-block text-lg px-6 py-3 mt-4 rounded-lg shadow-md bg-primary text-white hover:shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-1 text-center">
-                            Start Learning
-                        </a>
+                        @if (!empty($course->purchased()->first()->status) && $course->purchased()->first()->status == 'confirmed')
+                            <a href="/courses/{{ $course->id }}/chapters/<?php if (!empty($chapters[0])) {
+                                echo $chapters[0]->id;
+                            } else {
+                                echo 0;
+                            } ?>/videos/<?php if (!empty($video->id)) {
+                                echo $video->id;
+                            } else {
+                                echo 0;
+                            } ?>"
+                                class="w-full inline-block text-lg px-6 py-3 mt-4 rounded-lg shadow-md bg-green-500 text-white hover:bg-green-400 hover:shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-1 text-center">
+                                Start Learning
+                            </a>
+                        @elseif(!empty($course->purchased()->first()->status) && $course->purchased()->first()->status == 'requested')
+                            <a href="#"
+                                class="w-full inline-block text-lg px-6 py-3 mt-4 rounded-lg shadow-md bg-yellow-400 text-white hover:shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-1 text-center">
+                                Requested
+                            </a>
+                        @else
+                            <a href="/courses/{{ $course->id }}/buy"
+                                class="w-full inline-block text-lg px-6 py-3 mt-4 rounded-lg shadow-md bg-primary text-white hover:shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-1 text-center">
+                                Start Learning
+                            </a>
+                        @endif
                     @endif
                 @else
-                    <a href="/"
+                    <a href="/courses/{{ $course->id }}/buy"
                         class="w-full inline-block text-lg px-6 py-3 mt-4 rounded-lg shadow-md bg-primary text-white hover:shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-1 text-center">
                         Start Learning
                     </a>
