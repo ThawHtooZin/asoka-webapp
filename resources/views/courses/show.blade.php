@@ -27,7 +27,7 @@
                         @if ($course->price == 0)
                             {{ 'FREE' }}
                         @else
-                            {{ $course->price }}
+                            ${{ $course->price }}
                         @endif
                     </p>
                 </div>

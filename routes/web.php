@@ -33,6 +33,7 @@ Route::prefix('courses')->group(function () {
     Route::group(['middleware' => 'auth'], function () {
         Route::get('/{id}/show', [CourseController::class, 'show']); // Show a single course
         Route::get('/{id}/buy', [CourseController::class, 'buy']); // Buying a course
+        Route::post('/{id}/buy', [CourseController::class, 'Purchase']); // Purchasing a course
         Route::get('/{course}/chapters/{chapter}/videos', [VideoController::class, 'chaptershow'])->name('chaptershow'); // Show all videos in a chapter
         Route::get('/{course}/chapters/{chapter}/videos/{video}', [VideoController::class, 'videoshow'])->name('videoshow'); // Show a specific video
         Route::get('/{course}/quiz/{quizzes}/questions/{question}', [QuestionController::class, 'questionshow'])->name('questionshow'); // Show a specific question

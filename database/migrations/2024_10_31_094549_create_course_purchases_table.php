@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\Book;
+use App\Models\Course;
 use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -13,13 +13,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('payments', function (Blueprint $table) {
+        Schema::create('course_purchases', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(User::class);
-            $table->foreignIdFor(Book::class);
-            $table->decimal('amount');
+            $table->foreignIdFor(Course::class);
+            $table->text('payment_image');
             $table->string('status');
-            $table->string('transaction_id');
             $table->timestamps();
         });
     }
