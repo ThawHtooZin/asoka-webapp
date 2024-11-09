@@ -66,18 +66,46 @@
                 {{-- Course Chapter Section --}}
                 <div class="bg-gray-100 rounded-lg p-6 overflow-hidden mt-4 shadow-lg">
                     <h4 class="text-lg font-semibold mb-4">Course Chapters:</h4>
-                    <ul class="space-y-2">
-                        {{-- Uncomment and replace with dynamic data --}}
+                    <ul class="space-y-4">
                         @if (!empty($chapters))
                             @foreach ($chapters as $chapter)
-                                <li class="py-2 px-4 border-2 bg-white rounded-lg"><a
-                                        href="/courses/{{ $course->id }}/chapters/{{ $chapter->id }}/videos/@if (!empty($chapter->videos()->first()->id)) {{ $chapter->videos()->first()->id }} @endif">{{ $chapter->title }}</a>
+                                <li class="border-2 bg-white rounded-lg overflow-hidden">
+                                    <div class="flex justify-between items-center p-4 cursor-pointer chapter-title"
+                                        data-chapter-id="{{ $chapter->id }}">
+                                        <h3 class="text-lg font-medium">{{ $chapter->title }}</h3>
+                                        <span class="transition-transform transform chapter-arrow">&#9660;</span>
+                                        <!-- Down arrow for toggle -->
+                                    </div>
+                                    <ul class="space-y-2 max-h-0 overflow-hidden transition-all duration-500 ease-in-out chapter-videos"
+                                        data-chapter-id="{{ $chapter->id }}">
+                                        @foreach ($chapter->videos as $video)
+                                            <li class="px-4 py-2 text-sm bg-gray-100 hover:bg-gray-200">
+                                                {{ $video->title }}
+                                            </li>
+                                        @endforeach
+                                    </ul>
                                 </li>
                             @endforeach
                         @endif
                     </ul>
                 </div>
+
             </div>
         </div>
     </div>
+
+    <script>
+        $(document).ready(function() {
+            // Toggle the visibility of chapter videos when the chapter title is clicked
+            $('.chapter-title').on('click', function() {
+                const chapterId = $(this).data('chapter-id');
+                const videosList = $(`.chapter-videos[data-chapter-id="${chapterId}"]`);
+                const arrow = $(this).find('.chapter-arrow');
+
+                // Toggle visibility of the videos list and rotate the arrow
+                videosList.toggleClass('max-h-0 max-h-screen');
+                arrow.toggleClass('rotate-180');
+            });
+        });
+    </script>
 </x-layout>

@@ -4,7 +4,7 @@
         <!-- Main Content for Video Player on the Right -->
         <main class="flex-1 m-8 bg-gray-300 px-2 py-3 text-gray-900 rounded-lg">
             <div class="aspect-w-16 aspect-h-9 bg-black rounded-md overflow-hidden border border-gray-300 shadow-md">
-                <video controls class="mx-auto" loop>
+                <video controls class="mx-auto" loop autoplay>
                     <source src="{{ asset($video->video_url) }}" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
@@ -54,7 +54,9 @@
                             @foreach ($chapter->videos as $video)
                                 <li>
                                     <a href="/courses/{{ $course->id }}/chapters/{{ $chapter->id }}/videos/{{ $video->id }}"
-                                        class="text-sm block px-3 py-2 bg-gray-300 text-gray-900 hover:bg-gray-100 hover:shadow-md transition-all duration-200">
+                                        class="text-sm block px-3 py-2 
+                        {{ request()->is('courses/*/chapters/*/videos/' . $video->id) ? 'bg-blue-300 text-gray-900' : 'bg-gray-300 text-gray-900' }} 
+                        hover:bg-gray-100 hover:shadow-md transition-all duration-200">
                                         {{ $video->title }}
                                     </a>
                                 </li>
@@ -69,15 +71,30 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function() {
+            // 1. Toggling logic for chapter video list based on click
             $('.chapter-title').on('click', function() {
                 const chapterId = $(this).data('chapter-id');
                 const videosList = $(`.chapter-videos[data-chapter-id="${chapterId}"]`);
                 const arrow = $(this).find('.chapter-arrow');
 
-                // Toggle hidden class for video list and rotate class for the arrow
+                // Toggle visibility of the videos list and rotate the arrow
                 videosList.toggleClass('max-h-0 max-h-screen');
                 arrow.toggleClass('rotate-180');
             });
+
+            // 2. Automatically open the chapter video list if the current URL matches a chapter
+            @foreach ($chapters as $chapter)
+                // Check if the current URL contains the chapter and video links
+                if (window.location.href.indexOf(
+                        "{{ url('/courses/' . $course->id . '/chapters/' . $chapter->id . '/videos') }}") > -1) {
+                    const videosList = $(`.chapter-videos[data-chapter-id="{{ $chapter->id }}"]`);
+                    const arrow = $(`.chapter-title[data-chapter-id="{{ $chapter->id }}"] .chapter-arrow`);
+
+                    // Ensure the chapter is expanded when the page URL matches
+                    videosList.removeClass('max-h-0').addClass('max-h-screen');
+                    arrow.addClass('rotate-180');
+                }
+            @endforeach
         });
     </script>
 </x-layout>

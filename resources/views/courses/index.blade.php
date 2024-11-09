@@ -69,30 +69,34 @@
                 <div id="courses-container" class="grid gap-4 sm:grid-cols-1 md:grid-cols-2">
                     @foreach ($courses as $course)
                         <div id="course-{{ $course->course_category_id }}"
-                            class="course-card bg-white p-4 rounded-md shadow-md">
-                            <!-- Course Image -->
-                            <img src="{{ asset($course->image) }}" alt="{{ $course->name }}"
-                                class="w-full h-40 object-cover rounded-md mb-2" />
+                            class="course-card bg-white p-4 rounded-md shadow-md flex flex-col h-full @if ($course->course_category_id != $categories[0]->id) {{ 'hidden' }} @endif">
+                            <!-- Content Container -->
+                            <div class="flex-grow">
+                                <!-- Course Image -->
+                                <img src="{{ asset($course->image) }}" alt="{{ $course->name }}"
+                                    class="w-full h-40 object-cover rounded-md mb-2" />
 
-                            <h3 class="text-lg font-semibold">{{ $course->name }}</h3>
-                            <p class="text-sm">Duration: {{ $course->duration }}</p>
-                            <p class="text-sm">Price: @if ($course->price == 0)
-                                    <span class="text-green-600">FREE</span>
-                                @else
-                                    <span class="text-primary">${{ $course->price }}</span>
-                                @endif
-                            </p>
-                            <p class="text-sm">Rating:
-                                @for ($i = 0; $i < 5; $i++)
-                                    @if ($i < $course->rating)
-                                        <!-- Assuming rating is out of 5 -->
-                                        <span class="text-yellow-500">★</span>
+                                <h3 class="text-lg font-semibold">{{ $course->name }}</h3>
+                                <p class="text-sm">Duration: {{ $course->duration }}</p>
+                                <p class="text-sm">Price:
+                                    @if ($course->price == 0)
+                                        <span class="text-green-600">FREE</span>
                                     @else
-                                        <span class="text-gray-300">★</span>
+                                        <span class="text-primary">${{ $course->price }}</span>
                                     @endif
-                                @endfor
-                            </p>
+                                </p>
+                                <p class="text-sm">Rating:
+                                    @for ($i = 0; $i < 5; $i++)
+                                        @if ($i < $course->rating)
+                                            <span class="text-yellow-500">★</span>
+                                        @else
+                                            <span class="text-gray-300">★</span>
+                                        @endif
+                                    @endfor
+                                </p>
+                            </div>
 
+                            <!-- View Details / Login Button at the Bottom -->
                             @guest
                                 <a href="/login"
                                     class="mt-4 block w-full px-4 py-2 bg-asokablue text-white text-center rounded-lg hover:bg-blue-700 transition duration-300">
