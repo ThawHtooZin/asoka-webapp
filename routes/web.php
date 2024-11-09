@@ -8,6 +8,7 @@ use App\Http\Controllers\DashboardChapterController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DashboardCourseCategoryController;
 use App\Http\Controllers\DashboardCourseController;
+use App\Http\Controllers\DashboardRequestController;
 use App\Http\Controllers\DashboardVideoController;
 use App\Http\Controllers\LibraryController;
 use App\Http\Controllers\LoginController;
@@ -117,5 +118,8 @@ Route::middleware(['custom'])->group(function () {
         Route::post('courses/videos', [DashboardVideoController::class, 'store']); // Store Course Videos
         Route::put('courses/videos/{id}', [DashboardVideoController::class, 'update']); // Update Course Videos
         Route::delete('courses/videos/{id}', [DashboardVideoController::class, 'destroy']); // Delete Course Videos
+
+        Route::get('/courses/request', [DashboardRequestController::class, 'index']); // List Course Requests
+        Route::post('/courses/request/{id}/confirm', [DashboardRequestController::class, 'confirm']); // List Course Requests
     });
 });

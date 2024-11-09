@@ -314,99 +314,105 @@ return [
         ['header' => 'Account Settings'],
         [
             'text' => 'Account',
-            'icon' => 'fas fa-fw fa-user-cog',
+            'icon' => 'fas fa-user-gear', // More unique for settings
             'submenu' => [
                 [
                     'text' => 'Profile',
                     'url' => 'dashboard/profile',
-                    'icon' => 'fas fa-fw fa-user',
+                    'icon' => 'fas fa-id-card', // Profile card icon
                 ],
                 [
                     'text' => 'Change Password',
                     'url' => 'dashboard/change-password',
-                    'icon' => 'fas fa-fw fa-lock',
+                    'icon' => 'fas fa-key', // Key icon for password change
                 ],
             ],
         ],
         ['header' => 'Users Configuration'],
         [
             'text' => 'Users',
-            'icon' => 'fas fa-fw fa-users-cog',
+            'icon' => 'fas fa-people-arrows', // For user interactions
             'submenu' => [
                 [
                     'text' => 'Manage Users',
                     'url' => 'dashboard/users',
+                    'icon' => 'fas fa-users', // General users icon
                 ],
                 [
                     'text' => 'Manage Roles',
                     'url' => 'dashboard/roles',
+                    'icon' => 'fas fa-user-shield', // Secure roles icon
                 ],
             ],
         ],
 
-        [
-            'header' => 'Content Management',
-        ],
+        ['header' => 'Content Management'],
         [
             'text' => 'Article Management',
-            'icon' => 'fas fa-fw fa-file-alt',
+            'icon' => 'fas fa-newspaper', // Newspaper icon for articles
             'submenu' => [
                 [
                     'text' => 'All Articles',
                     'url' => 'dashboard/articles',
-                    'icon' => 'fas fa-fw fa-book',
+                    'icon' => 'fas fa-scroll', // Document icon for articles
                 ],
                 [
                     'text' => 'Article Categories',
                     'url' => 'dashboard/articles/categories',
-                    'icon' => 'fas fa-fw fa-tags',
+                    'icon' => 'fas fa-folder-open', // Folder icon for categories
                 ],
             ],
         ],
         [
             'text' => 'Course Management',
-            'icon' => 'fas fa-fw fa-graduation-cap',
+            'icon' => 'fas fa-chalkboard-teacher', // Teacher icon for courses
             'submenu' => [
                 [
                     'text' => 'All Courses',
                     'url' => 'dashboard/courses',
-                    'icon' => 'fas fa-fw fa-book-reader',
+                    'icon' => 'fas fa-book-open', // Book open for general courses
+                ],
+                [
+                    'text' => 'Requested Courses',
+                    'url' => 'dashboard/courses/request',
+                    'icon' => 'fas fa-clock', // Clock for pending/requested courses
                 ],
                 [
                     'text' => 'Course Categories',
                     'url' => 'dashboard/courses/categories',
-                    'icon' => 'fas fa-fw fa-layer-group',
+                    'icon' => 'fas fa-sitemap', // Sitemap for organization of categories
                 ],
                 [
                     'text' => 'Chapters',
                     'url' => 'dashboard/courses/chapters',
-                    'icon' => 'fas fa-fw fa-list-alt',
+                    'icon' => 'fas fa-layer-group', // Layered structure for chapters
                 ],
                 [
                     'text' => 'Videos',
                     'url' => 'dashboard/courses/videos',
-                    'icon' => 'fas fa-fw fa-video',
+                    'icon' => 'fas fa-video', // Different video icon for variety
                 ],
             ],
         ],
+
         [
             'text' => 'E-Library Management',
-            'icon' => 'fas fa-fw fa-book',
+            'icon' => 'fas fa-book-reader', // Book reader icon for e-library
             'submenu' => [
                 [
                     'text' => 'All eBooks',
                     'url' => 'dashboard/ebooks',
-                    'icon' => 'fas fa-fw fa-book-open',
+                    'icon' => 'fas fa-tablet-alt', // Tablet for digital books
                 ],
                 [
                     'text' => 'Free eBooks',
                     'url' => 'dashboard/ebooks/free',
-                    'icon' => 'fas fa-fw fa-gift',
+                    'icon' => 'fas fa-gift', // Gift icon for free resources
                 ],
                 [
                     'text' => 'Paid eBooks',
                     'url' => 'dashboard/ebooks/paid',
-                    'icon' => 'fas fa-fw fa-credit-card',
+                    'icon' => 'fas fa-money-bill-wave', // Money bill for paid items
                 ],
             ],
         ],
@@ -414,11 +420,12 @@ return [
         // Home Page link
         [
             'text' => 'Home Page',
-            'icon' => 'fas fa-fw fa-home',
+            'icon' => 'fas fa-home',
             'icon_color' => 'red',
             'url' => '/',
         ],
     ],
+
 
 
     /*
