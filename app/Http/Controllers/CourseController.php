@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Chapter;
 use App\Models\Course;
 use App\Models\CourseCategory;
+use App\Models\Quiz;
 use App\Models\Video;
 use Illuminate\Http\Request;
 

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Chapter;
 use App\Models\Course;
+use App\Models\Question;
+use App\Models\Quiz;
 use App\Models\Video;
 use Illuminate\Http\Request;
 
@@ -72,7 +74,10 @@ class VideoController extends Controller
             }
         }
 
-        return view('courses.video.index', compact('video', 'chapters', 'course', 'nextVideoUrl', 'previousVideoUrl'));
+        $quiz = Quiz::where('course_id', $id)->first();
+        $questions = Question::where('quiz_id', $quiz->id)->get();
+
+        return view('courses.video.index', compact('video', 'chapters', 'course', 'nextVideoUrl', 'previousVideoUrl', 'quiz', 'questions'));
     }
 
     // Helper method to get chapters for a course

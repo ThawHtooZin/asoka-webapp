@@ -64,6 +64,30 @@
                         </ul>
                     </li>
                 @endforeach
+                <li class="mb-4 border border-gray-300 rounded-lg overflow-hidden">
+                    <!-- Quiz Title Section -->
+                    <div class="flex justify-between items-center p-3 cursor-pointer quiz-title"
+                        data-quiz-id="{{ $quiz->id }}">
+                        <h3 class="text-lg font-medium">{{ $quiz->title }}</h3>
+                        <span class="transition-transform transform chapter-arrow">&#9660;</span>
+                    </div>
+
+                    <!-- Questions List for Quiz -->
+                    <ul class="space-y-2 max-h-0 overflow-hidden transition-max-height duration-500 ease-in-out chapter-videos"
+                        data-quiz-id="{{ $quiz->id }}">
+                        @foreach ($questions as $question)
+                            <li>
+                                <a href="/courses/{{ $course->id }}/quiz/{{ $quiz->id }}/question/{{ $question->id }}"
+                                    class="text-sm block px-3 py-2 
+                                    {{ request()->is('courses/*/quiz/*/question/' . $question->id) ? 'bg-blue-300 text-gray-900' : 'bg-gray-300 text-gray-900' }} 
+                                    hover:bg-gray-100 hover:shadow-md transition-all duration-200">
+                                    {{ $question->question_text }}
+                                </a>
+                            </li>
+                        @endforeach
+                    </ul>
+                </li>
+
             </ul>
         </aside>
     </div>
@@ -71,30 +95,34 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function() {
-            // 1. Toggling logic for chapter video list based on click
+            // Toggling logic for chapter and quiz video list based on click
             $('.chapter-title').on('click', function() {
                 const chapterId = $(this).data('chapter-id');
                 const videosList = $(`.chapter-videos[data-chapter-id="${chapterId}"]`);
                 const arrow = $(this).find('.chapter-arrow');
 
-                // Toggle visibility of the videos list and rotate the arrow
                 videosList.toggleClass('max-h-0 max-h-screen');
                 arrow.toggleClass('rotate-180');
             });
 
-            // 2. Automatically open the chapter video list if the current URL matches a chapter
-            @foreach ($chapters as $chapter)
-                // Check if the current URL contains the chapter and video links
-                if (window.location.href.indexOf(
-                        "{{ url('/courses/' . $course->id . '/chapters/' . $chapter->id . '/videos') }}") > -1) {
-                    const videosList = $(`.chapter-videos[data-chapter-id="{{ $chapter->id }}"]`);
-                    const arrow = $(`.chapter-title[data-chapter-id="{{ $chapter->id }}"] .chapter-arrow`);
+            // Toggling logic for quiz questions based on click
+            $('.quiz-title').on('click', function() {
+                const quizId = $(this).data('quiz-id');
+                const questionsList = $(`.chapter-videos[data-quiz-id="${quizId}"]`);
+                const arrow = $(this).find('.chapter-arrow');
 
-                    // Ensure the chapter is expanded when the page URL matches
-                    videosList.removeClass('max-h-0').addClass('max-h-screen');
-                    arrow.addClass('rotate-180');
-                }
-            @endforeach
+                questionsList.toggleClass('max-h-0 max-h-screen');
+                arrow.toggleClass('rotate-180');
+            });
+
+            // Auto-expand the quiz section if the current URL matches the quiz route
+            if (window.location.href.includes("{{ url('/courses/' . $course->id . '/quiz/' . $quiz->id) }}")) {
+                const questionsList = $(`.chapter-videos[data-quiz-id="{{ $quiz->id }}"]`);
+                const arrow = $(`.quiz-title[data-quiz-id="{{ $quiz->id }}"] .chapter-arrow`);
+
+                questionsList.removeClass('max-h-0').addClass('max-h-screen');
+                arrow.addClass('rotate-180');
+            }
         });
     </script>
 </x-layout>

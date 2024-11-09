@@ -19,8 +19,8 @@ class QuizSeeder extends Seeder
         foreach ($courses as $course) {
             Quiz::create([
                 'course_id' => $course->id,
-                'title' => 'Sample Quiz for ' . $course->title,
-                'description' => 'A sample quiz for the course: ' . $course->title,
+                'title' => 'Sample Quiz for ' . $course->name,
+                'description' => 'A sample quiz for the course: ' . $course->name,
             ]);
         }
     }
