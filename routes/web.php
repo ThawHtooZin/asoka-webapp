@@ -11,6 +11,7 @@ use App\Http\Controllers\DashboardCourseController;
 use App\Http\Controllers\DashboardVideoController;
 use App\Http\Controllers\LibraryController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
@@ -34,6 +35,8 @@ Route::prefix('courses')->group(function () {
         Route::get('/{id}/buy', [CourseController::class, 'buy']); // Buying a course
         Route::get('/{course}/chapters/{chapter}/videos', [VideoController::class, 'chaptershow'])->name('chaptershow'); // Show all videos in a chapter
         Route::get('/{course}/chapters/{chapter}/videos/{video}', [VideoController::class, 'videoshow'])->name('videoshow'); // Show a specific video
+        Route::get('/{course}/quiz/{quizzes}/questions/{question}', [QuestionController::class, 'questionshow'])->name('questionshow'); // Show a specific question
+        Route::post('/{course}/quiz/{quiz}/questions/{question}/submit', [QuestionController::class, 'submitAnswer'])->name('submitquizanswer');
     });
 });
 

@@ -86,14 +86,6 @@ class VideoController extends Controller
         return Chapter::where('course_id', $course_id)->get();
     }
 
-    // Helper method to get a video by chapter within a course
-    private function getVideoByChapter($course_id, $chapter_id)
-    {
-        return Video::where('chapter_id', $chapter_id)
-            ->whereHas('chapter', fn($query) => $query->where('course_id', $course_id))
-            ->first();
-    }
-
     // Helper method to get a specific video in a chapter within a course
     private function getVideo($course_id, $chapter_id, $video_id)
     {
