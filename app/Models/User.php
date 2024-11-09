@@ -51,4 +51,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(BookPurchase::class);
     }
+
+    public function userAnswers()
+    {
+        return $this->hasMany(UserAnswer::class);
+    }
 }
