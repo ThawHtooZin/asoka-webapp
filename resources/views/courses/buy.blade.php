@@ -68,10 +68,19 @@
 
             <!-- Course Image (spans 2 columns on large screens) -->
             <div class="lg:col-span-2">
-                <div class="relative w-full h-[400px]">
-                    <img src="{{ asset($course->image) }}" alt="{{ $course->name }}"
-                        class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 object-contain max-w-full max-h-full" />
+                <div class="relative w-full h-[400px] grid grid-cols-2 gap-4 lg:grid-cols-3">
+                    <img src="{{ asset('images/payments/visa.jpg') }}" alt="Visa"
+                        class="object-contain w-full h-32 mx-auto" />
+                    <img src="{{ asset('images/payments/mastercard.jpg') }}" alt="Mastercard"
+                        class="object-contain w-full h-32 mx-auto" />
+                    <img src="{{ asset('images/payments/paypal.jpg') }}" alt="PayPal"
+                        class="object-contain w-full h-32 mx-auto" />
+                    <img src="{{ asset('images/payments/kpay.jpg') }}" alt="Stripe"
+                        class="object-contain w-full h-32 mx-auto" />
+                    <img src="{{ asset('images/payments/wavepay.jpg') }}" alt="Bank Transfer"
+                        class="object-contain w-full h-32 mx-auto" />
                 </div>
+
 
                 <!-- Description Section -->
                 <div class="border-4 border-gray-200 rounded-lg p-6 overflow-hidden lg:col-span-2 mt-4">

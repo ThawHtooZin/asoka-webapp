@@ -400,20 +400,21 @@ return [
             'icon' => 'fas fa-book-reader', // Book reader icon for e-library
             'submenu' => [
                 [
-                    'text' => 'All eBooks',
-                    'url' => 'dashboard/ebooks',
-                    'icon' => 'fas fa-tablet-alt', // Tablet for digital books
+                    'text' => 'All Books',
+                    'url' => 'dashboard/books',
+                    'icon' => 'fas fa-book-open', // Open book icon for the entire collection
                 ],
                 [
-                    'text' => 'Free eBooks',
-                    'url' => 'dashboard/ebooks/free',
-                    'icon' => 'fas fa-gift', // Gift icon for free resources
+                    'text' => 'Books Category',
+                    'url' => 'dashboard/books/category',
+                    'icon' => 'fas fa-layer-group', // Layered icon for categories
                 ],
                 [
-                    'text' => 'Paid eBooks',
-                    'url' => 'dashboard/ebooks/paid',
-                    'icon' => 'fas fa-money-bill-wave', // Money bill for paid items
+                    'text' => 'Requested Books',
+                    'url' => 'dashboard/books/requested',
+                    'icon' => 'fas fa-inbox', // Inbox icon for requested items
                 ],
+
             ],
         ],
 

@@ -8,6 +8,7 @@ use App\Http\Controllers\DashboardChapterController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DashboardCourseCategoryController;
 use App\Http\Controllers\DashboardCourseController;
+use App\Http\Controllers\DashboardElibraryController;
 use App\Http\Controllers\DashboardRequestController;
 use App\Http\Controllers\DashboardVideoController;
 use App\Http\Controllers\LibraryController;
@@ -119,7 +120,14 @@ Route::middleware(['custom'])->group(function () {
         Route::put('courses/videos/{id}', [DashboardVideoController::class, 'update']); // Update Course Videos
         Route::delete('courses/videos/{id}', [DashboardVideoController::class, 'destroy']); // Delete Course Videos
 
+        // Course Purchase Request Management
         Route::get('/courses/request', [DashboardRequestController::class, 'index']); // List Course Requests
         Route::post('/courses/request/{id}/confirm', [DashboardRequestController::class, 'confirm']); // List Course Requests
+
+        // E-Library Management
+        Route::get('books', [DashboardElibraryController::class, 'index']); // List Library Book
+        Route::post('books', [DashboardElibraryController::class, 'store']); // Store Library Book
+        Route::put('books/{id}', [DashboardElibraryController::class, 'update']); // Update Library Book
+        Route::delete('books/{id}', [DashboardElibraryController::class, 'destroy']); // Delete Library Book
     });
 });
