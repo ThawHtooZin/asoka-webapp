@@ -19,7 +19,7 @@
     <x-footer />
     @if (session('success'))
         <div id="alert"
-            class="fixed bottom-5 right-5 bg-asokablue text-white p-4 rounded shadow-lg transition-opacity duration-500"
+            class="fixed bottom-5 right-5 bg-blue-500 text-white p-4 rounded shadow-lg transition-opacity duration-500"
             style="opacity: 1;">
             {{ session('success') }}
         </div>

@@ -9,9 +9,9 @@
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>User</th>
-                    <th>Course</th>
                     <th>Payment Image</th>
+                    <th>Requested User</th>
+                    <th>Requested Course</th>
                     <th>Status</th>
                     <th>Requested At</th>
                     <th>Actions</th>

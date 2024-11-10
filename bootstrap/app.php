@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Middleware\AuthMiddleware;
+use App\Http\Middleware\BookOwnershipMiddleware;
+use App\Http\Middleware\CourseOwnershipMiddleware;
 use App\Http\Middleware\CustomMiddleware;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
@@ -18,6 +20,8 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->alias([
             'custom' => CustomMiddleware::class,
             'authmiddleware' => AuthMiddleware::class,
+            'courseownershipmiddleware' => CourseOwnershipMiddleware::class,
+            'bookownershipmiddleware' => BookOwnershipMiddleware::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {

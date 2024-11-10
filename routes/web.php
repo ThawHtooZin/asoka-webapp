@@ -4,6 +4,7 @@ use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\DashboardArticleCategoryController;
 use App\Http\Controllers\DashboardArticleController;
+use App\Http\Controllers\DashboardBookCategoryController;
 use App\Http\Controllers\DashboardChapterController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DashboardCourseCategoryController;
@@ -36,10 +37,10 @@ Route::prefix('courses')->group(function () {
         Route::get('/{id}/show', [CourseController::class, 'show']); // Show a single course
         Route::get('/{id}/buy', [CourseController::class, 'buy']); // Buying a course
         Route::post('/{id}/buy', [CourseController::class, 'Purchase']); // Purchasing a course
-        Route::get('/{course}/chapters/{chapter}/videos', [VideoController::class, 'chaptershow'])->name('chaptershow'); // Show all videos in a chapter
-        Route::get('/{course}/chapters/{chapter}/videos/{video}', [VideoController::class, 'videoshow'])->name('videoshow'); // Show a specific video
-        Route::get('/{course}/quiz/{quizzes}/questions/{question}', [QuestionController::class, 'questionshow'])->name('questionshow'); // Show a specific question
-        Route::post('/{course}/quiz/{quiz}/questions/{question}/submit', [QuestionController::class, 'submitAnswer'])->name('submitquizanswer');
+        Route::get('/{course}/chapters/{chapter}/videos', [VideoController::class, 'chaptershow'])->name('chaptershow')->middleware('courseownershipmiddleware'); // Show all videos in a chapter
+        Route::get('/{course}/chapters/{chapter}/videos/{video}', [VideoController::class, 'videoshow'])->name('videoshow')->middleware('courseownershipmiddleware'); // Show a specific video
+        Route::get('/{course}/quiz/{quizzes}/questions/{question}', [QuestionController::class, 'questionshow'])->name('questionshow')->middleware('courseownershipmiddleware'); // Show a specific question
+        Route::post('/{course}/quiz/{quiz}/questions/{question}/submit', [QuestionController::class, 'submitAnswer'])->name('submitquizanswer')->middleware('courseownershipmiddleware');
     });
 });
 
@@ -53,11 +54,11 @@ Route::get('/article/{id}', [ArticleController::class, 'show'])->name('articles.
 Route::prefix('elibrary')->group(function () {
     Route::get('/', [LibraryController::class, 'index'])->name('elibrary.index'); // Show all books
     Route::get('/book/{id}', [LibraryController::class, 'show'])->name('elibrary.show'); // Show a specific book
-    Route::get('/book/{id}/read', [LibraryController::class, 'read'])->name('elibrary.read'); // Read free book
-    Route::get('/book/{id}/buy', [LibraryController::class, 'buy'])->name('elibrary.buy'); // Buy specific book
-    Route::post('/process-payment', [LibraryController::class, 'processPayment'])->name('elibrary.processPayment'); // Process payment
-    Route::get('/payment-success', [LibraryController::class, 'success'])->name('elibrary.success'); // Payment success page
+    Route::get('/book/{id}/read', [LibraryController::class, 'read'])->name('elibrary.read')->middleware('auth', 'bookownershipmiddleware'); // Read free book
+    Route::get('/book/{id}/buy', [LibraryController::class, 'buy'])->name('elibrary.buy')->middleware('auth'); // Buy specific book
+    Route::post('/book/{id}/buy', [LibraryController::class, 'purchase'])->middleware('auth'); // Buy specific book
 });
+
 
 // Authentication Routes
 Route::middleware(['guest'])->group(function () {
@@ -121,13 +122,23 @@ Route::middleware(['custom'])->group(function () {
         Route::delete('courses/videos/{id}', [DashboardVideoController::class, 'destroy']); // Delete Course Videos
 
         // Course Purchase Request Management
-        Route::get('/courses/request', [DashboardRequestController::class, 'index']); // List Course Requests
-        Route::post('/courses/request/{id}/confirm', [DashboardRequestController::class, 'confirm']); // List Course Requests
+        Route::get('/courses/request', [DashboardRequestController::class, 'courseindex']); // List Course Requests
+        Route::post('/courses/request/{id}/confirm', [DashboardRequestController::class, 'courseconfirm']); // List Course Requests
 
         // E-Library Management
         Route::get('books', [DashboardElibraryController::class, 'index']); // List Library Book
         Route::post('books', [DashboardElibraryController::class, 'store']); // Store Library Book
         Route::put('books/{id}', [DashboardElibraryController::class, 'update']); // Update Library Book
         Route::delete('books/{id}', [DashboardElibraryController::class, 'destroy']); // Delete Library Book
+
+        // Book Category Management
+        Route::get('books/categories', [DashboardBookCategoryController::class, 'index']); // List Library Book
+        Route::post('books/categories', [DashboardBookCategoryController::class, 'store']); // Store Library Book
+        Route::put('books/categories/{id}', [DashboardBookCategoryController::class, 'update']); // Update Library Book
+        Route::delete('books/categories/{id}', [DashboardBookCategoryController::class, 'destroy']); // Delete Library Book
+
+        // Course Purchase Request Management
+        Route::get('/books/request', [DashboardRequestController::class, 'bookindex']); // List Course Requests
+        Route::post('/books/request/{id}/confirm', [DashboardRequestController::class, 'bookconfirm']); // List Course Requests
     });
 });

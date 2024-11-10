@@ -406,12 +406,12 @@ return [
                 ],
                 [
                     'text' => 'Books Category',
-                    'url' => 'dashboard/books/category',
+                    'url' => 'dashboard/books/categories',
                     'icon' => 'fas fa-layer-group', // Layered icon for categories
                 ],
                 [
                     'text' => 'Requested Books',
-                    'url' => 'dashboard/books/requested',
+                    'url' => 'dashboard/books/request',
                     'icon' => 'fas fa-inbox', // Inbox icon for requested items
                 ],
 

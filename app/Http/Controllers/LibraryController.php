@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Book; // Adjust based on your book model
-use Stripe\Stripe;
-use Stripe\PaymentIntent;
+use App\Models\Book;
+use App\Models\BookPurchase;
+use Illuminate\Support\Facades\Auth;
 
 class LibraryController extends Controller
 {
@@ -30,50 +30,28 @@ class LibraryController extends Controller
     public function buy($id)
     {
         $book = Book::findOrFail($id);
-
-        // Create a PaymentIntent and get the client secret
-        Stripe::setApiKey(config('services.stripe.secret'));
-        $paymentIntent = PaymentIntent::create([
-            'amount' => $book->price * 100, // Assuming price is in dollars
-            'currency' => 'usd', // Change as needed
-        ]);
-
-        return view('elibrary.buy', [
-            'book' => $book,
-            'clientSecret' => $paymentIntent->client_secret,
-        ]);
+        return view('elibrary.buy', compact('book'));
     }
 
-    public function processPayment(Request $request)
+    public function purchase(Request $request, $id)
     {
-        // Validate the incoming request
-        $request->validate([
-            'amount' => 'required|numeric',
-            'currency' => 'required|string',
-            // Add more validation rules as needed
+        $data = $request->validate([
+            'payment_image' => 'required|image|mimes:jpg,jpeg,png|max:2048', // Add validation for image format and size
         ]);
 
-        // Set your secret key
-        Stripe::setApiKey(config('services.stripe.secret'));
-
-        // Create a PaymentIntent
-        try {
-            $paymentIntent = PaymentIntent::create([
-                'amount' => $request->amount, // Amount should be in cents
-                'currency' => $request->currency,
-            ]);
-
-            // Return the client secret
-            return response()->json([
-                'clientSecret' => $paymentIntent->client_secret,
-            ]);
-        } catch (\Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 500);
+        if ($request->hasFile('payment_image')) {
+            // Store the file in the 'images/payments' directory in the public disk
+            $imagePath = $request->file('payment_image')->store('images/payments', 'public');
+            $data['payment_image'] = '/' . $imagePath; // Store the path in database format
         }
-    }
 
-    public function success()
-    {
-        return view('elibrary.success'); // View for payment success
+        $user_id = Auth::user()->id;
+
+        $data['user_id'] = $user_id;
+        $data['book_id'] = $id;
+        $data['status'] = 'requested';
+        BookPurchase::create($data);
+
+        return redirect('elibrary/book/' . $id)->with('success', 'Book Requested Successfully!');
     }
 }

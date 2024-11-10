@@ -10,7 +10,10 @@
         <div class="col-span-2 border-2 p-6 bg-white rounded-lg shadow-lg space-y-4">
             <!-- Book Title and Availability -->
             <div class="flex justify-between items-center">
-                <h2 class="text-3xl font-bold text-gray-800">{{ $book->title }}</h2>
+                <div>
+                    <h2 class="text-3xl font-bold text-gray-800">{{ $book->title }}</h2>
+                    <p class="text-gray-400">Book Category: {{ $book->category()->first()->name }}</p>
+                </div>
                 <span class="text-green-500 font-semibold">Official ISBN Number: {{ $book->isbn }}</span>
             </div>
 
@@ -23,13 +26,31 @@
 
             <!-- Price and Action Buttons -->
             <div class="flex items-center space-x-4">
+                @php
+                    $purchaseStatus = optional($book->purchased()->first())->status;
+                @endphp
+
                 @if ($book->price != 0)
                     <span class="text-2xl font-bold text-t5">${{ $book->price }}</span>
-                    <!-- Buy Now Button for Paid Books -->
-                    <a href="{{ $book->id }}/buy/"
-                        class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
-                        Buy Now
-                    </a>
+
+                    @if ($purchaseStatus == 'requested')
+                        <!-- Requested Button -->
+                        <a href="#" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+                            Requested
+                        </a>
+                    @elseif ($purchaseStatus == 'confirmed')
+                        <!-- Start Reading Button for Owned Books -->
+                        <a href="{{ $book->id }}/read"
+                            class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">
+                            Start Reading
+                        </a>
+                    @else
+                        <!-- Buy Now Button for Books that are Not Owned -->
+                        <a href="{{ $book->id }}/buy"
+                            class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+                            Buy Now
+                        </a>
+                    @endif
                 @else
                     <span class="text-2xl font-bold text-t5">FREE</span>
                     <!-- Read Sample Button for Free Books -->

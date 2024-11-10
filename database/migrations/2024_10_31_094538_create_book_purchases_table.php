@@ -17,10 +17,8 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(User::class);
             $table->foreignIdFor(Book::class);
-            $table->string('payment_id');
-            $table->decimal('amount_paid');
+            $table->text('payment_image');
             $table->string('status');
-            $table->timestamp('purchase_date');
             $table->timestamps();
         });
     }
