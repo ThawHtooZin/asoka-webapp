@@ -19,15 +19,19 @@ class CourseController extends Controller
         if ($request->has('search')) {
             $search = $request->input('search');
 
-            // Filter courses by name or description based on search term
             $query->where('name', 'LIKE', '%' . $search . '%');
         }
-
         $courses = $query->get();
-        $categories = CourseCategory::all(); // Assuming categories are displayed as well
+
+        // Get category IDs from the filtered courses
+        $categoryIds = $courses->pluck('course_category_id')->unique();
+
+        // Get only categories that are related to the filtered courses
+        $categories = CourseCategory::whereIn('id', $categoryIds)->get();
 
         return view('courses.index', compact('courses', 'categories'));
     }
+
 
     public function show($id)
     {

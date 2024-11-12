@@ -1,5 +1,5 @@
 <x-layout>
-    <div class="container mx-auto p-6">
+    <div class="container mx-auto p-6 px-72">
         <div class="bg-white rounded-lg shadow-md overflow-hidden">
             <!-- Article Image -->
             @if ($article->image)

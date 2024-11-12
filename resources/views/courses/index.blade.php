@@ -31,27 +31,43 @@
             position: relative;
             z-index: 10;
         }
+
+        /* Title Section Styles */
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #333;
+            border-left: 4px solid #007bff;
+            /* Primary color border */
+            padding-left: 16px;
+            margin-bottom: 24px;
+        }
     </style>
     <div class="container mx-auto p-6 space-y-8">
-        <!-- Search Input -->
-        <form action="/courses" method="GET" class="flex items-center mb-6 shadow-lg rounded-lg overflow-hidden">
-            <input type="text" name="search" placeholder="Search for courses..."
-                class="w-full p-4 border-0 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-asokablue transition duration-300" />
-            <button type="submit"
-                class="p-4 bg-asokablue text-white hover:bg-blue-700 transition duration-300 flex items-center justify-center">
-                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor"
-                    class="bi bi-search" viewBox="0 0 16 16">
-                    <path
-                        d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
-                </svg>
-            </button>
-        </form>
-
-
+        <!-- Title Section -->
+        <div class="col-span-4">
+            <h1 class="section-title roboto-slab"><span class="text-primary">Browse Courses from </span><span
+                    class="text-t2">ASOKA!</span>
+            </h1>
+        </div>
         <!-- Main Content: Categories and Courses -->
         <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
             <!-- Categories Section -->
             <div class="bg-white rounded-lg p-6 shadow-md">
+                <!-- Search Input -->
+                <form action="/courses" method="GET"
+                    class="flex items-center mb-6 shadow-md rounded-lg overflow-hidden bg-gradient-to-r from-gray-50 to-white">
+                    <input type="text" name="search" placeholder="Search for courses..."
+                        class="w-full p-3 border-0 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-asokablue transition duration-300 text-sm" />
+                    <button type="submit"
+                        class="p-4 bg-asokablue text-white hover:bg-blue-700 transition duration-300 flex items-center justify-center rounded-r-lg">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill="currentColor"
+                            class="bi bi-search" viewBox="0 0 16 16">
+                            <path
+                                d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
+                        </svg>
+                    </button>
+                </form>
                 <h3 class="text-lg font-semibold text-gray-800 mb-4">Categories</h3>
                 <div class="flex flex-col space-y-4">
                     @foreach ($categories as $category)
@@ -73,7 +89,7 @@
                             <!-- Content Container -->
                             <div class="flex-grow">
                                 <!-- Course Image -->
-                                <img src="{{ asset($course->image) }}" alt="{{ $course->name }}"
+                                <img src="{{ asset($course->image) }}" alt="{{ $course->name }} "
                                     class="w-full h-40 object-cover rounded-md mb-2" />
 
                                 <h3 class="text-lg font-semibold">{{ $course->name }}</h3>
@@ -113,6 +129,7 @@
                 </div>
             </div>
         </div>
+
     </div>
 
     <script>

@@ -1,6 +1,7 @@
 <x-layout>
     <div class="container mx-auto p-6 space-y-8">
-        <h1 class="text-2xl font-bold text-gray-700 mb-4">E-Library</h1>
+        <h1 class="text-3xl font-bold text-primary mb-4 roboto-slab">Welcome To <span class="text-t2">ASOKA</span>
+            E-Library</h1>
 
         <div class="grid grid-cols-1 md:grid-cols-5 gap-6">
             @foreach ($books as $book)

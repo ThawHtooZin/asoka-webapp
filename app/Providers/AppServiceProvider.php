@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -19,6 +20,15 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        View::share('shownotification', $this->shownotification());
+    }
+
+    public function shownotification()
+    {
+        // Your logic to get notifications goes here
+        return [
+            'message' => 'You have new notifications!',
+            'count' => 5
+        ]; // Example structure
     }
 }
