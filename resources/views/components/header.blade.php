@@ -5,7 +5,7 @@
         <div class="flex items-center space-x-4">
             <img src="/images/logo.png" alt="Asoka Logo" class="h-[80px] sm:h-[100px] lg:h-[120px]">
             <div class="flex flex-col text-center sm:text-left">
-                <h1 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-t5 tracking-tight">
+                <h1 class="text-2xl sm:text-3xl lg:text-5xl roboto-slab font-bold text-t5 tracking-wide text-center">
                     ASOKA
                 </h1>
                 <span class="text-sm sm:text-base mt-1">Center of Buddhist Studies</span>

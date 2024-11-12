@@ -33,7 +33,7 @@
                 </div>
 
                 {{-- Start Learning --}}
-                @if (!empty($chapters[0]->videos()->first()->id))
+                @if (!empty($chapters))
                     @if ($course->price == 0)
                         <a href="/courses/{{ $course->id }}/chapters/<?php if (!empty($chapters[0])) {
                             echo $chapters[0]->id;

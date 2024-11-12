@@ -12,6 +12,7 @@ use App\Http\Controllers\DashboardCourseController;
 use App\Http\Controllers\DashboardElibraryController;
 use App\Http\Controllers\DashboardRequestController;
 use App\Http\Controllers\DashboardVideoController;
+use App\Http\Controllers\HomePageController;
 use App\Http\Controllers\LibraryController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\QuestionController;
@@ -22,9 +23,7 @@ use App\Http\Controllers\VideoController;
 use Illuminate\Support\Facades\Route;
 
 // Public Routes
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/', [HomePageController::class, 'index']);
 Route::get('/logout', [LoginController::class, 'logout']);
 Route::post('/logout', [LoginController::class, 'logout']);
 
