@@ -114,6 +114,22 @@
         </div>
     </div>
 
+    @if (session('score'))
+        <div class="flex justify-center items-center min-h-screen bg-gray-800 bg-opacity-50 fixed inset-0 z-50">
+            <div class="bg-blue-600 text-white p-8 rounded-xl shadow-lg text-center max-w-xl w-full">
+                <h2 class="text-3xl font-bold mb-4">Course Completed!</h2>
+                <p class="text-lg mb-6">Congratulations! You have completed the quiz with a score of:</p>
+                <div class="text-4xl font-extrabold text-yellow-400 mb-6">{{ session('score') }} /
+                    {{ session('totalQuestions') }}</div>
+                <p class="text-lg">Well done on your performance! Keep going!</p>
+                <div class="mt-8">
+                    <a href="{{ route('course.show', ['id' => $course]) }}"
+                        class="text-white hover:text-gray-200 underline text-lg">Return to Course</a>
+                </div>
+            </div>
+        </div>
+    @endif
+
     <script>
         $(document).ready(function() {
             // Toggle the visibility of chapter videos when the chapter title is clicked

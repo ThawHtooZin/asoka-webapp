@@ -35,13 +35,15 @@ Route::prefix('courses')->group(function () {
 
     // 🔒 Authenticated Routes for Courses
     Route::group(['middleware' => 'auth'], function () {
-        Route::get('/{id}/show', [CourseController::class, 'show']); // Peek into a single course
+        Route::get('/{id}/show', [CourseController::class, 'show'])->name('course.show'); // Peek into a single course
         Route::get('/{id}/buy', [CourseController::class, 'buy']); // Ready to buy this course?
         Route::post('/{id}/buy', [CourseController::class, 'Purchase']); // Confirm the purchase
         Route::get('/{course}/chapters/{chapter}/videos', [VideoController::class, 'chaptershow'])->name('chaptershow')->middleware('courseownershipmiddleware'); // Dive into chapter videos
         Route::get('/{course}/chapters/{chapter}/videos/{video}', [VideoController::class, 'videoshow'])->name('videoshow')->middleware('courseownershipmiddleware'); // Watch a specific video
         Route::get('/{course}/quiz/{quizzes}/questions/{question}', [QuestionController::class, 'questionshow'])->name('questionshow')->middleware('courseownershipmiddleware'); // Tackle a quiz question
+        Route::get('/{course}/quiz/{quiz}/questions/{question}/skip', [QuestionController::class, 'skipQuestion']); // Skip a question
         Route::post('/{course}/quiz/{quiz}/questions/{question}/submit', [QuestionController::class, 'submitAnswer'])->name('submitquizanswer')->middleware('courseownershipmiddleware'); // Submit your answer
+        Route::get('{course}/quiz/{quiz_id}/score', [QuestionController::class, 'showScore'])->name('quiz.complete');
     });
 });
 

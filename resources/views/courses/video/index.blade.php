@@ -20,26 +20,18 @@
                                     {{ $answer->answer_text }}
                                 </label>
                             @endforeach
+                            @error('answer')
+                                <div class="text-red-500">Please Choose an answer!</div>
+                            @enderror
                         </div>
 
                         <!-- Navigation Buttons for Previous and Next Questions -->
                         <div class="flex justify-between mt-4">
-                            <a href="{{ $previousQuestionUrl ?? '#' }}"
-                                class="px-4 py-2 bg-asokablue text-white rounded-lg font-semibold transition-transform duration-200 hover:scale-105 {{ !$previousQuestionUrl ? 'opacity-50 cursor-not-allowed' : '' }}"
-                                {{ !$previousQuestionUrl ? 'aria-disabled=true' : '' }}>
-                                &larr; Previous
-                            </a>
                             <input type="hidden" name="nextquestion" value="{{ $nextQuestionUrl }}">
                             <button type="submit"
                                 class="px-4 py-2 bg-green-500 text-white rounded-lg font-semibold transition-transform duration-200 hover:scale-105">
                                 Submit Answer
                             </button>
-
-                            <a href="{{ $nextQuestionUrl ?? '#' }}"
-                                class="px-4 py-2 bg-asokablue text-white rounded-lg font-semibold transition-transform duration-200 hover:scale-105 {{ !$nextQuestionUrl ? 'opacity-50 cursor-not-allowed' : '' }}"
-                                {{ !$nextQuestionUrl ? 'aria-disabled=true' : '' }}>
-                                Next &rarr;
-                            </a>
                         </div>
                     </form>
                 </div>
@@ -119,38 +111,28 @@
                 @endforeach
                 <li class="mb-4 border border-gray-300 rounded-lg overflow-hidden">
                     <!-- Quiz Title Section -->
-                    <div class="flex justify-between items-center p-3 cursor-pointer quiz-title"
-                        data-quiz-id="{{ $quiz->id }}">
-                        <div class="flex items-center gap-3">
+                    <form class="flex justify-between items-center p-3 cursor-pointer quiz-title mb-0"
+                        action="/courses/{{ $course->id }}/quiz/{{ $quiz->id }}/questions/{{ $question->id }}"
+                        method="get">
+                        <button type="submit" class="flex items-center gap-3">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                 class="bi bi-lightbulb-fill" viewBox="0 0 16 16">
                                 <path
                                     d="M2 6a6 6 0 1 1 10.174 4.31c-.203.196-.359.4-.453.619l-.762 1.769A.5.5 0 0 1 10.5 13h-5a.5.5 0 0 1-.46-.302l-.761-1.77a2 2 0 0 0-.453-.618A5.98 5.98 0 0 1 2 6m3 8.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1l-.224.447a1 1 0 0 1-.894.553H6.618a1 1 0 0 1-.894-.553L5.5 15a.5.5 0 0 1-.5-.5" />
                             </svg>
-                            <h3 class="text-lg font-medium">{{ $quiz->title }}</h3>
-                        </div>
-                        <span class="transition-transform transform chapter-arrow">&#9660;</span>
-                    </div>
-
-                    <!-- Questions List for Quiz -->
-                    <ul class="space-y-2 max-h-0 overflow-hidden transition-max-height duration-500 ease-in-out chapter-videos"
-                        data-quiz-id="{{ $quiz->id }}">
-                        @foreach ($questions as $question)
-                            <li>
-                                <a href="/courses/{{ $course->id }}/quiz/{{ $quiz->id }}/questions/{{ $question->id }}"
-                                    class="text-sm block px-3 py-2 
-                                    {{ request()->is('courses/*/quiz/*/questions/' . $question->id) ? 'bg-blue-300 text-gray-900' : 'bg-gray-300 text-gray-900' }} 
-                                    hover:bg-gray-100 hover:shadow-md transition-all duration-200">
-                                    {{ $question->question_text }}
-                                </a>
-                            </li>
-                        @endforeach
-                    </ul>
+                            <h3 class="text-lg font-medium">Take Quiz</h3>
+                        </button>
+                    </form>
                 </li>
-
             </ul>
         </aside>
     </div>
+
+    @if (session('score'))
+        <div class="alert alert-success">
+            <strong>Congratulations!</strong> Your score is: {{ session('score') }}.
+        </div>
+    @endif
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
@@ -165,24 +147,19 @@
                 arrow.toggleClass('rotate-180');
             });
 
-            // Toggling logic for quiz questions based on click
-            $('.quiz-title').on('click', function() {
-                const quizId = $(this).data('quiz-id');
-                const questionsList = $(`.chapter-videos[data-quiz-id="${quizId}"]`);
-                const arrow = $(this).find('.chapter-arrow');
+            // Automatically open the chapter video list if the current URL matches a chapter
+            @foreach ($chapters as $chapter)
+                // Check if the current URL contains the chapter and video links
+                if (window.location.href.indexOf(
+                        "{{ url('/courses/' . $course->id . '/chapters/' . $chapter->id . '/videos') }}") > -1) {
+                    const videosList = $(`.chapter-videos[data-chapter-id="{{ $chapter->id }}"]`);
+                    const arrow = $(`.chapter-title[data-chapter-id="{{ $chapter->id }}"] .chapter-arrow`);
 
-                questionsList.toggleClass('max-h-0 max-h-screen');
-                arrow.toggleClass('rotate-180');
-            });
-
-            // Auto-expand the quiz section if the current URL matches the quiz route
-            if (window.location.href.includes("{{ url('/courses/' . $course->id . '/quiz/' . $quiz->id) }}")) {
-                const questionsList = $(`.chapter-videos[data-quiz-id="{{ $quiz->id }}"]`);
-                const arrow = $(`.quiz-title[data-quiz-id="{{ $quiz->id }}"] .chapter-arrow`);
-
-                questionsList.removeClass('max-h-0').addClass('max-h-screen');
-                arrow.addClass('rotate-180');
-            }
+                    // Ensure the chapter is expanded when the page URL matches
+                    videosList.removeClass('max-h-0').addClass('max-h-screen');
+                    arrow.addClass('rotate-180');
+                }
+            @endforeach
         });
     </script>
 </x-layout>

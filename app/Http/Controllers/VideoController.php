@@ -33,6 +33,9 @@ class VideoController extends Controller
         $course = Course::findOrFail($id);
         $chapters = $this->getChapters($id);
         $video = $this->getVideo($id, $chapter_id, $video_id);
+        $quiz_id = Quiz::where('course_id', '=', $course->id)->first()->id;
+        $question_id = Question::where('quiz_id', '=', $quiz_id)->first()->id;
+        $question = $this->getQuestions($id, $quiz_id, $question_id);
 
         if (!$video) {
             abort(404);
@@ -77,7 +80,15 @@ class VideoController extends Controller
         $quiz = Quiz::where('course_id', $id)->first();
         $questions = Question::where('quiz_id', $quiz->id)->get();
 
-        return view('courses.video.index', compact('video', 'chapters', 'course', 'nextVideoUrl', 'previousVideoUrl', 'quiz', 'questions'));
+        return view('courses.video.index', compact('video', 'chapters', 'course', 'nextVideoUrl', 'previousVideoUrl', 'quiz', 'question'));
+    }
+
+    private function getQuestions($course_id, $quiz_id, $question_id)
+    {
+        return Question::where('id', $question_id)
+            ->where('quiz_id', $quiz_id)
+            ->whereHas('quiz', fn($query) => $query->where('course_id', $course_id))
+            ->first();
     }
 
     // Helper method to get chapters for a course
