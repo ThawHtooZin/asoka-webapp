@@ -14,7 +14,8 @@
                     <th>Requested Course</th>
                     <th>Status</th>
                     <th>Requested At</th>
-                    <th>Actions</th>
+                    <th>Confirmation</th>
+                    <th>Archive</th>
                 </tr>
             </thead>
             <tbody>
@@ -29,8 +30,20 @@
                         <td>{{ $request->status }}</td>
                         <td>{{ date('d-m-Y', strtotime($request->created_at)) }}</td>
                         <td>
-                            <!-- Delete Button -->
-                            <button onclick="confirmRequest({{ $request->id }})" class="btn btn-success">Confirm</button>
+                            <!-- Confirm Button -->
+                            @if ($request->status != 'confirmed')
+                                <button onclick="confirmRequest({{ $request->id }})" class="btn btn-success">Confirm</button>
+                            @else
+                                <span class="text-green-400">Confirmed</span>
+                            @endif
+                        </td>
+                        <td>
+                            {{-- Remove Button --}}
+                            @if ($request->status == 'confirmed')
+                                <button onclick="achiveRequest({{ $request->id }})" class="btn btn-warning">Achive</button>
+                            @elseif($request->status == 'achived')
+                                <span class="text-yellow-400">Achived</span>
+                            @endif
                         </td>
                     </tr>
                 @endforeach
@@ -52,6 +65,34 @@
                     let form = document.createElement('form');
                     form.method = 'POST';
                     form.action = `/dashboard/courses/request/${id}/confirm`;
+
+                    // Add CSRF token
+                    let csrfInput = document.createElement('input');
+                    csrfInput.type = 'hidden';
+                    csrfInput.name = '_token';
+                    csrfInput.value = '{{ csrf_token() }}';
+                    form.appendChild(csrfInput);
+
+                    // Add hidden DELETE method input
+                    let methodInput = document.createElement('input');
+                    methodInput.type = 'hidden';
+                    methodInput.name = '_method';
+                    methodInput.value = 'POST';
+                    form.appendChild(methodInput);
+
+                    // Append to the body and submit the form
+                    document.body.appendChild(form);
+                    form.submit();
+                }
+            }
+
+            // Function to handle Achive request
+            function achiveRequest(id) {
+                if (confirm("Are you sure you want to Achive this Request?")) {
+                    // Create a temporary form to send the DELETE request
+                    let form = document.createElement('form');
+                    form.method = 'POST';
+                    form.action = `/dashboard/courses/request/${id}/achive`;
 
                     // Add CSRF token
                     let csrfInput = document.createElement('input');

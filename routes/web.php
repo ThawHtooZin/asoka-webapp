@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\AnnouncementController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\DashboardAnnouncementController;
 use App\Http\Controllers\DashboardArticleCategoryController;
 use App\Http\Controllers\DashboardArticleController;
 use App\Http\Controllers\DashboardBookCategoryController;
@@ -57,6 +59,10 @@ Route::prefix('elibrary')->group(function () {
     Route::get('/book/{id}/buy', [LibraryController::class, 'buy'])->name('elibrary.buy')->middleware('auth'); // Buy specific book
     Route::post('/book/{id}/buy', [LibraryController::class, 'purchase'])->middleware('auth'); // Buy specific book
 });
+
+// Announcement
+Route::get('/announcement', [AnnouncementController::class, 'index']);
+Route::get('/announcement/{id}/show', [AnnouncementController::class, 'show']);
 
 
 // Authentication Routes
@@ -122,7 +128,8 @@ Route::middleware(['custom'])->group(function () {
 
         // Course Purchase Request Management
         Route::get('/courses/request', [DashboardRequestController::class, 'courseindex']); // List Course Requests
-        Route::post('/courses/request/{id}/confirm', [DashboardRequestController::class, 'courseconfirm']); // List Course Requests
+        Route::post('/courses/request/{id}/confirm', [DashboardRequestController::class, 'courseconfirm']); // Confirem Course Request
+        Route::post('/courses/request/{id}/achive', [DashboardRequestController::class, 'courseachive']); // Achive Course Request
 
         // E-Library Management
         Route::get('books', [DashboardElibraryController::class, 'index']); // List Library Book
@@ -136,8 +143,15 @@ Route::middleware(['custom'])->group(function () {
         Route::put('books/categories/{id}', [DashboardBookCategoryController::class, 'update']); // Update Library Book
         Route::delete('books/categories/{id}', [DashboardBookCategoryController::class, 'destroy']); // Delete Library Book
 
-        // Course Purchase Request Management
-        Route::get('/books/request', [DashboardRequestController::class, 'bookindex']); // List Course Requests
-        Route::post('/books/request/{id}/confirm', [DashboardRequestController::class, 'bookconfirm']); // List Course Requests
+        // Book Purchase Request Management
+        Route::get('/books/request', [DashboardRequestController::class, 'bookindex']); // List Book Requests
+        Route::post('/books/request/{id}/confirm', [DashboardRequestController::class, 'bookconfirm']); // Book Confirm Requests
+        Route::post('/books/request/{id}/achive', [DashboardRequestController::class, 'bookachive']); // Book Achive Requests
+
+        // Announcement Management
+        Route::get('announcements', [DashboardAnnouncementController::class, 'index']); // List Announcement
+        Route::post('announcements', [DashboardAnnouncementController::class, 'store']); // Store Announcement
+        Route::put('announcements/{id}', [DashboardAnnouncementController::class, 'update']); // Update Announcement
+        Route::delete('announcements/{id}', [DashboardAnnouncementController::class, 'destroy']); // Delete Announcement
     });
 });

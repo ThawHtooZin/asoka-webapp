@@ -10,7 +10,7 @@ class DashboardRequestController extends Controller
 {
     public function courseindex()
     {
-        $requests = CoursePurchase::where('status', '=', 'requested')->get();
+        $requests = CoursePurchase::get();
         return view('dashboard.courserequest', compact('requests'));
     }
 
@@ -25,9 +25,20 @@ class DashboardRequestController extends Controller
         return redirect('/dashboard/courses/request')->with('success', 'Confirmed A Request!');
     }
 
+    public function courseachive($id)
+    {
+        $course = CoursePurchase::findOrFail($id);
+
+        $course->update([
+            'status' => 'achived',
+        ]);
+
+        return redirect('/dashboard/courses/request')->with('success', 'Achived A Request!');
+    }
+
     public function bookindex()
     {
-        $requests = BookPurchase::where('status', '=', 'requested')->get();
+        $requests = BookPurchase::get();
         return view('dashboard.bookrequest', compact('requests'));
     }
 
@@ -40,5 +51,16 @@ class DashboardRequestController extends Controller
         ]);
 
         return redirect('/dashboard/books/request')->with('success', 'Confirmed A Request!');
+    }
+
+    public function bookachive($id)
+    {
+        $course = BookPurchase::findOrFail($id);
+
+        $course->update([
+            'status' => 'achived',
+        ]);
+
+        return redirect('/dashboard/books/request')->with('success', 'Achived A Request!');
     }
 }

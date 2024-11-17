@@ -24,14 +24,6 @@
                 </div>
             </li>
             <li class="group relative">
-                <a href="#" class="text-lg">News & Announcement</a>
-                <x-navlinkcontainer
-                    class="absolute left-0 hidden group-hover:flex flex-col bg-asokablue mt-2 p-2 rounded shadow-lg">
-                    <x-navlink href="/news">News</x-navlink>
-                    <x-navlink href="/announcement">Announcement</x-navlink>
-                </x-navlinkcontainer>
-            </li>
-            <li class="group relative">
                 <a href="#" class="text-lg">Resources</a>
                 <x-navlinkcontainer
                     class="absolute left-0 hidden group-hover:flex flex-col bg-asokablue mt-2 p-2 rounded shadow-lg">
@@ -39,6 +31,7 @@
                     <x-navlink href="/videos">Videos</x-navlink>
                 </x-navlinkcontainer>
             </li>
+            <li><a href="/announcement" class="text-lg">Announcement</a></li>
             <li><a href="#" class="text-lg">Gallery</a></li>
             <li><a href="#" class="text-lg">Contact Us</a></li>
         </ul>

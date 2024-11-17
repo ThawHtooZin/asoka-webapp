@@ -20,16 +20,20 @@ class BookOwnershipMiddleware
         // Retrieve the book ID from the route
         $bookId = $request->route('id');
 
-        // Check if the current user has a confirmed purchase for this book
-        $isOwned = BookPurchase::where('book_id', $bookId)
-            ->where('user_id', auth()->id())
-            ->where('status', 'confirmed')
-            ->exists();
+        $bookdata = Book::where('id', $bookId)->first();
+        if ($bookdata->price != 0) {
+            // Check if the current user has a confirmed purchase for this book
+            $isOwned = BookPurchase::where('book_id', $bookId)
+                ->where('user_id', auth()->id())
+                ->where('status', 'confirmed')
+                ->exists();
 
-        if (!$isOwned) {
-            // Redirect back if the user doesn't own the book
-            return back()->with('error', 'You do not own this book.');
+            if (!$isOwned) {
+                // Redirect back if the user doesn't own the book
+                return back()->with('error', 'You do not own this book.');
+            }
         }
+
 
         // Allow the request to proceed if ownership is confirmed
         return $next($request);

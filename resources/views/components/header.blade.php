@@ -2,7 +2,7 @@
     <!-- Header Container -->
     <div class="flex flex-wrap items-center justify-between px-4 sm:px-8">
         <!-- Logo and Title -->
-        <div class="flex items-center space-x-4">
+        <div class="flex items-center space-x-4 mx-auto md:mx-0">
             <img src="/images/logo.png" alt="Asoka Logo" class="h-[80px] sm:h-[100px] lg:h-[120px]">
             <div class="flex flex-col text-center sm:text-left">
                 <h1 class="text-2xl sm:text-3xl lg:text-5xl roboto-slab font-bold text-t5 tracking-wide text-center">
@@ -13,7 +13,7 @@
         </div>
 
         <!-- Action Buttons -->
-        <div class="flex gap-3 mt-4 sm:mt-0">
+        <div class="flex gap-3 mt-4 sm:mt-0 mx-auto md:mx-0">
             <!-- Translate Button -->
             <div class="relative">
                 <button class="flex items-center space-x-2 bg-primary p-2 rounded-lg border-4 border-primary">
@@ -40,7 +40,7 @@
 
                 <!-- Notification Dropdown Content -->
                 <div id="notificationDropdown"
-                    class="absolute right-0 mt-2 w-96 bg-white shadow-xl rounded-lg hidden z-50">
+                    class="absolute -right-52 sm:right-0 mt-2 w-96 bg-white shadow-xl rounded-lg hidden z-50">
                     <!-- Header with Title and "Mark as Read" -->
                     <div
                         class="border-b px-4 py-3 flex items-center justify-between bg-primary text-white rounded-t-lg">
@@ -87,7 +87,7 @@
                         @auth
                             {{ auth()->user()->name }}
                         @else
-                            Login or Register
+                            Account
                         @endauth
                     </span>
                 </button>

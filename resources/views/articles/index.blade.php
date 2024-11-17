@@ -36,7 +36,7 @@
         <!-- Articles Section (Left, 2/3) -->
         <div class="md:col-span-2">
             <h2 class="text-2xl font-extrabold text-gray-800 text-center md:text-left" id="category-title">Articles</h2>
-            <div id="articles-container" class="space-y-2">
+            <div id="articles-container" class="space-y-2 mt-4">
                 @foreach ($articles as $article)
                     <div id="article-{{ $article->article_category_id }}"
                         class="article-card bg-white p-6 rounded-lg shadow-md transition transform hover:scale-105">

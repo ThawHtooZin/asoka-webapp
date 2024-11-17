@@ -346,7 +346,14 @@ return [
             ],
         ],
 
+
         ['header' => 'Content Management'],
+        // Announcement Management Link
+        [
+            'text'       => 'Manage Announcements',
+            'icon'       => 'fas fa-bullhorn',
+            'url'        => '/dashboard/announcements',
+        ],
         [
             'text' => 'Article Management',
             'icon' => 'fas fa-newspaper', // Newspaper icon for articles
