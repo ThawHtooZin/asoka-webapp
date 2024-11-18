@@ -61,7 +61,7 @@
 
                     <button type="submit"
                         class="w-full inline-block text-lg px-6 py-3 mt-4 rounded-lg shadow-md bg-primary text-white hover:shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-1 text-center">
-                        Start Learning
+                        Purchase Course
                     </button>
                 </div>
             </form>

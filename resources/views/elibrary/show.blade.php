@@ -35,7 +35,7 @@
 
                     @if ($purchaseStatus == 'requested')
                         <!-- Requested Button -->
-                        <a href="#" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+                        <a href="#" class="bg-yellow-400 text-white px-4 py-2 rounded hover:bg-yellow-500">
                             Requested
                         </a>
                     @elseif ($purchaseStatus == 'confirmed')

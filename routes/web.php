@@ -24,87 +24,134 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\VideoController;
 use Illuminate\Support\Facades\Route;
 
-// 🌟 Public Routes - No login needed
-Route::get('/', [HomePageController::class, 'index']); // Home sweet home!
-Route::get('/logout', [LoginController::class, 'logout']); // Log out (GET method for quick links)
-Route::post('/logout', [LoginController::class, 'logout']); // Log out (POST method for forms)
+// Public Routes
+Route::get('/', [HomePageController::class, 'index']);
+Route::get('/logout', [LoginController::class, 'logout']);
+Route::post('/logout', [LoginController::class, 'logout']);
 
-// 📚 Courses
+// Courses
 Route::prefix('courses')->group(function () {
-    Route::get('/', [CourseController::class, 'index']); // Browse all courses
+    Route::get('/', [CourseController::class, 'index']); // Show all courses
 
-    // 🔒 Authenticated Routes for Courses
+    // This should be a separate route group, applying middleware correctly
     Route::group(['middleware' => 'auth'], function () {
-        Route::get('/{id}/show', [CourseController::class, 'show'])->name('course.show'); // Peek into a single course
-        Route::get('/{id}/buy', [CourseController::class, 'buy']); // Ready to buy this course?
-        Route::post('/{id}/buy', [CourseController::class, 'Purchase']); // Confirm the purchase
-        Route::get('/{course}/chapters/{chapter}/videos', [VideoController::class, 'chaptershow'])->name('chaptershow')->middleware('courseownershipmiddleware'); // Dive into chapter videos
-        Route::get('/{course}/chapters/{chapter}/videos/{video}', [VideoController::class, 'videoshow'])->name('videoshow')->middleware('courseownershipmiddleware'); // Watch a specific video
-        Route::get('/{course}/quiz/{quizzes}/questions/{question}', [QuestionController::class, 'questionshow'])->name('questionshow')->middleware('courseownershipmiddleware'); // Tackle a quiz question
-        Route::get('/{course}/quiz/{quiz}/questions/{question}/skip', [QuestionController::class, 'skipQuestion']); // Skip a question
-        Route::post('/{course}/quiz/{quiz}/questions/{question}/submit', [QuestionController::class, 'submitAnswer'])->name('submitquizanswer')->middleware('courseownershipmiddleware'); // Submit your answer
-        Route::get('{course}/quiz/{quiz_id}/score', [QuestionController::class, 'showScore'])->name('quiz.complete');
+        Route::get('/{id}/show', [CourseController::class, 'show']); // Show a single course
+        Route::get('/{id}/buy', [CourseController::class, 'buy']); // Buying a course
+        Route::post('/{id}/buy', [CourseController::class, 'Purchase']); // Purchasing a course
+        Route::get('/{course}/chapters/{chapter}/videos', [VideoController::class, 'chaptershow'])->name('chaptershow')->middleware('courseownershipmiddleware'); // Show all videos in a chapter
+        Route::get('/{course}/chapters/{chapter}/videos/{video}', [VideoController::class, 'videoshow'])->name('videoshow')->middleware('courseownershipmiddleware'); // Show a specific video
+        Route::get('/{course}/quiz/{quizzes}/questions/{question}', [QuestionController::class, 'questionshow'])->name('questionshow')->middleware('courseownershipmiddleware'); // Show a specific question
+        Route::post('/{course}/quiz/{quiz}/questions/{question}/submit', [QuestionController::class, 'submitAnswer'])->name('submitquizanswer')->middleware('courseownershipmiddleware');
     });
 });
 
-// 📰 Articles
-Route::get('/articles', [ArticleController::class, 'index'])->name('articles.index'); // Catch up on all articles
-Route::get('/article/{id}', [ArticleController::class, 'show'])->name('articles.show'); // Read a single article
 
-// 📖 E-Library
+
+// Articles
+Route::get('/articles', [ArticleController::class, 'index'])->name('articles.index'); // Show all articles
+Route::get('/article/{id}', [ArticleController::class, 'show'])->name('articles.show'); // Show a specific article
+
+// E-Library
 Route::prefix('elibrary')->group(function () {
-    Route::get('/', [LibraryController::class, 'index'])->name('elibrary.index'); // Browse the library
-    Route::get('/book/{id}', [LibraryController::class, 'show'])->name('elibrary.show'); // Explore a book
-    Route::get('/book/{id}/read', [LibraryController::class, 'read'])->name('elibrary.read')->middleware('auth', 'bookownershipmiddleware'); // Read if it's free
-    Route::get('/book/{id}/buy', [LibraryController::class, 'buy'])->name('elibrary.buy')->middleware('auth'); // Buy this book
-    Route::post('/book/{id}/buy', [LibraryController::class, 'purchase'])->middleware('auth'); // Confirm book purchase
+    Route::get('/', [LibraryController::class, 'index'])->name('elibrary.index'); // Show all books
+    Route::get('/book/{id}', [LibraryController::class, 'show'])->name('elibrary.show'); // Show a specific book
+    Route::get('/book/{id}/read', [LibraryController::class, 'read'])->name('elibrary.read')->middleware('auth', 'bookownershipmiddleware'); // Read free book
+    Route::get('/book/{id}/buy', [LibraryController::class, 'buy'])->name('elibrary.buy')->middleware('auth'); // Buy specific book
+    Route::post('/book/{id}/buy', [LibraryController::class, 'purchase'])->middleware('auth'); // Buy specific book
 });
 
-// 📢 Announcements
-Route::get('/announcement', [AnnouncementController::class, 'index']); // Stay updated!
-Route::get('/announcement/{id}/show', [AnnouncementController::class, 'show']); // Detailed announcement
+// Announcement
+Route::get('/announcement', [AnnouncementController::class, 'index']);
+Route::get('/announcement/{id}/show', [AnnouncementController::class, 'show']);
 
-// 🔑 Authentication
+
+// Authentication Routes
 Route::middleware(['guest'])->group(function () {
-    Route::get('/login', [LoginController::class, 'index'])->name('login'); // Login page
+    Route::get('/login', [LoginController::class, 'index'])->name('login'); // Show login form
     Route::post('/login', [LoginController::class, 'login']); // Process login
-    Route::get('/register', [RegisterController::class, 'index']); // Registration page
-    Route::post('/register', [RegisterController::class, 'register']); // Sign up new users
+    Route::get('/register', [RegisterController::class, 'index']); // Show registration form
+    Route::post('/register', [RegisterController::class, 'register']); // Process registration
 });
 
-// 👤 Authenticated User Dashboard
+// Authenticated User Routes
 Route::middleware(['custom'])->group(function () {
     Route::prefix('dashboard')->group(function () {
-        Route::get('/', [DashboardController::class, 'index']); // Welcome to the dashboard!
+        Route::get('/', [DashboardController::class, 'index']); // Dashboard
 
-        // 🙍‍♂️ User Management
-        Route::get('users', [UserController::class, 'index'])->name('users.index'); // List all users
-        Route::post('users', [UserController::class, 'store'])->name('users.store'); // Add new user
-        Route::put('users/{id}', [UserController::class, 'update'])->name('users.update'); // Edit user
-        Route::delete('users/{id}', [UserController::class, 'destroy'])->name('users.destroy'); // Remove user
+        // User Management
+        Route::get('users', [UserController::class, 'index'])->name('users.index'); // List users
+        Route::post('users', [UserController::class, 'store'])->name('users.store'); // Store user
+        Route::put('users/{id}', [UserController::class, 'update'])->name('users.update'); // Update user
+        Route::delete('users/{id}', [UserController::class, 'destroy'])->name('users.destroy'); // Delete user
 
-        // 🎭 Role Management
-        Route::get('roles', [RoleController::class, 'index'])->name('roles.index'); // List all roles
-        Route::post('roles', [RoleController::class, 'store'])->name('roles.store'); // Add new role
-        Route::put('roles/{id}', [RoleController::class, 'update'])->name('roles.update'); // Edit role
+        // Role Management
+        Route::get('roles', [RoleController::class, 'index'])->name('roles.index'); // List roles
+        Route::post('roles', [RoleController::class, 'store'])->name('roles.store'); // Store role
+        Route::put('roles/{id}', [RoleController::class, 'update'])->name('roles.update'); // Update role
         Route::delete('roles/{id}', [RoleController::class, 'destroy'])->name('roles.destroy'); // Delete role
 
-        // 📰 Article Management
-        Route::get('articles', [DashboardArticleController::class, 'index'])->name('articles.index'); // All articles in admin view
-        Route::post('articles', [DashboardArticleController::class, 'store'])->name('articles.store'); // Add new article
-        Route::put('articles/{id}', [DashboardArticleController::class, 'update'])->name('articles.update'); // Edit article
-        Route::delete('articles/{id}', [DashboardArticleController::class, 'destroy'])->name('articles.destroy'); // Remove article
+        // Article Management
+        Route::get('articles', [DashboardArticleController::class, 'index'])->name('articles.index'); // List articles
+        Route::post('articles', [DashboardArticleController::class, 'store'])->name('articles.store'); // Store article
+        Route::put('articles/{id}', [DashboardArticleController::class, 'update'])->name('articles.update'); // Update article
+        Route::delete('articles/{id}', [DashboardArticleController::class, 'destroy'])->name('articles.destroy'); // Delete article
 
-        // 📚 Course Management
-        Route::get('courses', [DashboardCourseController::class, 'index'])->name('courses.index'); // Admin view for courses
-        Route::post('courses', [DashboardCourseController::class, 'store'])->name('courses.store'); // Add course
-        Route::put('courses/{id}', [DashboardCourseController::class, 'update'])->name('courses.update'); // Edit course
-        Route::delete('courses/{id}', [DashboardCourseController::class, 'destroy'])->name('courses.destroy'); // Remove course
+        // Article Categories Management
+        Route::get('articles/categories', [DashboardArticleCategoryController::class, 'index']); // List Article Categories
+        Route::post('articles/categories', [DashboardArticleCategoryController::class, 'store']); // Store Article Categories
+        Route::put('articles/categories/{id}', [DashboardArticleCategoryController::class, 'update']); // Update Article Categories
+        Route::delete('articles/categories/{id}', [DashboardArticleCategoryController::class, 'destroy']); // Delete Article Categories
 
-        // 🚀 Announcement Management
-        Route::get('announcements', [DashboardAnnouncementController::class, 'index']); // Admin announcement list
-        Route::post('announcements', [DashboardAnnouncementController::class, 'store']); // Add new announcement
-        Route::put('announcements/{id}', [DashboardAnnouncementController::class, 'update']); // Edit announcement
-        Route::delete('announcements/{id}', [DashboardAnnouncementController::class, 'destroy']); // Remove announcement
+        // Courses Management
+        Route::get('courses', [DashboardCourseController::class, 'index'])->name('courses.index'); // List Courses
+        Route::post('courses', [DashboardCourseController::class, 'store'])->name('courses.store'); // Store Courses
+        Route::put('courses/{id}', [DashboardCourseController::class, 'update'])->name('courses.update'); // Update Courses
+        Route::delete('courses/{id}', [DashboardCourseController::class, 'destroy'])->name('courses.destroy'); // Delete Courses
+
+        // Course Categories Management
+        Route::get('courses/categories', [DashboardCourseCategoryController::class, 'index']); // List Course Categories
+        Route::post('courses/categories', [DashboardCourseCategoryController::class, 'store']); // Store Course Categories
+        Route::put('courses/categories/{id}', [DashboardCourseCategoryController::class, 'update']); // Update Course Categories
+        Route::delete('courses/categories/{id}', [DashboardCourseCategoryController::class, 'destroy']); // Delete Course Categories
+
+        // Course Chapters Management
+        Route::get('courses/chapters', [DashboardChapterController::class, 'index']); // List courses
+        Route::post('courses/chapters', [DashboardChapterController::class, 'store']); // Store Chapters
+        Route::put('courses/chapters/{id}', [DashboardChapterController::class, 'update']); // Update Chapters
+        Route::delete('courses/chapters/{id}', [DashboardChapterController::class, 'destroy']); // Delete Chapters
+
+        // Course Videos Management
+        Route::get('courses/videos', [DashboardVideoController::class, 'index']); // List Course Videos
+        Route::post('courses/videos', [DashboardVideoController::class, 'store']); // Store Course Videos
+        Route::put('courses/videos/{id}', [DashboardVideoController::class, 'update']); // Update Course Videos
+        Route::delete('courses/videos/{id}', [DashboardVideoController::class, 'destroy']); // Delete Course Videos
+
+        // Course Purchase Request Management
+        Route::get('/courses/request', [DashboardRequestController::class, 'courseindex']); // List Course Requests
+        Route::post('/courses/request/{id}/confirm', [DashboardRequestController::class, 'courseconfirm']); // Confirem Course Request
+        Route::post('/courses/request/{id}/achive', [DashboardRequestController::class, 'courseachive']); // Achive Course Request
+
+        // E-Library Management
+        Route::get('books', [DashboardElibraryController::class, 'index']); // List Library Book
+        Route::post('books', [DashboardElibraryController::class, 'store']); // Store Library Book
+        Route::put('books/{id}', [DashboardElibraryController::class, 'update']); // Update Library Book
+        Route::delete('books/{id}', [DashboardElibraryController::class, 'destroy']); // Delete Library Book
+
+        // Book Category Management
+        Route::get('books/categories', [DashboardBookCategoryController::class, 'index']); // List Library Book
+        Route::post('books/categories', [DashboardBookCategoryController::class, 'store']); // Store Library Book
+        Route::put('books/categories/{id}', [DashboardBookCategoryController::class, 'update']); // Update Library Book
+        Route::delete('books/categories/{id}', [DashboardBookCategoryController::class, 'destroy']); // Delete Library Book
+
+        // Book Purchase Request Management
+        Route::get('/books/request', [DashboardRequestController::class, 'bookindex']); // List Book Requests
+        Route::post('/books/request/{id}/confirm', [DashboardRequestController::class, 'bookconfirm']); // Book Confirm Requests
+        Route::post('/books/request/{id}/achive', [DashboardRequestController::class, 'bookachive']); // Book Achive Requests
+
+        // Announcement Management
+        Route::get('announcements', [DashboardAnnouncementController::class, 'index']); // List Announcement
+        Route::post('announcements', [DashboardAnnouncementController::class, 'store']); // Store Announcement
+        Route::put('announcements/{id}', [DashboardAnnouncementController::class, 'update']); // Update Announcement
+        Route::delete('announcements/{id}', [DashboardAnnouncementController::class, 'destroy']); // Delete Announcement
     });
 });
