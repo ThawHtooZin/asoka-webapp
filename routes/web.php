@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AnnouncementController;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\DashboardAnnouncementController;
 use App\Http\Controllers\DashboardArticleCategoryController;
@@ -14,12 +15,14 @@ use App\Http\Controllers\DashboardCourseController;
 use App\Http\Controllers\DashboardElibraryController;
 use App\Http\Controllers\DashboardRequestController;
 use App\Http\Controllers\DashboardVideoController;
+use App\Http\Controllers\ForumController;
 use App\Http\Controllers\HomePageController;
 use App\Http\Controllers\LibraryController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\ReplyController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VideoController;
@@ -51,19 +54,62 @@ Route::prefix('courses')->group(function () {
     });
 });
 
+Route::prefix('forum')->group(function () {
+    // Forum home: List of all discussions/posts
+    Route::get('/', [ForumController::class, 'index'])->name('forum.index');
+
+    // Create a new post/discussion
+    Route::get('/create', [ForumController::class, 'create'])->name('forum.create');
+    Route::post('/store', [ForumController::class, 'store'])->name('forum.store');
+
+    // View a single post/discussion
+    Route::get('/{forum}', [ForumController::class, 'show'])->name('forum.show');
+
+    // Edit a post/discussion
+    Route::get('/{forum}/edit', [ForumController::class, 'edit'])->name('forum.edit');
+    Route::put('/{forum}', [ForumController::class, 'update'])->name('forum.update');
+
+    // Delete a post/discussion
+    Route::delete('/{forum}', [ForumController::class, 'destroy'])->name('forum.destroy');
+
+    // Add a comment to a post
+    Route::post('/{forum}/comments', [CommentController::class, 'store'])->name('forum.comments.store');
+
+    // Edit a comment
+    Route::get('/{forum}/comments/{comment}/edit', [CommentController::class, 'edit'])->name('forum.comments.edit');
+    Route::put('/{forum}/comments/{comment}', [CommentController::class, 'update'])->name('forum.comments.update');
+
+    // Delete a comment
+    Route::delete('/{forum}/comments/{comment}', [CommentController::class, 'destroy'])->name('forum.comments.destroy');
+
+    // Reply to a comment
+    Route::post('/{forum}/comments/{comment}/replies', [ReplyController::class, 'store'])->name('forum.replies.store');
+
+    // Edit a reply
+    Route::get('/{forum}/comments/{comment}/replies/{reply}/edit', [ReplyController::class, 'edit'])->name('forum.replies.edit');
+    Route::put('/{forum}/comments/{comment}/replies/{reply}', [ReplyController::class, 'update'])->name('forum.replies.update');
+
+    // Delete a reply
+    Route::delete('/{forum}/comments/{comment}/replies/{reply}', [ReplyController::class, 'destroy'])->name('forum.replies.destroy');
+});
+
 
 
 // Articles
 Route::get('/articles', [ArticleController::class, 'index'])->name('articles.index'); // Show all articles
-Route::get('/article/{id}', [ArticleController::class, 'show'])->name('articles.show'); // Show a specific article
+Route::middleware(['auth'])->group(function () {
+    Route::get('/article/{id}', [ArticleController::class, 'show'])->name('articles.show'); // Show a specific article
+});
 
 // E-Library
 Route::prefix('elibrary')->group(function () {
     Route::get('/', [LibraryController::class, 'index'])->name('elibrary.index'); // Show all books
-    Route::get('/book/{id}', [LibraryController::class, 'show'])->name('elibrary.show'); // Show a specific book
-    Route::get('/book/{id}/read', [LibraryController::class, 'read'])->name('elibrary.read')->middleware('auth', 'bookownershipmiddleware'); // Read free book
-    Route::get('/book/{id}/buy', [LibraryController::class, 'buy'])->name('elibrary.buy')->middleware('auth'); // Buy specific book
-    Route::post('/book/{id}/buy', [LibraryController::class, 'purchase'])->middleware('auth'); // Buy specific book
+    Route::middleware(['auth'])->group(function () {
+        Route::get('/book/{id}', [LibraryController::class, 'show'])->name('elibrary.show'); // Show a specific book
+        Route::get('/book/{id}/read', [LibraryController::class, 'read'])->name('elibrary.read')->middleware('auth', 'bookownershipmiddleware'); // Read free book
+        Route::get('/book/{id}/buy', [LibraryController::class, 'buy'])->name('elibrary.buy')->middleware('auth'); // Buy specific book
+        Route::post('/book/{id}/buy', [LibraryController::class, 'purchase'])->middleware('auth'); // Buy specific book
+    });
 });
 
 // Announcement
