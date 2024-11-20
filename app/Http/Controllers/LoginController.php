@@ -26,7 +26,7 @@ class LoginController extends Controller
             $request->session()->regenerate(); // Optional: protects against session fixation attacks
             $user = User::where('email', $credentials['email'])->first();
             session()->flash('success', 'Logged In Successfully!');
-            if ($user->roles()->first()->name == 'student') {
+            if ($user->roles()->first()->name != 'admin') {
                 return redirect()->intended('/');
             } else {
                 return redirect()->intended('/dashboard');

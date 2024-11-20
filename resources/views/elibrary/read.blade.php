@@ -10,7 +10,8 @@
 
         <!-- PDF Display -->
         <div class="w-full max-w-4xl border-2 border-gray-300 rounded-lg shadow-lg bg-white p-4">
-            <iframe src="{{ asset($book->book_url) }}" width="100%" height="600px" class="rounded-lg" frameborder="0">
+            <iframe src="{{ asset($book->book_url) }}#toolbar=0" width="100%" height="600px" class="rounded-lg"
+                frameborder="0">
                 Your browser does not support iframes.
             </iframe>
         </div>
