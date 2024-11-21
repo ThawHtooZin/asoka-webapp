@@ -4,6 +4,9 @@
         <div class="col-span-3 p-4">
             {{-- Header --}}
             <div class="grid grid-cols-6" id="ForumHeader">
+                <div class="col-span-2"><a href="/" class="text-blue-800 font-bold hover:underline">Home</a> > <a
+                        href="#" class="text-blue-800 font-bold hover:underline">Forums</a></div>
+                <div class="col-span-2"></div>
                 <div class="col-span-2 flex" id="Search Box">
                     <form action="" method="GET"
                         class="flex items-center border border-blue-300 rounded-lg bg-gradient-to-r from-blue-100 to-blue-200 shadow-lg hover:shadow-xl transition-shadow duration-300">
@@ -32,7 +35,7 @@
                         <div class="flex justify-between items-center">
                             <!-- Post Info -->
                             <div>
-                                <a href="/forum/1" class="text-blue-600 text-lg font-semibold hover:underline">
+                                <a href="/forum/1" class="text-blue-600 text-xl font-bold hover:underline">
                                     {{ $forum->title }}
                                 </a>
                                 <p class="p-2 text-gray-600">{{ Str::limit($forum->content, '200', '...') }}</p>

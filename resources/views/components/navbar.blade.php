@@ -2,7 +2,7 @@
 <div class="py-3 px-6 sm:px-12 lg:px-32 bg-asokablue shadow-lg text-white sticky top-0 z-40">
     <!-- Desktop Navbar -->
     <div class="hidden lg:flex justify-around items-center">
-        <ul class="flex space-x-8">
+        <ul class="flex space-x-12">
             <li><a href="/" class="text-lg">Home</a></li>
             <li class="group relative">
                 <a href="/aboutus" class="text-lg">About</a>

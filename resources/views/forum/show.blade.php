@@ -5,9 +5,9 @@
         href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto+Slab:wght@100..900&display=swap"
         rel="stylesheet">
     <style>
-        .kanit-regular {
-            font-family: "Kanit", sans-serif;
-            font-weight: 400;
+        .kanit-bold {
+            font-family: "Kanit", serif;
+            font-weight: 700;
             font-style: normal;
         }
     </style>
@@ -18,15 +18,15 @@
                 {{-- Forum Post --}}
                 <div
                     class="bg-gradient-to-r from-blue-50 via-white to-blue-50 shadow-2xl rounded-lg p-8 mb-8 border border-gray-200 hover:shadow-[0px_10px_40px_rgba(0,0,0,0.15)] transition-shadow duration-300">
-                    <div class="flex justify-between items-start border-b pb-6">
+                    <div class="flex justify-between items-start border-b pb-3">
                         <div class="space-y-3">
-                            <p class="text-xl text-gray-900 font-extrabold flex items-center space-x-2">
+                            <p class="text-xl text-gray-900 flex items-center space-x-2">
                                 <span>{{ $forum->user->name }}</span>
                                 <span class="text-sm bg-blue-100 text-blue-800 px-2 py-0.5 rounded-full font-medium">
                                     {{ date('M d, Y', strtotime($forum->created_at)) }}
                                 </span>
                             </p>
-                            <h2 class="kanit-regular text-4xl font-extrabold text-gray-800 tracking-wide leading-tight">
+                            <h2 class="kanit-bold text-4xl font-extrabold text-gray-800 tracking-wide leading-tight">
                                 {{ $forum->title }}
                             </h2>
                         </div>
@@ -50,7 +50,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="mt-6">
+                    <div class="mt-3">
                         <p class="text-lg text-gray-700 leading-relaxed">
                             {{ $forum->content }}
                         </p>
@@ -105,7 +105,7 @@
                                 @if ($comment->replies->count())
                                     <div class="mt-6 pl-8 border-l-2 border-blue-200">
                                         @foreach ($comment->replies as $reply)
-                                            <div class="bg-gray-50 shadow rounded-lg p-4 mb-4">
+                                            <div class="bg-gray-100 shadow rounded-lg p-4 mb-4">
                                                 <div class="flex justify-between items-center">
                                                     <div>
                                                         <p class="font-semibold text-gray-800">{{ $reply->user->name }}
