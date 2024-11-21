@@ -9,7 +9,7 @@
             <div>
                 <form action="" method="GET"
                     class="flex items-center border border-blue-300 rounded-lg bg-gradient-to-r from-blue-100 to-blue-200 shadow-lg hover:shadow-xl transition-shadow duration-300">
-                    <input type="text" name="ask"
+                    <input type="text" name="about"
                         class="text-sm flex-grow px-4 py-2 rounded-l-lg text-gray-700 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out"
                         placeholder="Search something..." id="">
                     <button

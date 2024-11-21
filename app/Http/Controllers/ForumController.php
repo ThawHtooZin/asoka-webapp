@@ -8,9 +8,16 @@ use Illuminate\Support\Facades\Auth;
 
 class ForumController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $forums = Forum::get();
+        if (!empty($request->about)) {
+            $forums = Forum::where('title', 'like', '%' . $request->about . '%')
+                ->orWhere('content', 'like', '%' . $request->about . '%')
+                ->get();
+        } else {
+            $forums = Forum::get();
+        }
+
         return view('forum.index', compact('forums'));
     }
 
