@@ -67,7 +67,6 @@ Route::prefix('forum')->group(function () {
     Route::get('/{forum}', [ForumController::class, 'show'])->name('forum.show');
 
     // Edit a post/discussion
-    Route::get('/{forum}/edit', [ForumController::class, 'edit'])->name('forum.edit');
     Route::put('/{forum}', [ForumController::class, 'update'])->name('forum.update');
 
     // Delete a post/discussion

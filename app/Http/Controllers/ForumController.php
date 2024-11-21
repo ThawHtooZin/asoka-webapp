@@ -54,7 +54,39 @@ class ForumController extends Controller
         return view('forum.edit');
     }
 
-    public function update() {}
+    public function update(Request $request, Forum $forum)
+    {
+        // Validate the incoming request
+        $request->validate([
+            'title' => 'required|string|max:255', // Example field
+            'content' => 'required|string',  // Example field
+        ]);
 
-    public function destory() {}
+        // Update the forum details
+        $forum->update([
+            'title' => $request->input('title'),
+            'content' => $request->input('content'),
+        ]);
+
+        // Redirect or return a success message
+        return redirect()->route('forum.show', $forum->id)->with('success', 'Forum updated successfully.');
+    }
+
+    public function destroy($forumId)
+    {
+        // Find the forum by its ID
+        $forum = Forum::find($forumId);
+
+        // Check if the forum exists
+        if ($forum) {
+            // Delete the forum
+            $forum->delete();
+
+            // Redirect with a success message
+            return redirect()->route('forum.index')->with('success', 'Forum deleted successfully.');
+        }
+
+        // If the forum doesn't exist, return an error message
+        return redirect()->route('forum.index')->with('error', 'Forum not found.');
+    }
 }
