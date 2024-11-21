@@ -76,8 +76,7 @@ Route::prefix('forum')->group(function () {
     // Add a comment to a post
     Route::post('/{forum}/comments', [CommentController::class, 'store'])->name('forum.comments.store');
 
-    // Edit a comment
-    Route::get('/{forum}/comments/{comment}/edit', [CommentController::class, 'edit'])->name('forum.comments.edit');
+    // Update a comment of a post
     Route::put('/{forum}/comments/{comment}', [CommentController::class, 'update'])->name('forum.comments.update');
 
     // Delete a comment
@@ -86,12 +85,10 @@ Route::prefix('forum')->group(function () {
     // Reply to a comment
     Route::post('/{forum}/comments/{comment}/replies', [ReplyController::class, 'store'])->name('forum.replies.store');
 
-    // Edit a reply
-    Route::get('/{forum}/comments/{comment}/replies/{reply}/edit', [ReplyController::class, 'edit'])->name('forum.replies.edit');
-    Route::put('/{forum}/comments/{comment}/replies/{reply}', [ReplyController::class, 'update'])->name('forum.replies.update');
+    Route::put('/{forum}/comments/{comment}/replies', [ReplyController::class, 'update'])->name('forum.replies.update');
 
     // Delete a reply
-    Route::delete('/{forum}/comments/{comment}/replies/{reply}', [ReplyController::class, 'destroy'])->name('forum.replies.destroy');
+    Route::delete('/{forum}/comments/{comment}/replies', [ReplyController::class, 'destroy'])->name('forum.replies.destroy');
 });
 
 
