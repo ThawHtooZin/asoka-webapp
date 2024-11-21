@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Forum;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ForumController extends Controller
 {
@@ -18,7 +19,22 @@ class ForumController extends Controller
         return view('forum.create');
     }
 
-    public function store() {}
+    public function store(Request $request)
+    {
+        // Validate the input data
+        $validatedData = $request->validate([
+            'title' => 'required|string|min:5|max:200',
+            'content' => 'required|string|min:10',
+        ]);
+
+        $validatedData['user_id'] = Auth::user()->id;
+
+        // Save the data to the database
+        Forum::create($validatedData);
+
+        // Redirect to the forum index with a success message
+        return redirect()->route('forum.index')->with('success', 'Forum created successfully!');
+    }
 
     public function show($id)
     {

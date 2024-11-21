@@ -45,10 +45,9 @@
     </style>
     <div class="container mx-auto p-6 space-y-8">
         <!-- Title Section -->
-        <div class="col-span-4">
-            <h1 class="section-title roboto-slab"><span class="text-primary">Browse Courses from </span><span
-                    class="text-t2">ASOKA!</span>
-            </h1>
+        <div class="px-6">
+            <a href="/" class="text-blue-800 font-bold hover:underline">Home</a> > <a href="/courses"
+                class="text-blue-800 font-bold hover:underline">Courses</a>
         </div>
         <!-- Main Content: Categories and Courses -->
         <div class="grid grid-cols-1 md:grid-cols-4 gap-6">

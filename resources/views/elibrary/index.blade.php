@@ -1,7 +1,9 @@
 <x-layout>
     <div class="container mx-auto p-6 space-y-8">
-        <h1 class="text-3xl font-bold text-primary mb-4 roboto-slab">Welcome To <span class="text-t2">ASOKA</span>
-            E-Library</h1>
+        <div class="px-6">
+            <a href="/" class="text-blue-800 font-bold hover:underline">Home</a> > <a href="/elibrary"
+                class="text-blue-800 font-bold hover:underline">Elibrary</a>
+        </div>
 
         <div class="grid grid-cols-1 md:grid-cols-5 gap-6">
             @foreach ($books as $book)

@@ -14,7 +14,11 @@
     <div class="grid grid-cols-5">
         <div></div>
         <div class="col-span-3 p-4">
-            <div class="max-w-7xl mx-auto px-6 lg:px-8 py-12">
+            <div class="max-w-7xl mx-auto px-6 lg:px-8 py-6">
+                <div class="p-2">
+                    <a href="/" class="text-blue-800 font-bold hover:underline">Home</a> > <a href="/forum"
+                        class="text-blue-800 font-bold hover:underline">Forums</a>
+                </div>
                 {{-- Forum Post --}}
                 <div
                     class="bg-gradient-to-r from-blue-50 via-white to-blue-50 shadow-2xl rounded-lg p-8 mb-8 border border-gray-200 hover:shadow-[0px_10px_40px_rgba(0,0,0,0.15)] transition-shadow duration-300">
