@@ -10,6 +10,18 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     @vite('resources/css/app.css')
 </head>
+<style>
+    pre {
+        white-space: pre-wrap;
+        /* Wrap text, but preserve whitespace */
+        word-wrap: break-word;
+        /* Break long words */
+        overflow-wrap: break-word;
+        /* For better browser support */
+        overflow: hidden;
+        /* Prevent content from spilling out */
+    }
+</style>
 
 <body>
 

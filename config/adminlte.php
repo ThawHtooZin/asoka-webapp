@@ -425,6 +425,23 @@ return [
             ],
         ],
 
+        [
+            'text' => 'Forum Management',
+            'icon' => 'fas fa-comments', // Comments icon for forums
+            'submenu' => [
+                [
+                    'text' => 'All Forums',
+                    'url' => 'dashboard/forums',
+                    'icon' => 'fas fa-list-alt', // List icon for all forums
+                ],
+                [
+                    'text' => 'User Activity',
+                    'url' => 'dashboard/forums/activity',
+                    'icon' => 'fas fa-chart-line', // Chart icon for activity insights
+                ],
+            ],
+        ],
+
         // Home Page link
         [
             'text' => 'Home Page',

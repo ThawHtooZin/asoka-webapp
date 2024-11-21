@@ -55,12 +55,11 @@
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
-                                <form id="editArticleForm" method="POST"
+                                <form id="editAnnouncementForm" method="POST"
                                     action="/dashboard/announcements/{{ $announcement->id }}" enctype="multipart/form-data">
                                     @csrf
                                     @method('PUT')
                                     <div class="modal-body">
-                                        <input type="hidden" id="editArticleId">
                                         <div class="form-group">
                                             <label for="editAnnouncementTitle">Announcement Title</label>
                                             <input type="text" class="form-control" id="editAnnouncementTitle"

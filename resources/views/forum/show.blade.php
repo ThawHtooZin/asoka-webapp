@@ -55,9 +55,9 @@
                         </div>
                     </div>
                     <div class="mt-3">
-                        <p class="text-lg text-gray-700 leading-relaxed">
+                        <pre class="font-sans text-lg text-gray-700 leading-relaxed">
                             {{ $forum->content }}
-                        </p>
+                        </pre>
                     </div>
                 </div>
 
@@ -79,7 +79,7 @@
                                 </div>
                                 {{-- Comment Content --}}
                                 <div class="mt-4 text-gray-800">
-                                    <p>{{ $comment->comment }}</p>
+                                    <pre class="font-sans">{{ $comment->comment }}</pre>
                                 </div>
                                 {{-- Reply Button --}}
                                 <div class="mt-4">
@@ -120,7 +120,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="mt-3 text-gray-700">
-                                                    <p>{{ $reply->comment }}</p>
+                                                    <pre class="font-sans">{{ $reply->comment }}</pre>
                                                 </div>
                                             </div>
                                         @endforeach

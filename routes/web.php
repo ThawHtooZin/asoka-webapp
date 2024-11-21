@@ -13,6 +13,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DashboardCourseCategoryController;
 use App\Http\Controllers\DashboardCourseController;
 use App\Http\Controllers\DashboardElibraryController;
+use App\Http\Controllers\DashboardForumController;
 use App\Http\Controllers\DashboardRequestController;
 use App\Http\Controllers\DashboardVideoController;
 use App\Http\Controllers\ForumController;
@@ -206,5 +207,10 @@ Route::middleware(['custom'])->group(function () {
         Route::post('announcements', [DashboardAnnouncementController::class, 'store'])->name('announcement.store'); // Store Announcement
         Route::put('announcements/{id}', [DashboardAnnouncementController::class, 'update'])->name('announcement.update'); // Update Announcement
         Route::delete('announcements/{id}', [DashboardAnnouncementController::class, 'destroy'])->name('announcement.destory'); // Delete Announcement
+
+        // Forum Management
+        Route::get('forums', [DashboardForumController::class, 'index'])->name('dashboard.forum.index'); // List Forums
+        Route::put('forums/{id}', [DashboardForumController::class, 'update'])->name('dashboard.forum.update'); // Update Forum
+        Route::delete('forums/{id}', [DashboardForumController::class, 'destroy'])->name('dashboard.forum.destory'); // Delete Forum
     });
 });
