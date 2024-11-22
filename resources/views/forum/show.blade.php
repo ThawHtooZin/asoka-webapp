@@ -51,7 +51,7 @@
                                         <span>{{ $forum->views }} Views</span>
                                     </div>
 
-                                    @if (!empty(Auth::user()) && Auth::user()->id == $forum->user->id)
+                                    @if (!empty(Auth::user()) && (Auth::user()->id == $forum->user->id || Auth::user()->roles()->first()->name == 'admin'))
                                         <button
                                             class="bg-yellow-400 p-2 rounded-lg text-white transition duration-300 ease-in-out transform hover:bg-yellow-500 hover:scale-105 hover:shadow-lg"
                                             onclick="openEditForumBox({{ $forum->id }})">
@@ -105,7 +105,7 @@
                                         </p>
                                     </div>
                                     <div>
-                                        @if (!empty(Auth::user()) && Auth::user()->id == $comment->user->id)
+                                        @if (!empty(Auth::user()) && (Auth::user()->id == $comment->user->id || Auth::user()->roles()->first()->name == 'admin'))
                                             <button
                                                 class="bg-yellow-400 p-2 rounded-lg text-white transition duration-300 ease-in-out transform hover:bg-yellow-500 hover:scale-105 hover:shadow-lg"
                                                 onclick="openEditCommentBox({{ $comment->id }})">
@@ -131,7 +131,7 @@
                                 <div class="mt-4 text-gray-800">
                                     <pre class="font-sans">{{ $comment->comment }}</pre>
                                 </div>
-                                @if (!empty(Auth::user()))
+                                @if (!empty(Auth::user()) && optional(Auth::user()->roles()->first())->name == 'admin')
                                     {{-- Reply Button --}}
                                     <div class="mt-4">
                                         <button
@@ -171,7 +171,7 @@
                                                         </p>
                                                     </div>
                                                     <div>
-                                                        @if (!empty(Auth::user()) && Auth::user()->id == $reply->user()->first()->id)
+                                                        @if (!empty(Auth::user()) && (Auth::user()->id == $reply->user->id || Auth::user()->roles()->first()->name == 'admin'))
                                                             <button onclick="openEditReplyBox({{ $reply->id }})"
                                                                 class="bg-yellow-400 p-2 rounded-lg text-white transition duration-300 ease-in-out transform hover:bg-yellow-500 hover:scale-105 hover:shadow-lg">
                                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16"
@@ -289,7 +289,7 @@
 
                     </div>
                 @endif
-                @if (!empty(Auth::user()))
+                @if (!empty(Auth::user()) && optional(Auth::user()->roles()->first())->name == 'admin')
                     <div class="bg-white shadow-lg rounded-lg p-6 mt-6">
                         <div class="flex justify-between items-center">
                             <div>
@@ -313,7 +313,7 @@
         <div></div>
     </div>
 
-    @if (!empty(Auth::user()) && Auth::user()->id == $forum->user->id)
+    @if (!empty(Auth::user()) && (Auth::user()->id == $forum->user->id || Auth::user()->roles()->first()->name == 'admin'))
         <div id="EditForum"
             class="fixed bottom-0 left-1/2 transform -translate-x-1/2 bg-white border-t border-gray-300 p-6 shadow-lg hidden z-50 w-full max-w-3xl">
             <div class="max-w-3xl mx-auto">
