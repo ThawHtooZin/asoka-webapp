@@ -65,54 +65,49 @@
     </div>
 
     <!-- Mission & Vision Section -->
-    <section class="py-16 bg-gradient-to-b from-gray-50 to-gray-200">
-        <div class="container mx-auto px-4 grid grid-rows-2 gap-y-8">
+    <section class="py-16 bg-gradient-to-b from-gray-100 to-gray-300">
+        <div class="container mx-auto px-6 lg:px-8 grid grid-rows-2 gap-y-12">
 
             <!-- Mission Section -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
                 <!-- Text Content -->
-                <div class="bg-white p-8 rounded-xl shadow-lg transform transition duration-300 hover:scale-105">
-                    <h2 class="sub-heading text-indigo-600">Mission</h2>
-                    <p class="section-text mb-6">
-                        Our mission is to offer accessible Buddhist teachings that promote personal transformation,
-                        ethical living, and mindfulness. We are committed to nurturing inner peace and wisdom for
-                        individuals and communities alike.
+                <div
+                    class="bg-white p-8 rounded-xl shadow-2xl transform transition duration-300 hover:scale-105 hover:shadow-lg">
+                    <h2 class="text-2xl font-bold text-asokablue mb-4">Mission</h2>
+                    <p class="text-gray-700 text-lg leading-relaxed">
+                        To inspire individuals worldwide through the teachings of Buddhism, fostering inner peace,
+                        mindfulness, and compassionate living while preserving and promoting Buddhist history, culture,
+                        and spiritual practices for all generations.
                     </p>
-                    <ul class="list-disc list-inside">
-                        <li class="list-item">Promote inner peace and mindfulness</li>
-                        <li class="list-item">Encourage ethical and compassionate living</li>
-                        <li class="list-item">Support community transformation</li>
-                    </ul>
                 </div>
                 <!-- Image -->
-                <div class="flex justify-center transform transition duration-300 hover:scale-105">
-                    <img src="/images/buddhatree.png" alt="Buddha Tree" class="rounded-2xl shadow-xl">
+                <div class="flex justify-center transform transition duration-300 hover:scale-105 hover:rotate-1">
+                    <img src="/images/buddhatree.png" alt="Buddha Tree" class="rounded-3xl shadow-2xl w-4/5">
                 </div>
             </div>
 
             <!-- Vision Section -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
                 <!-- Image -->
-                <div class="flex justify-center transform transition duration-300 hover:scale-105">
-                    <img src="/images/buddhastatue.jpg" alt="Buddha Statue" class="rounded-2xl shadow-xl">
+                <div class="flex justify-center transform transition duration-300 hover:scale-105 hover:rotate-1">
+                    <img src="/images/buddhastatue.jpg" alt="Buddha Statue" class="rounded-3xl shadow-2xl w-4/5">
                 </div>
                 <!-- Text Content -->
-                <div class="bg-white p-8 rounded-xl shadow-lg transform transition duration-300 hover:scale-105">
-                    <h2 class="sub-heading text-purple-600">Vision</h2>
-                    <p class="section-text mb-6">
-                        Our vision is to inspire a global community to practice mindfulness, compassion, and wisdom. We
-                        envision a world where these values contribute to greater harmony, understanding, and
-                        interconnectedness.
+                <div
+                    class="bg-white p-8 rounded-xl shadow-2xl transform transition duration-300 hover:scale-105 hover:shadow-lg">
+                    <h2 class="text-2xl font-bold text-asokablue mb-4">Vision</h2>
+                    <p class="text-gray-700 text-lg leading-relaxed">
+                        Asoka Center for Buddhist Studies is committed to providing accessible and enriching online
+                        resources, including lectures, special courses, meditation courses, discussion forums, and
+                        specialized programs for all age groups. We aim to nurture understanding, self-awareness, and
+                        stress resilience through the timeless wisdom of Buddhism while supporting scholarly and
+                        practical engagement with Buddhist history, archaeology, and philosophy.
                     </p>
-                    <ul class="list-disc list-inside">
-                        <li class="list-item">Inspire mindfulness and compassion globally</li>
-                        <li class="list-item">Foster wisdom for a peaceful world</li>
-                        <li class="list-item">Create a future of understanding and unity</li>
-                    </ul>
                 </div>
             </div>
         </div>
     </section>
+
 
     {{-- Courses Section --}}
     <section class="bg-gray-50 py-12 px-10 md:p-24">
