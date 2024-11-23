@@ -65,35 +65,54 @@
                 <div class="fade-in delay-200">
                     <label class="block text-blue-700 font-semibold mb-2" for="name">Name</label>
                     <input type="text" id="name" name="name" required
-                        class="w-full px-4 py-2 border border-blue-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out">
+                        class="w-full px-4 py-2 border border-blue-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out"
+                        value="{{ old('name') }}">
+                    @error('name')
+                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                    @enderror
                 </div>
 
                 <!-- Email -->
                 <div class="fade-in delay-300">
                     <label class="block text-blue-700 font-semibold mb-2" for="email">Email</label>
                     <input type="email" id="email" name="email" required
-                        class="w-full px-4 py-2 border border-blue-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out">
+                        class="w-full px-4 py-2 border border-blue-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out"
+                        value="{{ old('email') }}">
+                    @error('email')
+                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                    @enderror
                 </div>
 
                 <!-- Phone -->
                 <div class="fade-in delay-400">
                     <label class="block text-blue-700 font-semibold mb-2" for="phone">Phone</label>
                     <input type="number" id="phone" name="phone" required
-                        class="w-full px-4 py-2 border border-blue-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out">
+                        class="w-full px-4 py-2 border border-blue-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out"
+                        value="{{ old('phone') }}">
+                    @error('phone')
+                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                    @enderror
                 </div>
 
                 <!-- Address -->
                 <div class="fade-in delay-500">
                     <label class="block text-blue-700 font-semibold mb-2" for="address">Address</label>
                     <textarea id="address" name="address" required
-                        class="w-full px-4 py-2 border border-blue-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out"></textarea>
+                        class="w-full px-4 py-2 border border-blue-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out">{{ old('address') }}</textarea>
+                    @error('address')
+                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                    @enderror
                 </div>
 
                 <!-- Password -->
                 <div class="fade-in delay-600">
                     <label class="block text-blue-700 font-semibold mb-2" for="password">Password</label>
                     <input type="password" id="password" name="password" required
-                        class="w-full px-4 py-2 border border-blue-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out">
+                        class="w-full px-4 py-2 border border-blue-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out"
+                        value="{{ old('password') }}">
+                    @error('password')
+                        <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                    @enderror
                 </div>
 
                 <!-- Password Confirmation -->
@@ -101,7 +120,8 @@
                     <label class="block text-blue-700 font-semibold mb-2" for="password_confirmation">Confirm
                         Password</label>
                     <input type="password" id="password_confirmation" name="password_confirmation" required
-                        class="w-full px-4 py-2 border border-blue-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out">
+                        class="w-full px-4 py-2 border border-blue-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out"
+                        value="{{ old('password_confirmation') }}">
                 </div>
 
                 <!-- Submit Button -->

@@ -15,10 +15,22 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
-        $credentials = $request->validate([
-            'email' => 'required|email',
-            'password' => 'required|string|min:8',
-        ]);
+        $credentials = $request->validate(
+            [
+                'email' => 'required|email',
+                'password' => 'required|string|min:8',
+            ],
+            [
+                // Custom messages for email field
+                'email.required' => 'The email field is mandatory. Please provide your email address.',
+                'email.email' => 'The email must be a valid email address.',
+
+                // Custom messages for password field
+                'password.required' => 'The password field is required.',
+                'password.string' => 'The password must be a valid string.',
+                'password.min' => 'The password must be at least 8 characters long.',
+            ]
+        );
 
         // Attempt to log the user in
         if (Auth::attempt($credentials)) {

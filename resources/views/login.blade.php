@@ -64,25 +64,23 @@
                 <!-- Email -->
                 <div class="fade-in delay-200">
                     <label class="block text-blue-700 font-semibold mb-2" for="email">Email</label>
-                    <input type="email" id="email" name="email" required
+                    <input type="email" id="email" name="email" value="{{ old('email') }}" required
                         class="w-full px-4 py-2 border border-blue-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out">
+                    <!-- Email Field Validation -->
+                    @error('email')
+                        <p class="text-red-500 text-sm mt-2">{{ $message }}</p>
+                    @enderror
                 </div>
-                @if ($errors->any())
-                    <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4"
-                        role="alert">
-                        <strong class="font-bold">Whoops!</strong> Something went wrong.
-                        <ul class="mt-2 list-disc list-inside text-sm">
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                @endif
+
                 <!-- Password -->
                 <div class="fade-in delay-300">
                     <label class="block text-blue-700 font-semibold mb-2" for="password">Password</label>
                     <input type="password" id="password" name="password" required
                         class="w-full px-4 py-2 border border-blue-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300 ease-in-out">
+                    <!-- Password Field Validation -->
+                    @error('password')
+                        <p class="text-red-500 text-sm mt-2">{{ $message }}</p>
+                    @enderror
                 </div>
 
                 <!-- Submit Button -->
