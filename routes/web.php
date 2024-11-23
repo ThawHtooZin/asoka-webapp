@@ -45,13 +45,14 @@ Route::prefix('courses')->group(function () {
 
     // This should be a separate route group, applying middleware correctly
     Route::group(['middleware' => 'auth'], function () {
-        Route::get('/{id}/show', [CourseController::class, 'show'])->name('video.show'); // Show a single course
+        Route::get('/{id}/show', [CourseController::class, 'show'])->name('course.show'); // Show a single course
         Route::get('/{id}/buy', [CourseController::class, 'buy']); // Buying a course
         Route::post('/{id}/buy', [CourseController::class, 'Purchase']); // Purchasing a course
         Route::get('/{course}/chapters/{chapter}/videos', [VideoController::class, 'chaptershow'])->name('chaptershow')->middleware('courseownershipmiddleware'); // Show all videos in a chapter
         Route::get('/{course}/chapters/{chapter}/videos/{video}', [VideoController::class, 'videoshow'])->name('videoshow')->middleware('courseownershipmiddleware'); // Show a specific video
         Route::get('/{course}/quiz/{quizzes}/questions/{question}', [QuestionController::class, 'questionshow'])->name('questionshow')->middleware('courseownershipmiddleware'); // Show a specific question
         Route::post('/{course}/quiz/{quiz}/questions/{question}/submit', [QuestionController::class, 'submitAnswer'])->name('submitquizanswer')->middleware('courseownershipmiddleware');
+        Route::get('/{course}/quiz/{quiz_id}/', [QuestionController::class, 'showScore'])->name('course.complete');
     });
 });
 

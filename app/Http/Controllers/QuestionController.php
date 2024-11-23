@@ -108,10 +108,10 @@ class QuestionController extends Controller
 
             if ($nextQuiz) {
                 // If there is a next quiz, redirect to it
-                return redirect()->route('quiz.show', ['course_id' => $course_id, 'quiz_id' => $nextQuiz->id]);
+                return redirect()->route('video.show', ['course_id' => $course_id, 'quiz_id' => $nextQuiz->id]);
             } else {
                 // If no more quizzes, redirect to the course completion page
-                return redirect()->route('quiz.complete', ['quiz_id' => $quiz_id, 'course' => $course_id]);
+                return redirect()->route('course.complete', ['quiz_id' => $quiz_id, 'course' => $course_id]);
             }
         }
 

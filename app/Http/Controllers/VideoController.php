@@ -13,6 +13,9 @@ class VideoController extends Controller
 {
     public function chaptershow($course_id, $chapter_id)
     {
+        if ($chapter_id == 0) {
+            return redirect('/courses/' . $course_id . '/show')->with('error', 'No Chapter Yet!');
+        }
         $course = Course::findOrFail($course_id);
         $chapters = $this->getChapters($course_id);
 
@@ -30,6 +33,9 @@ class VideoController extends Controller
 
     public function videoshow($id, $chapter_id, $video_id)
     {
+        if ($video_id == 0) {
+            return redirect('/courses/' . $id . '/show')->with('error', 'No Videos Yet!');
+        }
         $course = Course::findOrFail($id);
         $chapters = $this->getChapters($id);
         $video = $this->getVideo($id, $chapter_id, $video_id);
