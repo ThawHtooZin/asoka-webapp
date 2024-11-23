@@ -1,8 +1,8 @@
 <x-layout>
-    <div class="grid grid-cols-5">
-        <div></div>
-        <div class="col-span-3 p-4">
-            <div class="max-w-7xl mx-auto px-6 lg:px-8 py-6">
+    <div class="mx-auto px-6 lg:px-12 py-6">
+        <div class="grid grid-cols-1 xl:grid-cols-3 gap-5">
+            <div class="col-span-2">
+
                 <div class="p-2">
                     <a href="/" class="text-blue-800 font-bold hover:underline">Home</a> > <a href="/forum"
                         class="text-blue-800 font-bold hover:underline">Forums</a>
@@ -12,7 +12,7 @@
                     class="bg-gradient-to-r from-blue-50 via-white to-blue-50 shadow-2xl rounded-lg p-8 mb-8 border border-gray-200 hover:shadow-[0px_10px_40px_rgba(0,0,0,0.15)] transition-shadow duration-300">
                     <div class="border-b pb-3">
                         <div class="space-y-3">
-                            <div class="flex justify-between items-start ">
+                            <div class="flex-row md:flex justify-between items-start ">
                                 <p class="text-xl text-gray-900 flex items-center space-x-2">
                                     <span>{{ $forum->user->name }}</span>
                                     <span
@@ -68,10 +68,34 @@
                     </div>
                     <div class="mt-3">
                         <pre class="font-sans text-lg text-gray-700 leading-relaxed">
-                            {{ $forum->content }}
-                        </pre>
+                                    {{ $forum->content }}
+                                </pre>
                     </div>
                 </div>
+                @if (!empty(Auth::user()))
+                    <div class="bg-white shadow-lg rounded-lg p-6 mb-6">
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <p class="font-semibold text-gray-800">Write an Comment</p>
+                            </div>
+                        </div>
+                        <form action="{{ route('forum.comment.store', $forum->id) }}" method="POST">
+                            @csrf
+                            <textarea name="comment" rows="3"
+                                class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                placeholder="Write your reply..."></textarea>
+                            <button type="submit"
+                                class="mt-3 bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 focus:outline-none">
+                                Comment
+                            </button>
+                        </form>
+                    </div>
+                @endif
+            </div>
+
+            {{-- Comment Div --}}
+            <div class="mt-10">
+                <h1 class="text-3xl font-bold mb-2">Comments</h1>
 
                 @if (!empty($forum->comments))
                     {{-- Comments Section --}}
@@ -191,7 +215,8 @@
                                             <div id="EditReply{{ $reply->id }}"
                                                 class="fixed bottom-0 left-1/2 transform -translate-x-1/2 bg-white border-t border-gray-300 p-6 shadow-lg hidden z-50 w-full max-w-3xl">
                                                 <div class="max-w-3xl mx-auto">
-                                                    <h3 class="text-2xl font-semibold mb-4 text-gray-800">Edit Your
+                                                    <h3 class="text-2xl font-semibold mb-4 text-gray-800">Edit
+                                                        Your
                                                         Reply</h3>
                                                     <form
                                                         action="{{ $forum->id }}/comments/{{ $reply->id }}/replies"
@@ -277,28 +302,9 @@
 
                     </div>
                 @endif
-                @if (!empty(Auth::user()))
-                    <div class="bg-white shadow-lg rounded-lg p-6 mt-6">
-                        <div class="flex justify-between items-center">
-                            <div>
-                                <p class="font-semibold text-gray-800">Write an Comment</p>
-                            </div>
-                        </div>
-                        <form action="{{ route('forum.comment.store', $forum->id) }}" method="POST">
-                            @csrf
-                            <textarea name="comment" rows="3"
-                                class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                placeholder="Write your reply..."></textarea>
-                            <button type="submit"
-                                class="mt-3 bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 focus:outline-none">
-                                Comment
-                            </button>
-                        </form>
-                    </div>
-                @endif
             </div>
         </div>
-        <div></div>
+
     </div>
 
     @if (!empty(Auth::user()) && (Auth::user()->id == $forum->user->id || Auth::user()->roles()->first()->name == 'admin'))
