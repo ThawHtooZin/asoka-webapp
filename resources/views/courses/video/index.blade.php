@@ -74,16 +74,21 @@
 
 
         <!-- Sidebar for Chapters on the Right -->
-        <aside class="w-1/3 bg-asokablue text-white p-4 h-screen shadow-lg overflow-y-auto">
-            <h2 class="text-2xl font-semibold mb-6 border-b border-gray-300 pb-2">{{ $course->name }}</h2>
+        <aside class="w-1/3 bg-gray-200 text-gray-900 p-4 h-screen shadow-lg overflow-y-auto border-r border-gray-200">
+            <div class="mb-6 border-b pb-2">
+                <a href="/courses/{{ $course->id }}/show"
+                    class="text-2xl font-semibold text-primary hover:underline">
+                    {{ $course->name }}
+                </a>
+            </div>
             <ul>
                 @foreach ($chapters as $chapter)
-                    <li class="mb-4 border border-gray-300 rounded-lg overflow-hidden">
-                        <div class="flex justify-between items-center p-3 cursor-pointer chapter-title"
+                    <li class="mb-4 border bg-white border-gray-300 rounded-lg overflow-hidden">
+                        <div class="flex justify-between items-center p-3 cursor-pointer chapter-title hover:bg-gray-100"
                             data-chapter-id="{{ $chapter->id }}">
                             <div class="flex items-center gap-3">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                    fill="currentColor" class="bi bi-camera-reels" viewBox="0 0 16 16">
+                                    fill="currentColor" class="bi bi-camera-reels text-primary" viewBox="0 0 16 16">
                                     <path d="M6 3a3 3 0 1 1-6 0 3 3 0 0 1 6 0M1 3a2 2 0 1 0 4 0 2 2 0 0 0-4 0" />
                                     <path
                                         d="M9 6h.5a2 2 0 0 1 1.983 1.738l3.11-1.382A1 1 0 0 1 16 7.269v7.462a1 1 0 0 1-1.406.913l-3.111-1.382A2 2 0 0 1 9.5 16H2a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2zm6 8.73V7.27l-3.5 1.555v4.35zM1 8v6a1 1 0 0 0 1 1h7.5a1 1 0 0 0 1-1V8a1 1 0 0 0-1-1H2a1 1 0 0 0-1 1" />
@@ -92,16 +97,15 @@
                                 <h3 class="text-lg font-medium">{{ $chapter->title }}</h3>
                             </div>
                             <span class="transition-transform transform chapter-arrow">&#9660;</span>
-                            <!-- Down arrow -->
                         </div>
                         <ul class="space-y-2 max-h-0 overflow-hidden transition-max-height duration-500 ease-in-out chapter-videos"
                             data-chapter-id="{{ $chapter->id }}">
                             @foreach ($chapter->videos as $video)
                                 <li>
                                     <a href="/courses/{{ $course->id }}/chapters/{{ $chapter->id }}/videos/{{ $video->id }}"
-                                        class="text-sm block px-3 py-2 
-                        {{ request()->is('courses/*/chapters/*/videos/' . $video->id) ? 'bg-blue-300 text-gray-900' : 'bg-gray-300 text-gray-900' }} 
-                        hover:bg-gray-100 hover:shadow-md transition-all duration-200">
+                                        class="text-sm block px-3 py-2  
+                            {{ request()->is('courses/*/chapters/*/videos/' . $video->id) ? 'bg-primary text-white' : 'bg-gray-100 text-gray-900' }}
+                            hover:bg-primary hover:text-white transition-all duration-200">
                                         {{ $video->title }}
                                     </a>
                                 </li>
@@ -114,9 +118,10 @@
                     <form class="flex justify-between items-center p-3 cursor-pointer quiz-title mb-0"
                         action="/courses/{{ $course->id }}/quiz/{{ $quiz->id }}/questions/{{ $question->id }}"
                         method="get">
-                        <button type="submit" class="flex items-center gap-3">
+                        <button type="submit"
+                            class="flex items-center gap-3 w-full text-left hover:bg-gray-100 p-3 rounded-lg">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                class="bi bi-lightbulb-fill" viewBox="0 0 16 16">
+                                class="bi bi-lightbulb-fill text-primary" viewBox="0 0 16 16">
                                 <path
                                     d="M2 6a6 6 0 1 1 10.174 4.31c-.203.196-.359.4-.453.619l-.762 1.769A.5.5 0 0 1 10.5 13h-5a.5.5 0 0 1-.46-.302l-.761-1.77a2 2 0 0 0-.453-.618A5.98 5.98 0 0 1 2 6m3 8.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1l-.224.447a1 1 0 0 1-.894.553H6.618a1 1 0 0 1-.894-.553L5.5 15a.5.5 0 0 1-.5-.5" />
                             </svg>
