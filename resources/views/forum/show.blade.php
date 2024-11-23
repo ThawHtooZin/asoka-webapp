@@ -119,7 +119,7 @@
                                 <div class="mt-4 text-gray-800">
                                     <pre class="font-sans">{{ $comment->comment }}</pre>
                                 </div>
-                                @if (!empty(Auth::user()) && optional(Auth::user()->roles()->first())->name == 'admin')
+                                @if (!empty(Auth::user()))
                                     {{-- Reply Button --}}
                                     <div class="mt-4">
                                         <button
@@ -277,14 +277,14 @@
 
                     </div>
                 @endif
-                @if (!empty(Auth::user()) && optional(Auth::user()->roles()->first())->name == 'admin')
+                @if (!empty(Auth::user()))
                     <div class="bg-white shadow-lg rounded-lg p-6 mt-6">
                         <div class="flex justify-between items-center">
                             <div>
                                 <p class="font-semibold text-gray-800">Write an Comment</p>
                             </div>
                         </div>
-                        <form action="{{ route('forum.comments.store', $forum->id) }}" method="POST">
+                        <form action="{{ route('forum.comment.store', $forum->id) }}" method="POST">
                             @csrf
                             <textarea name="comment" rows="3"
                                 class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"

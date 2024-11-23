@@ -74,7 +74,7 @@ Route::prefix('forum')->group(function () {
     Route::delete('/{forum}', [ForumController::class, 'destroy'])->name('forum.destroy');
 
     // Add a comment to a post
-    Route::post('/{forum}/comments', [CommentController::class, 'store'])->name('forum.comments.store');
+    Route::post('/{forum}/comments', [CommentController::class, 'store'])->name('forum.comment.store');
 
     // Update a comment of a post
     Route::put('/{forum}/comments/{comment}', [CommentController::class, 'update'])->name('forum.comments.update');

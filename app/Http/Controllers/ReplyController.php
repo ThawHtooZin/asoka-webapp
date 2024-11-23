@@ -25,7 +25,7 @@ class ReplyController extends Controller
         $reply->comment = $validated['comment'];
         $reply->save();
 
-        return back();
+        return redirect()->back()->with('success', 'Reply posted successfully!');
     }
 
     public function update(Request $request, $forumId, $commentId)
