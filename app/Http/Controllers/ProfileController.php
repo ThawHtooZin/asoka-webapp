@@ -13,9 +13,9 @@ class ProfileController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $ownedCourses = CoursePurchase::where('user_id', '=', $user->id)->where('status', '=', 'confirmed')->orderByDesc('created_at')->get();
-        $ownedBooks = BookPurchase::where('user_id', '=', $user->id)->where('status', '=', 'confirmed')->orderByDesc('created_at')->get();
-        return view('profile.index', compact('user', 'ownedCourses', 'ownedBooks'));
+        $Courses = CoursePurchase::where('user_id', '=', $user->id)->where('status', '!=', 'achived')->orderByDesc('created_at')->get();
+        $Books = BookPurchase::where('user_id', '=', $user->id)->where('status', '!=', 'achived')->orderByDesc('created_at')->get();
+        return view('profile.index', compact('user', 'Courses', 'Books'));
     }
 
     public function edit()

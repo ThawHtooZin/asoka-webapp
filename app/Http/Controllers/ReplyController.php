@@ -45,7 +45,7 @@ class ReplyController extends Controller
             ]);
 
             // Optionally, you can redirect or return a success message
-            return redirect()->route('forum.show', $forumId)->with('success', 'Comment updated successfully.');
+            return redirect()->route('forum.show', $forumId)->with('success', 'Reply updated successfully.');
         }
 
         // If comment not found, handle the error
@@ -62,7 +62,7 @@ class ReplyController extends Controller
             $comment->delete();
 
             // Redirect back with a success message
-            return redirect()->route('forum.show', $forumId)->with('success', 'Comment deleted successfully.');
+            return redirect()->route('forum.show', $forumId)->with('success', 'Reply deleted successfully.');
         }
 
         // If comment not found, handle the error

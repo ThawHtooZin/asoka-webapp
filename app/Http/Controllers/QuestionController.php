@@ -72,7 +72,7 @@ class QuestionController extends Controller
         $selectedAnswer = $request->input('answer');
 
         // Check if the selected answer is the same as the correct answer
-        $isCorrect = $correctAnswer && $correctAnswer->id == $selectedAnswer;
+        $isCorrect = $correctAnswer->id == intval($selectedAnswer);
 
         // Store the user's answer in the 'user_answers' table
         $userAnswer = new UserAnswer();
@@ -99,7 +99,11 @@ class QuestionController extends Controller
                 ->count();
 
             // Flash the score to session
-            session()->flash('score', $score);
+            if ($score != 0) {
+                session()->flash('score', $score);
+            } else {
+                session()->flash('score', 'Failed');
+            }
 
             // Get the next quiz in sequence, assuming quizzes are ordered by ID or some other column
             $nextQuiz = Quiz::where('course_id', $course_id)
@@ -139,6 +143,10 @@ class QuestionController extends Controller
             ->where('is_correct', 1)
             ->count();
 
+
+        if ($score == 0) {
+            $score = 'failed';
+        }
         // Get the total number of questions in the quiz
         $totalQuestions = $quiz->questions->count();
 

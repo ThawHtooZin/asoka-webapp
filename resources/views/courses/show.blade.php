@@ -1,4 +1,21 @@
 <x-layout>
+    <style>
+        @keyframes fade-in {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .animate-fade-in {
+            animation: fade-in 0.5s ease-out;
+        }
+    </style>
     <div class="container mx-auto p-6">
         <!-- Grid layout for main content -->
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -115,20 +132,43 @@
     </div>
 
     @if (session('score'))
-        <div class="flex justify-center items-center min-h-screen bg-gray-800 bg-opacity-50 fixed inset-0 z-50">
-            <div class="bg-blue-600 text-white p-8 rounded-xl shadow-lg text-center max-w-xl w-full">
-                <h2 class="text-3xl font-bold mb-4">Course Completed!</h2>
-                <p class="text-lg mb-6">Congratulations! You have completed the quiz with a score of:</p>
-                <div class="text-4xl font-extrabold text-yellow-400 mb-6">{{ session('score') }} /
-                    {{ session('totalQuestions') }}</div>
-                <p class="text-lg">Well done on your performance! Keep going!</p>
-                <div class="mt-8">
-                    <a href="{{ route('course.show', ['id' => $course]) }}"
-                        class="text-white hover:text-gray-200 underline text-lg">Return to Course</a>
+        @if (session('score') == 'failed')
+            <div class="fixed inset-0 z-50 flex items-center justify-center bg-gray-900 bg-opacity-80">
+                <div
+                    class="bg-gradient-to-r from-red-700 to-red-500 p-8 rounded-2xl shadow-2xl text-white max-w-xl w-full animate-fade-in">
+                    <h2 class="text-4xl font-extrabold mb-4">Course Finished! 😔</h2>
+                    <div class="text-5xl font-bold text-yellow-400 mb-6 animate-pulse">0 / 5</div>
+                    <p class="text-lg mb-6">Oops! It seems like you didn't pass this time. Don't give up! Try again to
+                        improve your score.</p>
+                    <div class="mt-8">
+                        <a href="{{ route('course.show', ['id' => $course]) }}"
+                            class="inline-block px-6 py-3 bg-red-800 text-white font-semibold rounded-lg shadow-md hover:bg-red-700 transition duration-300 ease-in-out">
+                            Return to Course
+                        </a>
+                    </div>
                 </div>
             </div>
-        </div>
+        @else
+            <div class="fixed inset-0 z-50 flex items-center justify-center bg-gray-900 bg-opacity-80">
+                <div
+                    class="bg-gradient-to-r from-blue-700 to-blue-500 p-8 rounded-2xl shadow-2xl text-white max-w-xl w-full animate-fade-in">
+                    <h2 class="text-4xl font-extrabold mb-4">Course Completed! 🎉</h2>
+                    <p class="text-lg mb-6">Congratulations! You nailed it with an amazing score:</p>
+                    <div class="text-5xl font-bold text-yellow-400 mb-6 animate-bounce">
+                        {{ session('score') }} / {{ session('totalQuestions') }}
+                    </div>
+                    <p class="text-lg">Great job! Keep up the excellent work and continue learning! 🚀</p>
+                    <div class="mt-8">
+                        <a href="{{ route('course.show', ['id' => $course]) }}"
+                            class="inline-block px-6 py-3 bg-blue-800 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 transition duration-300 ease-in-out">
+                            Return to Course
+                        </a>
+                    </div>
+                </div>
+            </div>
+        @endif
     @endif
+
 
     <script>
         $(document).ready(function() {

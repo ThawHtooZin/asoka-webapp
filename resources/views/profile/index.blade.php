@@ -5,7 +5,8 @@
             <div class="bg-white shadow-lg rounded-lg p-6">
                 <div class="flex justify-between">
                     <div class="flex">
-                        <img src="/images/img2.jpg" alt="" class="w-24 h-24">
+                        <img src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+                            alt="" class="w-24 h-24 rounded-lg">
                         <div>
                             <h1 class="text-2xl font-semibold text-primary ml-2">{{ $user->name }}</h1>
                             <p class="texl-xl text-primary ml-3">Joined Since
@@ -23,29 +24,29 @@
                 <div class="flex max-h-full justify-center">
                     <div
                         class="rounded-lg bg-blue-500 p-3 px-6 m-4 text-white text-center hover:bg-blue-400 duration-300">
-                        <h1 class="transition-colors duration-300">Courses Owned</h1>
-                        <p class="text-xl font-bold py-3">{{ $ownedCourses->count() }}</p>
+                        <h1 class="transition-colors duration-300">Courses Activity</h1>
+                        <p class="text-xl font-bold py-3">{{ $Courses->count() }}</p>
                     </div>
                     <div
                         class="rounded-lg bg-blue-500 p-3 px-6 m-4 text-white text-center hover:bg-blue-400 duration-300">
-                        <h1 class="transition-colors duration-300 hover:text-gray-900">Books Owned</h1>
-                        <p class="text-xl font-bold py-3">{{ $ownedBooks->count() }}</p>
+                        <h1 class="transition-colors duration-300">Books Activity</h1>
+                        <p class="text-xl font-bold py-3">{{ $Books->count() }}</p>
                     </div>
 
                 </div>
             </div>
 
-            <!-- Owned Courses Section -->
+            <!-- Activity Courses Section -->
             <div class="bg-gray-50 py-8 px-6">
                 <div class="max-w-6xl mx-auto">
                     <h1 class="text-3xl font-bold text-gray-800 mb-6 border-b-2 border-gray-200 pb-2">
-                        Your Owned Courses (Latest)
+                        Your Courses Activity (Latest)
                     </h1>
 
                     <!-- Courses Grid -->
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                         <!-- Single Course Card -->
-                        @foreach ($ownedCourses as $course)
+                        @foreach ($Courses as $course)
                             <div
                                 class="bg-white rounded-lg shadow-lg overflow-hidden transform transition hover:scale-105">
                                 <img src="{{ $course->course()->first()->image }}" alt="Course Name"
@@ -70,17 +71,17 @@
 
 
 
-            <!-- Owned Books Section -->
+            <!-- Activity Books Section -->
             <div class="bg-gray-50 py-8 px-6">
                 <div class="max-w-6xl mx-auto">
                     <h1 class="text-3xl font-bold text-gray-800 mb-6 border-b-2 border-gray-200 pb-2">
-                        Your Owned Books (Latest)
+                        Your Books Activity (Latest)
                     </h1>
 
                     <!-- Books Grid -->
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
                         <!-- Single Book Card -->
-                        @foreach ($ownedBooks as $book)
+                        @foreach ($Books as $book)
                             <a href="/elibrary/book/{{ $book->book()->first()->id }}">
                                 <div
                                     class="bg-white rounded-lg shadow-lg overflow-hidden transform transition hover:scale-105">
