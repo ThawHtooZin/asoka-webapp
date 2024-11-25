@@ -31,7 +31,16 @@
                     <x-navlink href="/forum">Forum</x-navlink>
                 </x-navlinkcontainer>
             </li>
-            <li><a href="/announcement" class="text-lg">Announcement</a></li>
+            <li class="group relative">
+                <a href="/innovation" class="text-lg">Innovation</a>
+                <x-navlinkcontainer
+                    class="absolute left-0 hidden group-hover:flex flex-col bg-asokablue mt-2 p-2 rounded shadow-lg">
+                    <x-navlink href="/research">Research</x-navlink>
+                    <x-navlink href="/partnerships">Partnerships</x-navlink>
+                    <x-navlink href="/researcharticles">Research Articles</x-navlink>
+                </x-navlinkcontainer>
+            </li>
+            <li><a href="/newsandupdate" class="text-lg">News and Update</a></li>
             <li><a href="#" class="text-lg">Gallery</a></li>
             <li><a href="#" class="text-lg">Contact Us</a></li>
         </ul>

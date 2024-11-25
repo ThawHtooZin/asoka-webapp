@@ -1,10 +1,10 @@
 <?php
 
-use App\Http\Controllers\AnnouncementController;
+use App\Http\Controllers\NewsandUpdateController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\CourseController;
-use App\Http\Controllers\DashboardAnnouncementController;
+use App\Http\Controllers\DashboardNewsandUpdateController;
 use App\Http\Controllers\DashboardArticleCategoryController;
 use App\Http\Controllers\DashboardArticleController;
 use App\Http\Controllers\DashboardBookCategoryController;
@@ -110,9 +110,9 @@ Route::prefix('elibrary')->group(function () {
     });
 });
 
-// Announcement
-Route::get('/announcement', [AnnouncementController::class, 'index']);
-Route::get('/announcement/{id}/show', [AnnouncementController::class, 'show']);
+// News and Update
+Route::get('/newsandupdate', [NewsandUpdateController::class, 'index']);
+Route::get('/newsandupdate/{id}/show', [NewsandUpdateController::class, 'show']);
 
 
 // Authentication Routes
@@ -199,11 +199,11 @@ Route::middleware(['custom'])->group(function () {
         Route::post('/books/request/{id}/confirm', [DashboardRequestController::class, 'bookconfirm'])->name('book.request.confirm'); // Book Confirm Requests
         Route::post('/books/request/{id}/achive', [DashboardRequestController::class, 'bookachive'])->name('book.request.achive'); // Book Achive Requests
 
-        // Announcement Management
-        Route::get('announcements', [DashboardAnnouncementController::class, 'index'])->name('announcement.index'); // List Announcement
-        Route::post('announcements', [DashboardAnnouncementController::class, 'store'])->name('announcement.store'); // Store Announcement
-        Route::put('announcements/{id}', [DashboardAnnouncementController::class, 'update'])->name('announcement.update'); // Update Announcement
-        Route::delete('announcements/{id}', [DashboardAnnouncementController::class, 'destroy'])->name('announcement.destory'); // Delete Announcement
+        // News and Update Management
+        Route::get('newsandupdates', [DashboardNewsandUpdateController::class, 'index'])->name('newsandupdate.index'); // List News and Update
+        Route::post('newsandupdates', [DashboardNewsandUpdateController::class, 'store'])->name('newsandupdate.store'); // Store News and Update
+        Route::put('newsandupdates/{id}', [DashboardNewsandUpdateController::class, 'update'])->name('newsandupdate.update'); // Update News and Update
+        Route::delete('newsandupdates/{id}', [DashboardNewsandUpdateController::class, 'destroy'])->name('newsandupdate.destory'); // Delete News and Update
 
         // Forum Management
         Route::get('forums', [DashboardForumController::class, 'index'])->name('dashboard.forum.index'); // List Forums

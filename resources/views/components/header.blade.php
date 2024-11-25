@@ -27,50 +27,52 @@
                 </button>
             </div>
 
-            <!-- Notification Bell with Dropdown -->
-            <div class="relative">
-                <button class="flex items-center space-x-2 bg-primary p-2 rounded-lg border-4 border-primary"
-                    onclick="toggleNotificationDropdown()">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                        class="bi bi-bell-fill text-white" viewBox="0 0 16 16">
-                        <path
-                            d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2m.995-14.901a1 1 0 1 0-1.99 0A5 5 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901" />
-                    </svg>
-                </button>
+            @auth
+                <!-- Notification Bell with Dropdown -->
+                <div class="relative">
+                    <button class="flex items-center space-x-2 bg-primary p-2 rounded-lg border-4 border-primary"
+                        onclick="toggleNotificationDropdown()">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-bell-fill text-white" viewBox="0 0 16 16">
+                            <path
+                                d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2m.995-14.901a1 1 0 1 0-1.99 0A5 5 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901" />
+                        </svg>
+                    </button>
 
-                <!-- Notification Dropdown Content -->
-                <div id="notificationDropdown"
-                    class="absolute -right-52 sm:right-0 mt-2 w-96 bg-white shadow-xl rounded-lg hidden z-50">
-                    <!-- Header with Title and "Mark as Read" -->
-                    <div
-                        class="border-b px-4 py-3 flex items-center justify-between bg-primary text-white rounded-t-lg">
-                        <h3 class="text-lg font-semibold">Notifications</h3>
-                        <a href="/markallread" class="text-xs underline hover:text-gray-200">Mark All as Read</a>
-                    </div>
-
-                    <!-- Notifications Container -->
-                    <div class="p-4 space-y-3 max-h-72 overflow-y-auto">
-                        <!-- Notification Item -->
+                    <!-- Notification Dropdown Content -->
+                    <div id="notificationDropdown"
+                        class="absolute -right-52 sm:right-0 mt-2 w-96 bg-white shadow-xl rounded-lg hidden z-50">
+                        <!-- Header with Title and "Mark as Read" -->
                         <div
-                            class="notification-item p-3 rounded-lg bg-gray-100 hover:bg-gray-200 shadow-sm transition-all duration-200">
-                            <p class="text-sm text-gray-800">New course available: "<strong>Introduction to
-                                    Meditation</strong>"</p>
+                            class="border-b px-4 py-3 flex items-center justify-between bg-primary text-white rounded-t-lg">
+                            <h3 class="text-lg font-semibold">Notifications</h3>
+                            <a href="/markallread" class="text-xs underline hover:text-gray-200">Mark All as Read</a>
                         </div>
 
-                        <div
-                            class="notification-item p-3 rounded-lg bg-gray-100 hover:bg-gray-200 shadow-sm transition-all duration-200">
-                            <p class="text-sm text-gray-800">Your profile was updated successfully</p>
-                        </div>
+                        <!-- Notifications Container -->
+                        <div class="p-4 space-y-3 max-h-72 overflow-y-auto">
+                            <!-- Notification Item -->
+                            <div
+                                class="notification-item p-3 rounded-lg bg-gray-100 hover:bg-gray-200 shadow-sm transition-all duration-200">
+                                <p class="text-sm text-gray-800">New course available: "<strong>Introduction to
+                                        Meditation</strong>"</p>
+                            </div>
 
-                        <div
-                            class="notification-item p-3 rounded-lg bg-gray-100 hover:bg-gray-200 shadow-sm transition-all duration-200">
-                            <p class="text-sm text-gray-800">Quiz results are now available</p>
-                        </div>
+                            <div
+                                class="notification-item p-3 rounded-lg bg-gray-100 hover:bg-gray-200 shadow-sm transition-all duration-200">
+                                <p class="text-sm text-gray-800">Your profile was updated successfully</p>
+                            </div>
 
-                        <!-- Add more notification items here -->
+                            <div
+                                class="notification-item p-3 rounded-lg bg-gray-100 hover:bg-gray-200 shadow-sm transition-all duration-200">
+                                <p class="text-sm text-gray-800">Quiz results are now available</p>
+                            </div>
+
+                            <!-- Add more notification items here -->
+                        </div>
                     </div>
                 </div>
-            </div>
+            @endauth
 
             <!-- User Dropdown for Profile/Login/Register -->
             <div class="relative">

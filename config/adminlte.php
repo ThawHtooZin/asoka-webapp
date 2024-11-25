@@ -348,11 +348,11 @@ return [
 
 
         ['header' => 'Content Management'],
-        // Announcement Management Link
+        // News and Update Management Link
         [
-            'text'       => 'Manage Announcements',
+            'text'       => 'Manage News and Update',
             'icon'       => 'fas fa-bullhorn',
-            'url'        => '/dashboard/announcements',
+            'url'        => '/dashboard/newsandupdates',
         ],
         [
             'text' => 'Article Management',

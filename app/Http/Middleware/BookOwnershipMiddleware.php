@@ -20,7 +20,7 @@ class BookOwnershipMiddleware
         // Retrieve the book ID from the route
         $bookId = $request->route('id');
 
-        $bookdata = Book::where('id', $bookId)->first();
+        $bookdata = Book::findOrFail($bookId, 'id')->first();
         if ($bookdata->price != 0) {
             // Check if the current user has a confirmed purchase for this book
             $isOwned = BookPurchase::where('book_id', $bookId)
