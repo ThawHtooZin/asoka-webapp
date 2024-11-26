@@ -21,6 +21,7 @@ use App\Http\Controllers\ForumController;
 use App\Http\Controllers\HomePageController;
 use App\Http\Controllers\LibraryController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\PartnerShipController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\RegisterController;
@@ -42,9 +43,10 @@ Route::get('profile/edit', [ProfileController::class, 'edit'])->name('profile.in
 Route::put('profile/edit', [ProfileController::class, 'update'])->name('profile.update'); // Update Profile
 
 // Research Category
-
 // Research
 Route::get('/research', [ResearchController::class, 'index'])->name('research.index');
+// PartnerShip
+Route::get('/partnerships', [PartnerShipController::class, 'index'])->name('partnerships.index');
 
 // Courses
 Route::prefix('courses')->group(function () {

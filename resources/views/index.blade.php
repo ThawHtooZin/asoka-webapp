@@ -112,7 +112,7 @@
     {{-- News and Update --}}
     <section class="py-16 bg-gradient-to-b from-gray-100 to-gray-300">
         <div class="container mx-auto px-4">
-            <h1 class="text-2xl sm:text-2xl md:text-3xl text-center font-bold mb-12">News and Updates</h1>
+            <h1 class="text-2xl sm:text-2gxl md:text-3xl text-center font-bold mb-12">News and Updates</h1>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 @foreach ($newsandupdates as $newsandupdate)
@@ -140,7 +140,7 @@
                 @endforeach
 
                 <div class="pt-6 mt-6 border-t border-gray-300 text-center">
-                    <a href="/newsandannouncement"
+                    <a href="/newsandupdate"
                         class="text-blue-600 font-semibold text-md sm:text-lg hover:text-blue-800 transition duration-300 transform hover:scale-105">
                         Check out more News and Announcements!
                     </a>
