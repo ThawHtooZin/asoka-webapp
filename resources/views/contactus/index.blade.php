@@ -10,7 +10,8 @@
             <div
                 class="bg-gradient-to-r from-blue-100 via-indigo-100 to-blue-200 hover:shadow-lg border border-gray-200 p-8 rounded-lg transition-all duration-300">
                 <h2 class="text-2xl font-semibold text-gray-800 mb-6">Please Tell Us More!</h2>
-                <form action="#" method="POST" class="space-y-6">
+                <form action="" method="POST" class="space-y-6">
+                    @csrf
                     <!-- Name -->
                     <div>
                         <label for="name" class="block text-sm font-medium text-gray-600">Your Name</label>
@@ -35,7 +36,7 @@
                     <!-- Message -->
                     <div>
                         <label for="message" class="block text-sm font-medium text-gray-600">Message</label>
-                        <textarea id="message" name="message" rows="4" required
+                        <textarea id="message" name="messages" rows="4" required
                             class="mt-2 w-full px-4 py-3 border border-blue-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200 ease-in-out"></textarea>
                     </div>
 

@@ -123,6 +123,7 @@ Route::get('/newsandupdate/{id}/show', [NewsandUpdateController::class, 'show'])
 
 // Contact Us
 Route::get('/contactus', [ContactUsController::class, 'index']);
+Route::post('/contactus', [ContactUsController::class, 'sentmail']);
 
 // Authentication Routes
 Route::middleware(['guest'])->group(function () {
