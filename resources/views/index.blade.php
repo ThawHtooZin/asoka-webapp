@@ -43,9 +43,10 @@
         <div class="grid grid-cols-1 md:grid-cols-4 gap-8 items-start px-10 sm:px-24">
             <!-- Text Section -->
             <div class="sm:col-span-3">
-                <h2 class="section-heading">About ASOKA Center</h2>
+                <h2 class="section-heading">About <span class="text-t5">ASOKA</span> Center of Buddhist Studies</h2>
                 <p class="section-text">
-                    ASOKA Center of Buddhist Studies offers an inspiring and transformative education grounded in the
+                    <b>ASOKA Center of Buddhist Studies</b> offers an inspiring and transformative education grounded in
+                    the
                     rich history and teachings of Buddhism. Our center provides an environment where students can deepen
                     their understanding and practice of Buddhist wisdom.
                 </p>

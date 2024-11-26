@@ -5,7 +5,7 @@
         <ul class="flex space-x-12">
             <li><a href="/" class="text-lg">Home</a></li>
             <li class="group relative">
-                <a href="/aboutus" class="text-lg">About</a>
+                <button class="text-lg">About</button>
                 <x-navlinkcontainer
                     class="absolute left-0 hidden group-hover:flex flex-col bg-asokablue mt-2 p-2 rounded shadow-lg">
                     <x-navlink>Vision</x-navlink>
@@ -14,7 +14,7 @@
                 </x-navlinkcontainer>
             </li>
             <li class="group relative">
-                <a href="#" class="text-lg">Learning</a>
+                <button class="text-lg">Learning</button>
                 <div>
                     <x-navlinkcontainer
                         class="absolute left-0 hidden group-hover:flex flex-col bg-asokablue mt-2 p-2 rounded shadow-lg">
@@ -24,7 +24,7 @@
                 </div>
             </li>
             <li class="group relative">
-                <a href="#" class="text-lg">Resources</a>
+                <button class="text-lg">Resources</button>
                 <x-navlinkcontainer
                     class="absolute left-0 hidden group-hover:flex flex-col bg-asokablue mt-2 p-2 rounded shadow-lg">
                     <x-navlink href="/articles">Article</x-navlink>
@@ -32,7 +32,7 @@
                 </x-navlinkcontainer>
             </li>
             <li class="group relative">
-                <a href="/innovation" class="text-lg">Innovation</a>
+                <button class="text-lg">Innovation</button>
                 <x-navlinkcontainer
                     class="absolute left-0 hidden group-hover:flex flex-col bg-asokablue mt-2 p-2 rounded shadow-lg">
                     <x-navlink href="/research">Research</x-navlink>
@@ -41,8 +41,10 @@
                 </x-navlinkcontainer>
             </li>
             <li><a href="/newsandupdate" class="text-lg">News and Update</a></li>
-            <li><a href="#" class="text-lg">Gallery</a></li>
-            <li><a href="#" class="text-lg">Contact Us</a></li>
+            <a href="/gallery" class="text-lg">Gallery</a>
+            </li>
+            <a href="/contactus" class="text-lg">Contact Us</a>
+            </li>
         </ul>
     </div>
 
@@ -60,51 +62,55 @@
 
     <!-- Mobile Menu -->
     <div id="mobile-menu" class="hidden flex-col space-y-2 mt-4 lg:hidden">
+        <!-- Home -->
         <a href="/" class="text-md block py-2">Home</a>
-        <a href="/aboutus" class="text-md block py-2">About</a>
-        <div class="flex flex-col space-y-1 pl-4">
-            <x-navlink>Vision</x-navlink>
-            <x-navlink>Objectives</x-navlink>
-            <x-navlink>Motto</x-navlink>
+
+        <!-- About -->
+        <div class="group">
+            <button class="text-md block py-2">About</button>
+            <div class="flex flex-col space-y-1 pl-4">
+                <x-navlink href="/about/vision">Vision</x-navlink>
+                <x-navlink href="/about/objectives">Objectives</x-navlink>
+                <x-navlink href="/about/motto">Motto</x-navlink>
+            </div>
         </div>
-        <a href="#" class="text-md block py-2">Learning</a>
-        <div class="flex flex-col space-y-1 pl-4">
-            <x-navlink href="/courses">Courses</x-navlink>
-            <x-navlink href="/elibrary">E-Library</x-navlink>
+
+        <!-- Learning -->
+        <div class="group">
+            <button class="text-md block py-2">Learning</button>
+            <div class="flex flex-col space-y-1 pl-4">
+                <x-navlink href="/courses">Courses</x-navlink>
+                <x-navlink href="/elibrary">E-Library</x-navlink>
+            </div>
         </div>
-        <a href="#" class="text-md block py-2">News and Announcement</a>
-        <div class="flex flex-col space-y-1 pl-4">
-            <x-navlink href="/new">News</x-navlink>
-            <x-navlink href="/announcement">Announcement</x-navlink>
+
+        <!-- Resources -->
+        <div class="group">
+            <button class="text-md block py-2">Resources</button>
+            <div class="flex flex-col space-y-1 pl-4">
+                <x-navlink href="/articles">Articles</x-navlink>
+                <x-navlink href="/forum">Forum</x-navlink>
+            </div>
         </div>
-        <a href="#" class="text-md block py-2">Resources</a>
-        <div class="flex flex-col space-y-1 pl-4">
-            <x-navlink href="/articles">Articles</x-navlink>
-            <x-navlink href="/video">Videos</x-navlink>
+
+        <!-- Innovation -->
+        <div class="group">
+            <button class="text-md block py-2">Innovation</button>
+            <div class="flex flex-col space-y-1 pl-4">
+                <x-navlink href="/research">Research</x-navlink>
+                <x-navlink href="/partnerships">Partnerships</x-navlink>
+                <x-navlink href="/researcharticles">Research Articles</x-navlink>
+            </div>
         </div>
-        <a href="#" class="text-md block py-2">Gallery</a>
-        <a href="#" class="text-md block py-2">Contact Us</a>
-        <a href="/login" class="text-md block py-2">
-            @auth
-                {{ Auth::user()->name }}
-            @endauth
-            @guest
-                Account
-            @endguest
-        </a>
-        <div class="flex flex-col space-y-1 pl-4">
-            @auth
-                <x-navlink href="/profile">Profile</x-navlink>
-                @if (auth()->user()->roles()->first()->name == 'admin' || auth()->user()->roles()->first()->name == 'instructor')
-                    <x-navlink href="/dashboard">Dashboard</x-navlink>
-                @endif
-                <x-navlink href="/logout" class="text-red-500 hover:bg-red-500 hover:text-white">Logout</x-navlink>
-            @endauth
-            @guest
-                <x-navlink href="/login">Login</x-navlink>
-                <x-navlink href="/register">Register</x-navlink>
-            @endguest
-        </div>
+
+        <!-- News and Updates -->
+        <a href="/newsandupdate" class="text-md block py-2">News and Updates</a>
+
+        <!-- Gallery -->
+        <a href="/gallery" class="text-md block py-2">Gallery</a>
+
+        <!-- Contact Us -->
+        <a href="/contactus" class="text-md block py-2">Contact Us</a>
     </div>
 </div>
 

@@ -15,8 +15,8 @@ class NewsandUpdateController extends Controller
 
     public function show(Request $request)
     {
-        $newsandupdates = NewsandUpdate::findOrFail($request->id);
+        $newsandupdate = NewsandUpdate::findOrFail($request->id);
 
-        return view('newsandupdates.show', compact('newsandupdates'));
+        return view('newsandupdates.show', compact('newsandupdate'));
     }
 }

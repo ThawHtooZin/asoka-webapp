@@ -3,6 +3,7 @@
 use App\Http\Controllers\NewsandUpdateController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\ContactUsController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\DashboardNewsandUpdateController;
 use App\Http\Controllers\DashboardArticleCategoryController;
@@ -24,6 +25,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ReplyController;
+use App\Http\Controllers\ResearchController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VideoController;
@@ -38,6 +40,11 @@ Route::post('/logout', [LoginController::class, 'logout']);
 Route::get('profile', [ProfileController::class, 'index']);
 Route::get('profile/edit', [ProfileController::class, 'edit'])->name('profile.index'); // Show Edit Profile
 Route::put('profile/edit', [ProfileController::class, 'update'])->name('profile.update'); // Update Profile
+
+// Research Category
+
+// Research
+Route::get('/research', [ResearchController::class, 'index'])->name('research.index');
 
 // Courses
 Route::prefix('courses')->group(function () {
@@ -114,6 +121,8 @@ Route::prefix('elibrary')->group(function () {
 Route::get('/newsandupdate', [NewsandUpdateController::class, 'index']);
 Route::get('/newsandupdate/{id}/show', [NewsandUpdateController::class, 'show']);
 
+// Contact Us
+Route::get('/contactus', [ContactUsController::class, 'index']);
 
 // Authentication Routes
 Route::middleware(['guest'])->group(function () {

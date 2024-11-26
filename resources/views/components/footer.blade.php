@@ -43,6 +43,8 @@
 
     <!-- Footer Bottom Bar -->
     <div class="flex justify-center items-center pt-4">
-        <p class="text-xs text-gray-400">&copy; 2024 Asoka Centre for Buddhist Studies. All rights reserved.</p>
+        <p class="text-xs text-gray-400">&copy; 2024 Asoka Centre for Buddhist Studies. All rights reserved. Powered By
+            <a href="https://protechmm.com/" class="hover:underline">ProTechMM</a>
+        </p>
     </div>
 </div>
