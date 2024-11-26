@@ -109,5 +109,46 @@
         </div>
     </section>
 
+    {{-- News and Update --}}
+    <section class="py-16 bg-gradient-to-b from-gray-100 to-gray-300">
+        <div class="container mx-auto px-4">
+            <h1 class="text-2xl sm:text-2xl md:text-3xl text-center font-bold mb-12">News and Updates</h1>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                @foreach ($newsandupdates as $newsandupdate)
+                    <div class="rounded-lg shadow-lg overflow-hidden bg-white">
+                        <div class="overflow-hidden">
+                            @if ($newsandupdate->image != '')
+                                <img src="{{ $newsandupdate->image }}" alt="News image"
+                                    class="w-full h-48 object-cover hover:scale-105 duration-300">
+                            @else
+                                <img src="images/announcement.jpg" alt="News image"
+                                    class="w-full h-48 object-cover hover:scale-105 duration-300">
+                            @endif
+                        </div>
+                        <div class="p-4">
+                            <p class="text-sm text-gray-500 mb-2">
+                                {{ Carbon\Carbon::parse($newsandupdate->created_at)->diffForHumans() }}</p>
+                            <h2 class="text-lg sm:text-xl md:text-2xl font-bold text-gray-800 mb-2">
+                                {{ $newsandupdate->title }}</h2>
+                            <p class="text-gray-600 text-sm md:text-base">
+                                {{ Str::limit($newsandupdate->content, 100, '...') }}</p>
+                            <a href="/newsandupdate/{{ $newsandupdate->id }}/show"
+                                class="text-blue-500 font-semibold text-sm md:text-base mt-3 block">More details</a>
+                        </div>
+                    </div>
+                @endforeach
+
+                <div class="pt-6 mt-6 border-t border-gray-300 text-center">
+                    <a href="/newsandannouncement"
+                        class="text-blue-600 font-semibold text-md sm:text-lg hover:text-blue-800 transition duration-300 transform hover:scale-105">
+                        Check out more News and Announcements!
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
 
 </x-layout>
