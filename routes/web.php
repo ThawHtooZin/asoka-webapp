@@ -26,6 +26,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ReplyController;
+use App\Http\Controllers\ResearchArticlesController;
 use App\Http\Controllers\ResearchController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
@@ -47,6 +48,9 @@ Route::put('profile/edit', [ProfileController::class, 'update'])->name('profile.
 Route::get('/research', [ResearchController::class, 'index'])->name('research.index');
 // PartnerShip
 Route::get('/partnerships', [PartnerShipController::class, 'index'])->name('partnerships.index');
+// Research Article
+Route::get('/researcharticles', [ResearchArticlesController::class, 'index'])->name('researcharticle.index');
+Route::get('/researcharticles/{id}/show', [ResearchArticlesController::class, 'show'])->name('researcharticle.show');
 
 // Courses
 Route::prefix('courses')->group(function () {
