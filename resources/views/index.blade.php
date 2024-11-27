@@ -43,17 +43,21 @@
         <div class="grid grid-cols-1 md:grid-cols-4 gap-8 items-start px-10 sm:px-24">
             <!-- Text Section -->
             <div class="sm:col-span-3">
-                <h2 class="section-heading">About <span class="text-t5">ASOKA</span> Center of Buddhist Studies</h2>
+                <h2 class="section-heading">
+                    @if (App::getLocale() == 'en')
+                        @lang('homepage.about_asoka')
+                    @endif
+                    <span class="text-t5">ASOKA</span>
+                    Center of Buddhist Studies
+                    @if (App::getLocale() == 'mm')
+                        @lang('homepage.about_asoka')
+                    @endif
+                </h2>
                 <p class="section-text">
-                    <b>ASOKA Center of Buddhist Studies</b> offers an inspiring and transformative education grounded in
-                    the
-                    rich history and teachings of Buddhism. Our center provides an environment where students can deepen
-                    their understanding and practice of Buddhist wisdom.
+                    <b>ASOKA Center of Buddhist Studies</b> @lang('homepage.about_text_1')
                 </p>
                 <p class="section-text">
-                    Our courses, retreats, and resources are designed to help individuals grow in mindfulness,
-                    compassion, and ethical living. Join us in our mission to bring peace to the world through Buddhist
-                    education.
+                    @lang('homepage.about_text_2')
                 </p>
             </div>
 
@@ -74,11 +78,9 @@
                 <!-- Text Content -->
                 <div
                     class="bg-white p-8 rounded-xl shadow-2xl transform transition duration-300 hover:scale-105 hover:shadow-lg">
-                    <h2 class="text-2xl font-bold text-asokablue mb-4">Mission</h2>
+                    <h2 class="text-2xl font-bold text-asokablue mb-4">@lang('homepage.mission')</h2>
                     <p class="text-gray-700 text-lg leading-relaxed">
-                        To inspire individuals worldwide through the teachings of Buddhism, fostering inner peace,
-                        mindfulness, and compassionate living while preserving and promoting Buddhist history, culture,
-                        and spiritual practices for all generations.
+                        @lang('homepage.mission_text')
                     </p>
                 </div>
                 <!-- Image -->
@@ -96,13 +98,9 @@
                 <!-- Text Content -->
                 <div
                     class="bg-white p-8 rounded-xl shadow-2xl transform transition duration-300 hover:scale-105 hover:shadow-lg">
-                    <h2 class="text-2xl font-bold text-asokablue mb-4">Vision</h2>
+                    <h2 class="text-2xl font-bold text-asokablue mb-4">@lang('homepage.vision')</h2>
                     <p class="text-gray-700 text-lg leading-relaxed">
-                        Asoka Center for Buddhist Studies is committed to providing accessible and enriching online
-                        resources, including lectures, special courses, meditation courses, discussion forums, and
-                        specialized programs for all age groups. We aim to nurture understanding, self-awareness, and
-                        stress resilience through the timeless wisdom of Buddhism while supporting scholarly and
-                        practical engagement with Buddhist history, archaeology, and philosophy.
+                        @lang('homepage.vision_text')
                     </p>
                 </div>
             </div>
@@ -112,7 +110,7 @@
     {{-- News and Update --}}
     <section class="py-16 bg-gradient-to-b from-gray-100 to-gray-300">
         <div class="container mx-auto px-4">
-            <h1 class="text-2xl sm:text-2gxl md:text-3xl text-center font-bold mb-12">News and Updates</h1>
+            <h1 class="text-2xl sm:text-2gxl md:text-3xl text-center font-bold mb-12">@lang('homepage.news_and_updates')</h1>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 @foreach ($newsandupdates as $newsandupdate)
@@ -134,7 +132,7 @@
                             <p class="text-gray-600 text-sm md:text-base">
                                 {{ Str::limit($newsandupdate->content, 100, '...') }}</p>
                             <a href="/newsandupdate/{{ $newsandupdate->id }}/show"
-                                class="text-blue-500 font-semibold text-sm md:text-base mt-3 block">More details</a>
+                                class="text-blue-500 font-semibold text-sm md:text-base mt-3 block">@lang('homepage.more_details')</a>
                         </div>
                     </div>
                 @endforeach
@@ -142,7 +140,7 @@
                 <div class="pt-6 mt-6 border-t border-gray-300 text-center">
                     <a href="/newsandupdate"
                         class="text-blue-600 font-semibold text-md sm:text-lg hover:text-blue-800 transition duration-300 transform hover:scale-105">
-                        Check out more News and Announcements!
+                        @lang('homepage.check_more_news')
                     </a>
                 </div>
             </div>
