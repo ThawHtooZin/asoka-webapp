@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\NewsandUpdateController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\CommentController;
@@ -33,112 +34,119 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\VideoController;
 use Illuminate\Support\Facades\Route;
 
-// Public Routes
-Route::get('/', [HomePageController::class, 'index']);
-Route::get('/logout', [LoginController::class, 'logout']);
-Route::post('/logout', [LoginController::class, 'logout']);
+Route::middleware('localMiddleware')->group(function () {
+    // Public Routes
+    Route::get('/', [HomePageController::class, 'index']);
+    Route::get('/logout', [LoginController::class, 'logout']);
+    Route::post('/logout', [LoginController::class, 'logout']);
 
-// Profile
-Route::get('profile', [ProfileController::class, 'index']);
-Route::get('profile/edit', [ProfileController::class, 'edit'])->name('profile.index'); // Show Edit Profile
-Route::put('profile/edit', [ProfileController::class, 'update'])->name('profile.update'); // Update Profile
+    // Language Route
 
-// Research Category
-// Research
-Route::get('/research', [ResearchController::class, 'index'])->name('research.index');
-// PartnerShip
-Route::get('/partnerships', [PartnerShipController::class, 'index'])->name('partnerships.index');
-// Research Article
-Route::get('/researcharticles', [ResearchArticlesController::class, 'index'])->name('researcharticle.index');
-Route::get('/researcharticles/{id}/show', [ResearchArticlesController::class, 'show'])->name('researcharticle.show');
+    Route::get('/language/en', [LanguageController::class, 'en'])->name('language.en')->middleware('localMiddleware');
+    Route::get('/language/mm', [LanguageController::class, 'mm'])->name('language.mm')->middleware('localMiddleware');
 
-// Courses
-Route::prefix('courses')->group(function () {
-    Route::get('/', [CourseController::class, 'index']); // Show all courses
 
-    // This should be a separate route group, applying middleware correctly
-    Route::group(['middleware' => 'auth'], function () {
-        Route::get('/{id}/show', [CourseController::class, 'show'])->name('course.show'); // Show a single course
-        Route::get('/{id}/buy', [CourseController::class, 'buy']); // Buying a course
-        Route::post('/{id}/buy', [CourseController::class, 'Purchase']); // Purchasing a course
-        Route::get('/{course}/chapters/{chapter}/videos', [VideoController::class, 'chaptershow'])->name('chaptershow')->middleware('courseownershipmiddleware'); // Show all videos in a chapter
-        Route::get('/{course}/chapters/{chapter}/videos/{video}', [VideoController::class, 'videoshow'])->name('videoshow')->middleware('courseownershipmiddleware'); // Show a specific video
-        Route::get('/{course}/quiz/{quizzes}/questions/{question}', [QuestionController::class, 'questionshow'])->name('questionshow')->middleware('courseownershipmiddleware'); // Show a specific question
-        Route::post('/{course}/quiz/{quiz}/questions/{question}/submit', [QuestionController::class, 'submitAnswer'])->name('submitquizanswer')->middleware('courseownershipmiddleware');
-        Route::get('/{course}/quiz/{quiz_id}/', [QuestionController::class, 'showScore'])->name('course.complete');
+    // Profile
+    Route::get('profile', [ProfileController::class, 'index']);
+    Route::get('profile/edit', [ProfileController::class, 'edit'])->name('profile.index'); // Show Edit Profile
+    Route::put('profile/edit', [ProfileController::class, 'update'])->name('profile.update'); // Update Profile
+
+    // Research Category
+    // Research
+    Route::get('/research', [ResearchController::class, 'index'])->name('research.index');
+    // PartnerShip
+    Route::get('/partnerships', [PartnerShipController::class, 'index'])->name('partnerships.index');
+    // Research Article
+    Route::get('/researcharticles', [ResearchArticlesController::class, 'index'])->name('researcharticle.index');
+    Route::get('/researcharticles/{id}/show', [ResearchArticlesController::class, 'show'])->name('researcharticle.show');
+
+    // Courses
+    Route::prefix('courses')->group(function () {
+        Route::get('/', [CourseController::class, 'index']); // Show all courses
+
+        // This should be a separate route group, applying middleware correctly
+        Route::group(['middleware' => 'auth'], function () {
+            Route::get('/{id}/show', [CourseController::class, 'show'])->name('course.show'); // Show a single course
+            Route::get('/{id}/buy', [CourseController::class, 'buy']); // Buying a course
+            Route::post('/{id}/buy', [CourseController::class, 'Purchase']); // Purchasing a course
+            Route::get('/{course}/chapters/{chapter}/videos', [VideoController::class, 'chaptershow'])->name('chaptershow')->middleware('courseownershipmiddleware'); // Show all videos in a chapter
+            Route::get('/{course}/chapters/{chapter}/videos/{video}', [VideoController::class, 'videoshow'])->name('videoshow')->middleware('courseownershipmiddleware'); // Show a specific video
+            Route::get('/{course}/quiz/{quizzes}/questions/{question}', [QuestionController::class, 'questionshow'])->name('questionshow')->middleware('courseownershipmiddleware'); // Show a specific question
+            Route::post('/{course}/quiz/{quiz}/questions/{question}/submit', [QuestionController::class, 'submitAnswer'])->name('submitquizanswer')->middleware('courseownershipmiddleware');
+            Route::get('/{course}/quiz/{quiz_id}/', [QuestionController::class, 'showScore'])->name('course.complete');
+        });
     });
-});
 
-Route::prefix('forum')->group(function () {
-    // Forum home: List of all discussions/posts
-    Route::get('/', [ForumController::class, 'index'])->name('forum.index');
+    Route::prefix('forum')->group(function () {
+        // Forum home: List of all discussions/posts
+        Route::get('/', [ForumController::class, 'index'])->name('forum.index');
 
-    // Create a new post/discussion
-    Route::get('/create', [ForumController::class, 'create'])->name('forum.create');
-    Route::post('/store', [ForumController::class, 'store'])->name('forum.store');
+        // Create a new post/discussion
+        Route::get('/create', [ForumController::class, 'create'])->name('forum.create');
+        Route::post('/store', [ForumController::class, 'store'])->name('forum.store');
 
-    // View a single post/discussion
-    Route::get('/{forum}', [ForumController::class, 'show'])->name('forum.show');
+        // View a single post/discussion
+        Route::get('/{forum}', [ForumController::class, 'show'])->name('forum.show');
 
-    // Edit a post/discussion
-    Route::put('/{forum}', [ForumController::class, 'update'])->name('forum.update');
+        // Edit a post/discussion
+        Route::put('/{forum}', [ForumController::class, 'update'])->name('forum.update');
 
-    // Delete a post/discussion
-    Route::delete('/{forum}', [ForumController::class, 'destroy'])->name('forum.destroy');
+        // Delete a post/discussion
+        Route::delete('/{forum}', [ForumController::class, 'destroy'])->name('forum.destroy');
 
-    // Add a comment to a post
-    Route::post('/{forum}/comments', [CommentController::class, 'store'])->name('forum.comment.store');
+        // Add a comment to a post
+        Route::post('/{forum}/comments', [CommentController::class, 'store'])->name('forum.comment.store');
 
-    // Update a comment of a post
-    Route::put('/{forum}/comments/{comment}', [CommentController::class, 'update'])->name('forum.comments.update');
+        // Update a comment of a post
+        Route::put('/{forum}/comments/{comment}', [CommentController::class, 'update'])->name('forum.comments.update');
 
-    // Delete a comment
-    Route::delete('/{forum}/comments/{comment}', [CommentController::class, 'destroy'])->name('forum.comments.destroy');
+        // Delete a comment
+        Route::delete('/{forum}/comments/{comment}', [CommentController::class, 'destroy'])->name('forum.comments.destroy');
 
-    // Reply to a comment
-    Route::post('/{forum}/comments/{comment}/replies', [ReplyController::class, 'store'])->name('forum.replies.store');
+        // Reply to a comment
+        Route::post('/{forum}/comments/{comment}/replies', [ReplyController::class, 'store'])->name('forum.replies.store');
 
-    Route::put('/{forum}/comments/{comment}/replies', [ReplyController::class, 'update'])->name('forum.replies.update');
+        Route::put('/{forum}/comments/{comment}/replies', [ReplyController::class, 'update'])->name('forum.replies.update');
 
-    // Delete a reply
-    Route::delete('/{forum}/comments/{comment}/replies', [ReplyController::class, 'destroy'])->name('forum.replies.destroy');
-});
-
+        // Delete a reply
+        Route::delete('/{forum}/comments/{comment}/replies', [ReplyController::class, 'destroy'])->name('forum.replies.destroy');
+    });
 
 
-// Articles
-Route::get('/articles', [ArticleController::class, 'index'])->name('articles.index'); // Show all articles
-Route::middleware(['auth'])->group(function () {
-    Route::get('/article/{id}', [ArticleController::class, 'show'])->name('articles.show'); // Show a specific article
-});
 
-// E-Library
-Route::prefix('elibrary')->group(function () {
-    Route::get('/', [LibraryController::class, 'index'])->name('elibrary.index'); // Show all books
+    // Articles
+    Route::get('/articles', [ArticleController::class, 'index'])->name('articles.index'); // Show all articles
     Route::middleware(['auth'])->group(function () {
-        Route::get('/book/{id}', [LibraryController::class, 'show'])->name('elibrary.show'); // Show a specific book
-        Route::get('/book/{id}/read', [LibraryController::class, 'read'])->name('elibrary.read')->middleware('auth', 'bookownershipmiddleware'); // Read free book
-        Route::get('/book/{id}/buy', [LibraryController::class, 'buy'])->name('elibrary.buy')->middleware('auth'); // Buy specific book
-        Route::post('/book/{id}/buy', [LibraryController::class, 'purchase'])->middleware('auth'); // Buy specific book
+        Route::get('/article/{id}', [ArticleController::class, 'show'])->name('articles.show'); // Show a specific article
+    });
+
+    // E-Library
+    Route::prefix('elibrary')->group(function () {
+        Route::get('/', [LibraryController::class, 'index'])->name('elibrary.index'); // Show all books
+        Route::middleware(['auth'])->group(function () {
+            Route::get('/book/{id}', [LibraryController::class, 'show'])->name('elibrary.show'); // Show a specific book
+            Route::get('/book/{id}/read', [LibraryController::class, 'read'])->name('elibrary.read')->middleware('auth', 'bookownershipmiddleware'); // Read free book
+            Route::get('/book/{id}/buy', [LibraryController::class, 'buy'])->name('elibrary.buy')->middleware('auth'); // Buy specific book
+            Route::post('/book/{id}/buy', [LibraryController::class, 'purchase'])->middleware('auth'); // Buy specific book
+        });
+    });
+
+    // News and Update
+    Route::get('/newsandupdate', [NewsandUpdateController::class, 'index']);
+    Route::get('/newsandupdate/{id}/show', [NewsandUpdateController::class, 'show']);
+
+    // Contact Us
+    Route::get('/contactus', [ContactUsController::class, 'index']);
+    Route::post('/contactus', [ContactUsController::class, 'sentmail']);
+
+    // Authentication Routes
+    Route::middleware(['guest'])->group(function () {
+        Route::get('/login', [LoginController::class, 'index'])->name('login'); // Show login form
+        Route::post('/login', [LoginController::class, 'login']); // Process login
+        Route::get('/register', [RegisterController::class, 'index']); // Show registration form
+        Route::post('/register', [RegisterController::class, 'register']); // Process registration
     });
 });
-
-// News and Update
-Route::get('/newsandupdate', [NewsandUpdateController::class, 'index']);
-Route::get('/newsandupdate/{id}/show', [NewsandUpdateController::class, 'show']);
-
-// Contact Us
-Route::get('/contactus', [ContactUsController::class, 'index']);
-Route::post('/contactus', [ContactUsController::class, 'sentmail']);
-
-// Authentication Routes
-Route::middleware(['guest'])->group(function () {
-    Route::get('/login', [LoginController::class, 'index'])->name('login'); // Show login form
-    Route::post('/login', [LoginController::class, 'login']); // Process login
-    Route::get('/register', [RegisterController::class, 'index']); // Show registration form
-    Route::post('/register', [RegisterController::class, 'register']); // Process registration
-});
-
 // Authenticated User Routes
 Route::middleware(['custom'])->group(function () {
     Route::prefix('dashboard')->group(function () {

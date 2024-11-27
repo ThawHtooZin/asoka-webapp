@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Course;
 use App\Models\NewsandUpdate;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 
 class HomePageController extends Controller
 {

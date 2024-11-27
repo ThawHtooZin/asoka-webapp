@@ -1,56 +1,77 @@
+<style>
+    .text-underline {
+        text-decoration: underline !important;
+    }
+</style>
 <!-- Navbar Container -->
 <div class="py-3 px-6 sm:px-12 lg:px-32 bg-asokablue shadow-lg text-white sticky top-0 z-40">
     <!-- Desktop Navbar -->
     <div class="hidden lg:flex justify-around items-center">
         <ul class="flex space-x-12">
-            <li><a href="/" class="text-lg">Home</a></li>
+            <!-- Home -->
+            <li><a href="/"
+                    class="text-lg @if (Request::is('/')) text-underline @elseif (App::getLocale() == 'mm') text-[1rem] font-bold @endif">
+                    @lang('navbar.home')</a>
+            </li>
+
+            <!-- About Dropdown -->
             <li class="group relative">
-                <button class="text-lg">About</button>
-                <x-navlinkcontainer
-                    class="absolute left-0 hidden group-hover:flex flex-col bg-asokablue mt-2 p-2 rounded shadow-lg">
-                    <x-navlink>Vision</x-navlink>
-                    <x-navlink>Objectives</x-navlink>
-                    <x-navlink>Motto</x-navlink>
+                <button
+                    class="text-lg @if (Request::is('about*')) text-underline @elseif (App::getLocale() == 'mm') text-[1rem] font-bold @endif">
+                    @lang('navbar.about')
+                </button>
+                <x-navlinkcontainer>
+                    <x-navlink href="/about/vision">@lang('navbar.about_vision')</x-navlink>
+                    <x-navlink href="/about/objectives">@lang('navbar.about_objectives')</x-navlink>
+                    <x-navlink href="/about/motto">@lang('navbar.about_motto')</x-navlink>
                 </x-navlinkcontainer>
             </li>
+
+            <!-- Learning Dropdown -->
             <li class="group relative">
-                <button class="text-lg">Learning</button>
-                <div>
-                    <x-navlinkcontainer
-                        class="absolute left-0 hidden group-hover:flex flex-col bg-asokablue mt-2 p-2 rounded shadow-lg">
-                        <x-navlink href="/courses">Courses</x-navlink>
-                        <x-navlink href="/elibrary">E-Library</x-navlink>
-                    </x-navlinkcontainer>
-                </div>
-            </li>
-            <li class="group relative">
-                <button class="text-lg">Resources</button>
-                <x-navlinkcontainer
-                    class="absolute left-0 hidden group-hover:flex flex-col bg-asokablue mt-2 p-2 rounded shadow-lg">
-                    <x-navlink href="/articles">Article</x-navlink>
-                    <x-navlink href="/forum">Forum</x-navlink>
+                <button
+                    class="text-lg @if (Request::is('courses*') || Request::is('elibrary*')) text-underline @elseif (App::getLocale() == 'mm') text-[1rem] font-bold @endif">
+                    @lang('navbar.learning')
+                </button>
+                <x-navlinkcontainer>
+                    <x-navlink href="/courses">@lang('navbar.learning_courses')</x-navlink>
+                    <x-navlink href="/elibrary">@lang('navbar.learning_elibrary')</x-navlink>
                 </x-navlinkcontainer>
             </li>
+
+            <!-- Resources Dropdown -->
             <li class="group relative">
-                <button class="text-lg">Innovation</button>
-                <x-navlinkcontainer
-                    class="absolute left-0 hidden group-hover:flex flex-col bg-asokablue mt-2 p-2 rounded shadow-lg">
-                    <x-navlink href="/research">Research</x-navlink>
-                    <x-navlink href="/partnerships">Partnerships</x-navlink>
-                    <x-navlink href="/researcharticles">Research Articles</x-navlink>
+                <button
+                    class="text-lg @if (Request::is('articles*') || Request::is('forum*')) text-underline @elseif (App::getLocale() == 'mm') text-[1rem] font-bold @endif">
+                    @lang('navbar.resources')
+                </button>
+                <x-navlinkcontainer>
+                    <x-navlink href="/articles">@lang('navbar.resources_articles')</x-navlink>
+                    <x-navlink href="/forum">@lang('navbar.resources_forum')</x-navlink>
                 </x-navlinkcontainer>
             </li>
-            <li><a href="/newsandupdate" class="text-lg">News and Update</a></li>
-            <a href="/gallery" class="text-lg">Gallery</a>
+
+            <!-- News -->
+            <li><a href="/newsandupdate"
+                    class="text-lg @if (Request::is('newsandupdate')) text-underline @elseif (App::getLocale() == 'mm') text-[1rem] font-bold @endif">@lang('navbar.news')</a>
             </li>
-            <a href="/contactus" class="text-lg">Contact Us</a>
+
+            <!-- Gallery -->
+            <a href="/gallery"
+                class="text-lg @if (Request::is('gallery')) text-underline @elseif (App::getLocale() == 'mm') text-[1rem] font-bold @endif">@lang('navbar.gallery')</a>
+            </li>
+
+            <!-- Contact -->
+            <a href="/contactus"
+                class="text-lg @if (Request::is('contactus')) text-underline @elseif (App::getLocale() == 'mm') text-[1rem] font-bold @endif">@lang('navbar.contact')</a>
             </li>
         </ul>
     </div>
 
     <!-- Mobile Navbar -->
     <div class="flex lg:hidden items-center justify-between">
-        <a href="/" class="text-lg font-bold">ASOKA</a>
+        <a href="/"
+            class="text-lg @if (Request::is('/')) text-underline @elseif (App::getLocale() == 'mm') text-[1rem] font-bold @endif">ASOKA</a>
         <button id="menu-toggle" class="focus:outline-none">
             <!-- Hamburger Icon -->
             <svg class="w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
@@ -63,54 +84,58 @@
     <!-- Mobile Menu -->
     <div id="mobile-menu" class="hidden flex-col space-y-2 mt-4 lg:hidden">
         <!-- Home -->
-        <a href="/" class="text-md block py-2">Home</a>
+        <a href="/"
+            class="text-md block py-2 @if (Request::is('/')) text-underline @elseif (App::getLocale() == 'mm') text-[1rem] font-bold @endif">@lang('navbar.home')</a>
 
         <!-- About -->
         <div class="group">
-            <button class="text-md block py-2">About</button>
+            <button
+                class="text-md block py-2 @if (Request::is('about*')) text-underline @elseif (App::getLocale() == 'mm') text-[1rem] font-bold @endif">@lang('navbar.about')</button>
             <div class="flex flex-col space-y-1 pl-4">
-                <x-navlink href="/about/vision">Vision</x-navlink>
-                <x-navlink href="/about/objectives">Objectives</x-navlink>
-                <x-navlink href="/about/motto">Motto</x-navlink>
+                <x-navlink href="/about/vision"
+                    class="@if (Request::is('about/vision')) text-underline @endif">@lang('navbar.about_vision')</x-navlink>
+                <x-navlink href="/about/objectives"
+                    class="@if (Request::is('about/objectives')) text-underline @endif">@lang('navbar.about_objectives')</x-navlink>
+                <x-navlink href="/about/motto"
+                    class="@if (Request::is('about/motto')) text-underline @endif">@lang('navbar.about_motto')</x-navlink>
             </div>
         </div>
 
         <!-- Learning -->
         <div class="group">
-            <button class="text-md block py-2">Learning</button>
+            <button
+                class="text-md block py-2 @if (Request::is('courses*') || Request::is('elibrary*')) text-underline @elseif (App::getLocale() == 'mm') text-[1rem] font-bold @endif">@lang('navbar.learning')</button>
             <div class="flex flex-col space-y-1 pl-4">
-                <x-navlink href="/courses">Courses</x-navlink>
-                <x-navlink href="/elibrary">E-Library</x-navlink>
+                <x-navlink href="/courses"
+                    class="@if (Request::is('courses')) text-underline @endif">@lang('navbar.learning_courses')</x-navlink>
+                <x-navlink href="/elibrary"
+                    class="@if (Request::is('elibrary')) text-underline @endif">@lang('navbar.learning_elibrary')</x-navlink>
             </div>
         </div>
 
         <!-- Resources -->
         <div class="group">
-            <button class="text-md block py-2">Resources</button>
+            <button
+                class="text-md block py-2 @if (Request::is('articles*') || Request::is('forum*')) text-underline @elseif (App::getLocale() == 'mm') text-[1rem] font-bold @endif">@lang('navbar.resources')</button>
             <div class="flex flex-col space-y-1 pl-4">
-                <x-navlink href="/articles">Articles</x-navlink>
-                <x-navlink href="/forum">Forum</x-navlink>
-            </div>
-        </div>
-
-        <!-- Innovation -->
-        <div class="group">
-            <button class="text-md block py-2">Innovation</button>
-            <div class="flex flex-col space-y-1 pl-4">
-                <x-navlink href="/research">Research</x-navlink>
-                <x-navlink href="/partnerships">Partnerships</x-navlink>
-                <x-navlink href="/researcharticles">Research Articles</x-navlink>
+                <x-navlink href="/articles"
+                    class="@if (Request::is('articles')) text-underline @endif">@lang('navbar.resources_articles')</x-navlink>
+                <x-navlink href="/forum"
+                    class="@if (Request::is('forum')) text-underline @endif">@lang('navbar.resources_forum')</x-navlink>
             </div>
         </div>
 
         <!-- News and Updates -->
-        <a href="/newsandupdate" class="text-md block py-2">News and Updates</a>
+        <a href="/newsandupdate"
+            class="text-md block py-2 @if (Request::is('newsandupdate')) text-underline @elseif (App::getLocale() == 'mm') text-[1rem] font-bold @endif">@lang('navbar.news')</a>
 
         <!-- Gallery -->
-        <a href="/gallery" class="text-md block py-2">Gallery</a>
+        <a href="/gallery"
+            class="text-md block py-2 @if (Request::is('gallery')) text-underline @elseif (App::getLocale() == 'mm') text-[1rem] font-bold @endif">@lang('navbar.gallery')</a>
 
         <!-- Contact Us -->
-        <a href="/contactus" class="text-md block py-2">Contact Us</a>
+        <a href="/contactus"
+            class="text-md block py-2 @if (Request::is('contactus')) text-underline @elseif (App::getLocale() == 'mm') text-[1rem] font-bold @endif">@lang('navbar.contact')</a>
     </div>
 </div>
 
