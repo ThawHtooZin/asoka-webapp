@@ -1,7 +1,7 @@
 <x-layout>
-    <section class="bg-gradient-to-r from-gray-100 via-blue-50 to-gray-100 py-16">
+    <section class="bg-gradient-to-r from-gray-100 via-blue-50 to-gray-100 py-16 px-10 md:24 xl:px-32">
         <!-- Partnership Benefits Section -->
-        <div class="container mx-auto px-6 text-center">
+        <div class="container mx-auto text-center">
             <h2 class="text-4xl font-semibold text-gray-900 mb-6">Why Partner with Us?</h2>
             <p class="text-lg text-gray-700 mb-12">Join a network of like-minded organizations and benefit from shared
                 growth and success.</p>
@@ -30,61 +30,133 @@
     </section>
 
     {{-- Our Partners --}}
-    <section class="py-16 bg-gradient-to-r from-gray-100 via-blue-50 to-gray-100">
-        <div class="container mx-auto px-10 text-center">
+    <section class="py-16 bg-gradient-to-r from-gray-100 via-blue-50 to-gray-100 px-10 md:24 xl:px-32">
+        <div class="container mx-auto text-center">
             <h2 class="text-4xl font-semibold text-gray-900 mb-8">Our Esteemed Partners</h2>
             <p class="text-lg text-gray-700 mb-12">We're proud to collaborate with industry leaders to create innovative
                 solutions.</p>
 
             <!-- Partners Logos -->
-            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
                 <!-- Partner 1 -->
                 <div
-                    class="flex justify-center items-center p-6 bg-white rounded-lg shadow-lg hover:scale-105 transition-transform duration-300">
-                    <img src="https://static.vecteezy.com/system/resources/thumbnails/028/667/072/small/google-logo-icon-symbol-free-png.png"
-                        alt="Partner Logo 1" class="h-16 object-contain">
+                    class="flex justify-center items-center p-5 py-14 hover:scale-105 transition-transform duration-300 bg-white rounded-lg">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-3">
+                        <div class="text-center mx-auto">
+                            <img src="https://static.vecteezy.com/system/resources/thumbnails/028/667/072/small/google-logo-icon-symbol-free-png.png"
+                                alt="Partner Logo 1" class="h-20 object-contain">
+                        </div>
+                        <div class="text-center mx-auto">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut doloremque consectetur minus
+                                aperiam
+                                quidem totam, recusandae architecto nesciunt molestiae explicabo.</p>
+                        </div>
+                    </div>
                 </div>
                 <!-- Partner 2 -->
                 <div
-                    class="flex justify-center items-center p-6 bg-white rounded-lg shadow-lg hover:scale-105 transition-transform duration-300">
-                    <img src="https://lh3.googleusercontent.com/3zkP2SYe7yYoKKe47bsNe44yTgb4Ukh__rBbwXwgkjNRe4PykGG409ozBxzxkrubV7zHKjfxq6y9ShogWtMBMPyB3jiNps91LoNH8A=s500"
-                        alt="Partner Logo 2" class="h-16 object-contain">
+                    class="flex justify-center items-center p-5 py-14 hover:scale-105 transition-transform duration-300 bg-white rounded-lg">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-3">
+                        <div class="text-center mx-auto">
+                            <img src="https://lh3.googleusercontent.com/3zkP2SYe7yYoKKe47bsNe44yTgb4Ukh__rBbwXwgkjNRe4PykGG409ozBxzxkrubV7zHKjfxq6y9ShogWtMBMPyB3jiNps91LoNH8A=s500"
+                                alt="Partner Logo 2" class="h-28 object-contain">
+                        </div>
+                        <div class="text-center mx-auto">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut doloremque consectetur minus
+                                aperiam
+                                quidem totam, recusandae architecto nesciunt molestiae explicabo.</p>
+                        </div>
+                    </div>
                 </div>
                 <!-- Partner 3 -->
                 <div
-                    class="flex justify-center items-center p-6 bg-white rounded-lg shadow-lg hover:scale-105 transition-transform duration-300">
-                    <img src="https://privacyinternational.org/sites/default/files/styles/large/public/2020-06/external-content.duckduckgo.com__0.jpg?itok=jBFzVz6V"
-                        alt="Partner Logo 3" class="h-16 object-contain">
+                    class="flex justify-center items-center p-5 py-14 hover:scale-105 transition-transform duration-300 bg-white rounded-lg">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-3">
+                        <div class="text-center mx-auto">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut doloremque consectetur minus
+                                aperiam
+                                quidem totam, recusandae architecto nesciunt molestiae explicabo.</p>
+                        </div>
+                        <div class="text-center mx-auto">
+                            <img src="https://privacyinternational.org/sites/default/files/styles/large/public/2020-06/external-content.duckduckgo.com__0.jpg?itok=jBFzVz6V"
+                                alt="Partner Logo 3" class="h-28 object-contain">
+                        </div>
+                    </div>
                 </div>
                 <!-- Partner 4 -->
                 <div
-                    class="flex justify-center items-center p-6 bg-white rounded-lg shadow-lg hover:scale-105 transition-transform duration-300">
-                    <img src="https://logolook.net/wp-content/uploads/2021/06/Facebook-Logo-2019.png"
-                        alt="Partner Logo 4" class="h-16 object-contain">
+                    class="flex justify-center items-center p-5 py-14 hover:scale-105 transition-transform duration-300 bg-white rounded-lg">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-3">
+                        <div class="text-center mx-auto">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut doloremque consectetur minus
+                                aperiam
+                                quidem totam, recusandae architecto nesciunt molestiae explicabo.</p>
+                        </div>
+                        <div class="text-center mx-auto">
+                            <img src="https://logolook.net/wp-content/uploads/2021/06/Facebook-Logo-2019.png"
+                                alt="Partner Logo 4" class="h-28 object-contain">
+                        </div>
+                    </div>
                 </div>
                 <!-- Partner 5 -->
                 <div
-                    class="flex justify-center items-center p-6 bg-white rounded-lg shadow-lg hover:scale-105 transition-transform duration-300">
-                    <img src="https://privacyinternational.org/sites/default/files/styles/large/public/2020-07/twitter.jpg?itok=2V1iRPWI"
-                        alt="Partner Logo 5" class="h-16 object-contain">
+                    class="flex justify-center items-center p-5 py-14 hover:scale-105 transition-transform duration-300 bg-white rounded-lg">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-3">
+                        <div class="text-center mx-auto">
+                            <img src="https://privacyinternational.org/sites/default/files/styles/large/public/2020-07/twitter.jpg?itok=2V1iRPWI"
+                                alt="Partner Logo 5" class="h-28 object-contain">
+                        </div>
+                        <div class="text-center mx-auto">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut doloremque consectetur minus
+                                aperiam
+                                quidem totam, recusandae architecto nesciunt molestiae explicabo.</p>
+                        </div>
+                    </div>
                 </div>
                 <!-- Partner 6 -->
                 <div
-                    class="flex justify-center items-center p-6 bg-white rounded-lg shadow-lg hover:scale-105 transition-transform duration-300">
-                    <img src="https://www.linqto.com/wp-content/uploads/2023/08/discord-logo.png" alt="Partner Logo 6"
-                        class="h-16 object-contain">
+                    class="flex justify-center items-center p-5 py-14 hover:scale-105 transition-transform duration-300 bg-white rounded-lg">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-3">
+                        <div class="text-center mx-auto">
+                            <img src="https://www.linqto.com/wp-content/uploads/2023/08/discord-logo.png"
+                                alt="Partner Logo 6" class="h-28 object-contain">
+                        </div>
+                        <div class="text-center mx-auto">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut doloremque consectetur minus
+                                aperiam
+                                quidem totam, recusandae architecto nesciunt molestiae explicabo.</p>
+                        </div>
+                    </div>
                 </div>
                 <!-- Partner 7 -->
                 <div
-                    class="flex justify-center items-center p-6 bg-white rounded-lg shadow-lg hover:scale-105 transition-transform duration-300">
-                    <img src="https://media.wired.com/photos/59548f5f5578bd7594c46595/master/pass/Ok5proj7dcVBHsWB4lAcKA7FoThQHIoDxaE4UByKQ3GgOBQHikNxoDgUh-JAcSgOFIfiQHEoDsWB4lAc4PsD-35JiLwLXcEAAAAASUVORK5CYII.jpg"
-                        alt="Partner Logo 6" class="h-16 object-contain">
+                    class="flex justify-center items-center p-5 py-14 hover:scale-105 transition-transform duration-300 bg-white rounded-lg">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-3">
+                        <div class="text-center mx-auto">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut doloremque consectetur minus
+                                aperiam
+                                quidem totam, recusandae architecto nesciunt molestiae explicabo.</p>
+                        </div>
+                        <div class="text-center mx-auto">
+                            <img src="https://media.wired.com/photos/59548f5f5578bd7594c46595/master/pass/Ok5proj7dcVBHsWB4lAcKA7FoThQHIoDxaE4UByKQ3GgOBQHikNxoDgUh-JAcSgOFIfiQHEoDsWB4lAc4PsD-35JiLwLXcEAAAAASUVORK5CYII.jpg"
+                                alt="Partner Logo 6" class="h-28 object-contain">
+                        </div>
+                    </div>
                 </div>
                 <!-- Partner 8 -->
                 <div
-                    class="flex justify-center items-center p-6 bg-white rounded-lg shadow-lg hover:scale-105 transition-transform duration-300">
-                    <img src="https://pimwp.s3-accelerate.amazonaws.com/2022/08/netflix.jpg" alt="Partner Logo 6"
-                        class="h-16 object-contain">
+                    class="flex justify-center items-center p-5 py-14 hover:scale-105 transition-transform duration-300 bg-white rounded-lg">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-3">
+                        <div class="text-center mx-auto">
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut doloremque consectetur minus
+                                aperiam
+                                quidem totam, recusandae architecto nesciunt molestiae explicabo.</p>
+                        </div>
+                        <div class="text-center mx-auto">
+                            <img src="https://pimwp.s3-accelerate.amazonaws.com/2022/08/netflix.jpg"
+                                alt="Partner Logo 6" class="h-28 object-contain">
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
