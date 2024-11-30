@@ -17,7 +17,7 @@ class ForumController extends Controller
                 ->withCount('views') // Count related ForumView entries
                 ->get();
         } else {
-            $forums = Forum::withCount('views')->get(); // Include view counts
+            $forums = Forum::withCount('views')->orderByDesc('created_at')->get(); // Include view counts
         }
 
         return view('forum.index', compact('forums'));

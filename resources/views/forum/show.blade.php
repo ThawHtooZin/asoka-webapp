@@ -1,6 +1,6 @@
 <x-layout>
     <div class="mx-auto px-6 lg:px-12 py-6">
-        <div class="grid grid-cols-1 xl:grid-cols-3 gap-5">
+        <div class="px-[105px]">
             <div class="col-span-2">
 
                 <div class="p-2">
@@ -12,17 +12,19 @@
                     class="bg-gradient-to-r from-blue-50 via-white to-blue-50 shadow-2xl rounded-lg p-8 mb-8 border border-gray-200 hover:shadow-[0px_10px_40px_rgba(0,0,0,0.15)] transition-shadow duration-300">
                     <div class="border-b pb-3">
                         <div class="space-y-3">
-                            <div class="flex-row md:flex justify-between items-start ">
-                                <p class="text-xl text-gray-900 flex items-center space-x-2">
-                                    <span>{{ $forum->user->name }}</span>
-                                    <span
-                                        class="text-sm bg-blue-100 text-blue-800 px-2 py-0.5 rounded-full font-medium">
-                                        {{ date('M d, Y', strtotime($forum->created_at)) }}
-                                    </span>
-                                </p>
+                            <div class="flex-row md:flex justify-between items-start mb-3">
+                                <div class="grid-rows-2">
+                                    <div>
+                                        <span class="text-xl font-bold">{{ $forum->user->name }}</span>
+                                    </div>
+                                    <div>
+                                        Posted <span
+                                            class="text-sm">{{ Carbon\Carbon::parse($forum->created_at)->diffForHumans() }}</span>
+                                    </div>
+                                </div>
                                 <div class="flex items-center space-x-3 text-gray-500">
                                     <div class="flex items-center space-x-2">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-blue-600"
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-blue-600"
                                             fill="currentColor" viewBox="0 0 16 16">
                                             <path
                                                 d="M8 15c4.418 0 8-3.134 8-7s-3.582-7-8-7-8 3.134-8 7c0 1.76.743 3.37 1.97 4.6-.097 1.016-.417 2.13-.771 2.966-.079.186.074.394.273.362 2.256-.37 3.597-.938 4.18-1.234A9 9 0 0 0 8 15" />
@@ -30,7 +32,7 @@
                                         <span>{{ $forum->comments()->count() }} Comments</span>
                                     </div>
                                     <div class="flex items-center space-x-2">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-green-600"
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-green-600"
                                             fill="currentColor" viewBox="0 0 16 16">
                                             <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0" />
                                             <path
@@ -74,20 +76,30 @@
                 </div>
                 @if (!empty(Auth::user()))
                     <div class="bg-white shadow-lg rounded-lg p-6 mb-6">
-                        <div class="flex justify-between items-center">
+                        <div class="flex justify-between items-center mb-2">
                             <div>
                                 <p class="font-semibold text-gray-800">Write an Comment</p>
                             </div>
                         </div>
-                        <form action="{{ route('forum.comment.store', $forum->id) }}" method="POST">
+                        <form action="{{ route('forum.comment.store', $forum->id) }}" method="POST"
+                            class="flex flex-col space-y-3">
                             @csrf
                             <textarea name="comment" rows="3"
                                 class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                                placeholder="Write your reply..."></textarea>
-                            <button type="submit"
-                                class="mt-3 bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 focus:outline-none">
-                                Comment
-                            </button>
+                                placeholder="I would like to say..."></textarea>
+
+                            <div class="flex justify-end">
+                                <button type="submit"
+                                    class="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 focus:outline-none flex items-center gap-2">
+                                    Send
+
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                        fill="currentColor" class="bi bi-send-fill" viewBox="0 0 16 16">
+                                        <path
+                                            d="M15.964.686a.5.5 0 0 0-.65-.65L.767 5.855H.766l-.452.18a.5.5 0 0 0-.082.887l.41.26.001.002 4.995 3.178 3.178 4.995.002.002.26.41a.5.5 0 0 0 .886-.083zm-1.833 1.89L6.637 10.07l-.215-.338a.5.5 0 0 0-.154-.154l-.338-.215 7.494-7.494 1.178-.471z" />
+                                    </svg>
+                                </button>
+                            </div>
                         </form>
                     </div>
                 @endif
@@ -96,21 +108,21 @@
             {{-- Comment Div --}}
             <div class="mt-10">
                 <h1 class="text-3xl font-bold mb-2">Comments</h1>
-
+                <hr class="border-2 my-5">
                 @if (!empty($forum->comments))
                     {{-- Comments Section --}}
                     <div class="space-y-6">
                         @foreach ($forum->comments as $comment)
                             {{-- Comment --}}
                             <div
-                                class="bg-white shadow-lg rounded-lg p-6 @if ($comment->parent_comment_id !== null) hidden @endif">
+                                class="bg-white border shadow-lg rounded-lg p-6 @if ($comment->parent_comment_id !== null) hidden @endif">
                                 {{-- Comment Header --}}
                                 <div class="flex justify-between">
                                     <div>
                                         <p class="font-semibold text-gray-800">{{ $comment->user->name }}</p>
                                         <p class="text-sm text-gray-500">
                                             @if ($comment->created_at == $comment->updated_at)
-                                                {{ date('M d, Y H:i', strtotime($comment->created_at)) }}
+                                                {{ 'At ' . date('M d, Y H:i', strtotime($comment->created_at)) }}
                                             @else
                                                 {{ 'Updated At ' . date('M d, Y H:i', strtotime($comment->updated_at)) }}
                                             @endif

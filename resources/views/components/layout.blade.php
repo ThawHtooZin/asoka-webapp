@@ -43,6 +43,14 @@
             {{ session('error') }}
         </div>
     @endif
+    @error('payment_image')
+        <div id="alert"
+            class="fixed bottom-5 right-5 bg-red-500 text-white p-4 rounded shadow-lg transition-opacity duration-500"
+            style="opacity: 1;">
+            {{ $message }}
+        </div>
+    @enderror
+
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {

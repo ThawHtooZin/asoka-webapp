@@ -26,7 +26,11 @@
                         <option value="bank_transfer">Bank Transfer</option>
                         <option value="upload_image">Upload Payment Image</option>
                     </select>
-
+                    @error('payment_image')
+                        <div class="text-red-500">
+                            {{ $message }}
+                        </div>
+                    @enderror
                     <!-- Payment Details for Credit Card -->
                     <div id="credit-card-details" class="mt-4 hidden">
                         <label class="block">Card Number</label>

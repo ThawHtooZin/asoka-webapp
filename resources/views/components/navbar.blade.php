@@ -147,15 +147,15 @@
 
         <!-- News and Updates -->
         <a href="/newsandupdate"
-            class="text-md block py-2 @if (Request::is('newsandupdate')) text-underline @elseif (App::getLocale() == 'mm') text-[1rem] font-bold @endif">@lang('navbar.news')</a>
+            class="text-md block py-2 @if (Request::is('newsandupdate*')) text-underline @elseif (App::getLocale() == 'mm') text-[1rem] font-bold @endif">@lang('navbar.news')</a>
 
         <!-- Gallery -->
         <a href="/gallery"
-            class="text-md block py-2 @if (Request::is('gallery')) text-underline @elseif (App::getLocale() == 'mm') text-[1rem] font-bold @endif">@lang('navbar.gallery')</a>
+            class="text-md block py-2 @if (Request::is('gallery*')) text-underline @elseif (App::getLocale() == 'mm') text-[1rem] font-bold @endif">@lang('navbar.gallery')</a>
 
         <!-- Contact Us -->
         <a href="/contactus"
-            class="text-md block py-2 @if (Request::is('contactus')) text-underline @elseif (App::getLocale() == 'mm') text-[1rem] font-bold @endif">@lang('navbar.contact')</a>
+            class="text-md block py-2 @if (Request::is('contactus*')) text-underline @elseif (App::getLocale() == 'mm') text-[1rem] font-bold @endif">@lang('navbar.contact')</a>
     </div>
 </div>
 

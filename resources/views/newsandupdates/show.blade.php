@@ -1,23 +1,31 @@
 <x-layout>
     <div class="py-12 text-white">
-        <div class="max-w-6xl mx-auto p-6 bg-gradient-to-br from-gray-900 to-gray-600 rounded-lg shadow-2xl">
+        <div
+            class="max-w-6xl mx-auto p-14 bg-gradient-to-r from-blue-100 via-indigo-100 to-blue-200 rounded-lg shadow-2xl">
             <!-- Breadcrumbs -->
-            <div class="text-sm text-blue-400 mb-4">
-                <a href="/" class="hover:underline">Asoka </a> / <a href="/newsandupdate" class="hover:underline">News
-                    and Update</a>
+            <div class="grid grid-cols-2">
+                <div class="text-sm text-blue-400 mb-4">
+                    <a href="/" class="hover:underline">Asoka </a> / <a href="/newsandupdate"
+                        class="hover:underline">News
+                        and Update</a>
+                </div>
+                <div class="text-gray-800 text-right">
+                    Published {{ Carbon\Carbon::parse($newsandupdate->created_at)->diffForHumans() }}
+                </div>
             </div>
 
+            <div>
+                <h1
+                    class="text-4xl font-extrabold mb-10 tracking-tight leading-tight text-gray-800 @if (empty($newsandupdate->image)) text-center @endif ">
+                    {{ $newsandupdate->title }}</h1>
+            </div>
             <div class="flex flex-col md:flex-row md:items-start gap-8">
                 <!-- Text Section -->
                 <div class="@if (!empty($newsandupdate->image)) md:w-2/3 @else md:w-full @endif mx-auto">
-                    <h1 class="text-4xl font-extrabold mb-4 tracking-tight leading-tight text-center">
-                        {{ $newsandupdate->title }}</h1>
-                    <p class="text-blue-500 font-semibold mb-2 text-center">{{ $newsandupdate->by }}</p>
-                    <pre class="font-sans text-base font-normal whitespace-pre-wrap text-gray-200 mb-6 text-center">{{ $newsandupdate->content }}</pre>
-                    <!-- Optional Date and Tags -->
-                    <p class="text-sm text-gray-500 text-center">{{ date('M', strtotime($newsandupdate->created_at)) }}
-                        {{ date('d', strtotime($newsandupdate->created_at)) }},
-                        {{ date('Y', strtotime($newsandupdate->created_at)) }}</p>
+                    <div class="@if (empty($newsandupdate->image)) text-center @endif ">
+                        <p class="text-blue-500 font-semibold mb-2">{{ $newsandupdate->by }}</p>
+                        <pre class="font-sans text-base font-normal whitespace-pre-wrap text-gray-800 mb-6 ">{{ $newsandupdate->content }}</pre>
+                    </div>
                 </div>
 
                 <!-- Image Section -->
@@ -32,6 +40,9 @@
                     </div>
                 </div>
             </div>
+            <p class="text-sm text-gray-500 text-center">
+                {{ date('M d, Y', strtotime($newsandupdate->created_at)) }}
+            </p>
         </div>
     </div>
 </x-layout>

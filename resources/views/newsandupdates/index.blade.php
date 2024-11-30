@@ -7,7 +7,8 @@
         <h1 class="text-4xl font-bold mb-2 roboto-slab">News and Update from <span class="text-t2">ASOKA</span></h1>
         @foreach ($newsandupdates as $newsandupdate)
             <div class="overflow-hidden p-5">
-                <p class="text-gray-600">Published at {{ date('d-m-Y', strtotime($newsandupdate->created_at)) }}</p>
+                <p class="text-gray-600">Published at {{ date('d-m-Y', strtotime($newsandupdate->created_at)) }}.
+                    {{ Carbon\Carbon::parse($newsandupdate->created_at)->diffForHumans() }}</p>
                 <div class=" grid grid-cols-8">
                     <div class="@if (!empty($newsandupdate->image)) col-span-6 @else col-span-8 @endif">
                         <a href="newsandupdate/{{ $newsandupdate->id }}/show"

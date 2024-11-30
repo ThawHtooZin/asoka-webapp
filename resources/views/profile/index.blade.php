@@ -40,30 +40,40 @@
             <div class="bg-gray-50 py-8 px-6">
                 <div class="max-w-6xl mx-auto">
                     <h1 class="text-3xl font-bold text-gray-800 mb-6 border-b-2 border-gray-200 pb-2">
-                        Your Courses Activity (Latest)
+                        Your Courses Activity
                     </h1>
 
                     <!-- Courses Grid -->
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                         <!-- Single Course Card -->
                         @foreach ($Courses as $course)
-                            <div
-                                class="bg-white rounded-lg shadow-lg overflow-hidden transform transition hover:scale-105">
-                                <img src="{{ $course->course()->first()->image }}" alt="Course Name"
-                                    class="w-full h-48 object-cover" />
+                            <a href="/courses/{{ $course->course()->first()->id }}/show">
+                                <div
+                                    class="bg-white rounded-lg shadow-lg overflow-hidden transform transition hover:scale-105">
+                                    <img src="{{ $course->course()->first()->image }}" alt="Course Name"
+                                        class="w-full h-48 object-cover" />
 
-                                <form class="p-4" method="get"
-                                    action="/courses/{{ $course->course()->first()->id }}/show">
-                                    <h3 class="text-lg font-semibold text-gray-700 mb-2">
-                                        {{ $course->course()->first()->name }}
-                                    </h3>
-                                    <button
-                                        class="px-2 py-1 bg-blue-600 text-white font-medium rounded-md hover:bg-blue-700 focus:ring-2 focus:ring-blue-500"
-                                        type="submit">
-                                        Detail
-                                    </button>
-                                </form>
-                            </div>
+                                    <div class="p-3">
+                                        <h3 class="text-lg font-semibold text-gray-700 mb-2">
+                                            {{ $course->course()->first()->name }}
+                                        </h3>
+                                        <!-- Conditional Pill for Requested or Owned -->
+                                        @if ($course->status == 'requested')
+                                            <!-- Replace with your actual check for "requested" status -->
+                                            <span
+                                                class="inline-block bg-yellow-500 text-white text-xs py-1 px-3 rounded-full">
+                                                Requested
+                                            </span>
+                                        @elseif ($course->status == 'confirmed')
+                                            <!-- Replace with your actual check for "owned" status -->
+                                            <span
+                                                class="inline-block bg-green-500 text-white text-xs py-1 px-3 rounded-full">
+                                                Owned
+                                            </span>
+                                        @endif
+                                    </div>
+                                </div>
+                            </a>
                         @endforeach
                     </div>
                 </div>
@@ -75,25 +85,31 @@
             <div class="bg-gray-50 py-8 px-6">
                 <div class="max-w-6xl mx-auto">
                     <h1 class="text-3xl font-bold text-gray-800 mb-6 border-b-2 border-gray-200 pb-2">
-                        Your Books Activity (Latest)
+                        Your Books Activity
                     </h1>
 
                     <!-- Books Grid -->
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
                         <!-- Single Book Card -->
                         @foreach ($Books as $book)
-                            <a href="/elibrary/book/{{ $book->book()->first()->id }}">
+                            <a href="/elibrary/book/{{ $book->book()->first()->id }}" class="relative">
                                 <div
                                     class="bg-white rounded-lg shadow-lg overflow-hidden transform transition hover:scale-105">
                                     <img src="{{ $book->book()->first()->cover_image }}" alt="Book Cover"
                                         class="w-full h-72 object-cover" />
 
-                                    <div class="relative p-4">
-                                        <h3
-                                            class="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-xl font-semibold text-white bg-black bg-opacity-60 px-4 py-2 rounded-md text-center">
-                                            {{ $book->book()->first()->title }}
-                                        </h3>
-                                    </div>
+                                    <!-- Conditional Badge for Requested or Owned -->
+                                    @if ($book->status == 'requested')
+                                        <span
+                                            class="absolute top-2 right-2 inline-block bg-yellow-500 text-white text-xs py-2 px-4 rounded-full shadow-lg">
+                                            Requested
+                                        </span>
+                                    @elseif ($book->status == 'confirmed')
+                                        <span
+                                            class="absolute top-2 right-2 inline-block bg-green-500 text-white text-xs py-2 px-4 rounded-full shadow-lg">
+                                            Owned
+                                        </span>
+                                    @endif
                                 </div>
                             </a>
                         @endforeach

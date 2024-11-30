@@ -30,7 +30,7 @@ class CourseController extends Controller
         }
 
         // Execute the query to get the courses
-        $courses = $query->get();
+        $courses = $query->orderByDesc('created_at')->get();
 
         // Fetch only the categories that are used in the courses table
         $categories = CourseCategory::whereIn('id', Course::pluck('course_category_id'))->get();
@@ -59,8 +59,14 @@ class CourseController extends Controller
     public function purchase(Request $request, $id)
     {
         $data = $request->validate([
-            'payment_image' => 'required|image|mimes:jpg,jpeg,png|max:2048', // Add validation for image format and size
+            'payment_image' => 'required|image|mimes:jpg,jpeg,png|max:2048', // Validation rules
+        ], [
+            'payment_image.max' => 'The payment image must not exceed 2MB.', // Custom error message
+            'payment_image.required' => 'Please upload a payment image.',    // Other custom messages (optional)
+            'payment_image.image' => 'The file must be an image.',
+            'payment_image.mimes' => 'The payment image must be in JPG, JPEG, or PNG format.',
         ]);
+
 
         if ($request->hasFile('payment_image')) {
             // Store the file in the 'images/payments' directory in the public disk
