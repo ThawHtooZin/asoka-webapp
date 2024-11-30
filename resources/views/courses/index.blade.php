@@ -22,11 +22,21 @@
 
         /* Hover effect to animate the blade flowing from left to right */
         .category-blade:hover::before {
-            left: -70;
+            left: -30%;
             transition: left 0.4s ease;
         }
 
-        /* Make sure text is above the blade effect */
+        /* Active category effect: show the blade by default */
+        .category-blade.active-category::before {
+            left: -30%;
+        }
+
+        /* Active category effect: show the blade by default */
+        .category-blade.active-category span {
+            color: white !important;
+        }
+
+        /* Ensure text is above the blade effect */
         .category-blade span {
             position: relative;
             z-index: 10;
@@ -36,7 +46,7 @@
         .section-title {
             font-size: 2rem;
             font-weight: 700;
-            color: #333;
+            color: white;
             border-left: 4px solid #007bff;
             /* Primary color border */
             padding-left: 16px;
@@ -70,10 +80,17 @@
                 <h3 class="text-lg font-semibold text-gray-800 mb-4">Categories</h3>
                 <div class="flex flex-col space-y-4">
                     @foreach ($categories as $category)
-                        <button onclick="showCourses({{ $category->id }})"
-                            class="category-blade relative text-left px-4 py-2 bg-gradient-to-r from-gray-50 to-white rounded-lg border border-asokablue shadow-md hover:text-white transition duration-300 overflow-hidden">
-                            <span class="relative z-10">{{ $category->name }}</span>
-                        </button>
+                        <form action="" method="GET" class="mb-0">
+                            <input type="hidden" name="category" value="{{ $category->id }}">
+                            <button
+                                class="capitalize category-blade relative text-left px-4 py-2 bg-gradient-to-r from-gray-50 to-white rounded-lg border border-asokablue shadow-md hover:text-white transition duration-300 overflow-hidden w-full 
+    {{ $category->id == request('category') ? 'active-category' : '' }}">
+                                <span class="relative z-10">
+                                    {{ $category->name }}
+                                </span>
+                            </button>
+
+                        </form>
                     @endforeach
                 </div>
             </div>
@@ -84,7 +101,7 @@
                 <div id="courses-container" class="grid gap-4 sm:grid-cols-1 md:grid-cols-2">
                     @foreach ($courses as $course)
                         <div id="course-{{ $course->course_category_id }}"
-                            class="course-card bg-white p-4 rounded-md shadow-md flex flex-col h-full @if ($course->course_category_id != $categories[0]->id) {{ 'hidden' }} @endif">
+                            class="course-card bg-white p-4 rounded-md shadow-md flex flex-col h-full">
                             <!-- Content Container -->
                             <div class="flex-grow">
                                 <!-- Course Image -->
@@ -128,20 +145,5 @@
                 </div>
             </div>
         </div>
-
     </div>
-
-    <script>
-        function showCourses(categoryId) {
-            // Hide all course cards
-            document.querySelectorAll('.course-card').forEach(card => {
-                card.classList.add('hidden');
-            });
-
-            // Show course cards for the selected category
-            document.querySelectorAll(`#course-${categoryId}`).forEach(card => {
-                card.classList.remove('hidden');
-            });
-        }
-    </script>
 </x-layout>

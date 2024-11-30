@@ -32,6 +32,7 @@ use App\Http\Controllers\ResearchController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\VideoController;
+use App\Http\Controllers\ZoomController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('localMiddleware')->group(function () {
@@ -76,6 +77,8 @@ Route::middleware('localMiddleware')->group(function () {
             Route::get('/{course}/quiz/{quiz_id}/', [QuestionController::class, 'showScore'])->name('course.complete');
         });
     });
+
+
 
     Route::prefix('forum')->group(function () {
         // Forum home: List of all discussions/posts

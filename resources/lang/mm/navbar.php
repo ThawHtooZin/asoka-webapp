@@ -8,6 +8,7 @@ return [
     'about_motto' => 'စကားပုံ',
     'learning' => 'သင်ယူမှု',
     'learning_courses' => 'သင်တန်းများ',
+    'learning_classes' => 'အတန်းများ',
     'learning_elibrary' => 'အီလက်ထရောနစ်စာကြည့်တိုက်',
     'resources' => 'အရင်းအမြစ်များ',
     'resources_articles' => 'ဆောင်းပါးများ',

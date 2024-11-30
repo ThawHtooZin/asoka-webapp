@@ -14,23 +14,32 @@ class CourseController extends Controller
 {
     public function index(Request $request)
     {
+        // Start building the course query
         $query = Course::query();
 
-        if ($request->has('search')) {
-            $search = $request->input('search');
-
-            $query->where('name', 'LIKE', '%' . $search . '%');
+        // Filter by search term if provided
+        if ($request->filled('search')) {
+            $searchTerm = $request->input('search');
+            $query->where('name', 'LIKE', '%' . $searchTerm . '%');
         }
+
+        // Filter by category if provided
+        if ($request->filled('category')) {
+            $categoryId = $request->input('category');
+            $query->where('course_category_id', $categoryId);
+        }
+
+        // Execute the query to get the courses
         $courses = $query->get();
 
-        // Get category IDs from the filtered courses
-        $categoryIds = $courses->pluck('course_category_id')->unique();
+        // Fetch only the categories that are used in the courses table
+        $categories = CourseCategory::whereIn('id', Course::pluck('course_category_id'))->get();
 
-        // Get only categories that are related to the filtered courses
-        $categories = CourseCategory::whereIn('id', $categoryIds)->get();
-
+        // Return the view with courses and categories
         return view('courses.index', compact('courses', 'categories'));
     }
+
+
 
 
     public function show($id)

@@ -35,9 +35,11 @@
                 </button>
                 <x-navlinkcontainer>
                     <x-navlink href="/courses">@lang('navbar.learning_courses')</x-navlink>
+                    <x-navlink href="/classes">@lang('navbar.learning_classes')</x-navlink>
                     <x-navlink href="/elibrary">@lang('navbar.learning_elibrary')</x-navlink>
                 </x-navlinkcontainer>
             </li>
+
 
             <!-- Resources Dropdown -->
             <li class="group relative">
@@ -48,6 +50,18 @@
                 <x-navlinkcontainer>
                     <x-navlink href="/articles">@lang('navbar.resources_articles')</x-navlink>
                     <x-navlink href="/forum">@lang('navbar.resources_forum')</x-navlink>
+                </x-navlinkcontainer>
+            </li>
+
+            <!-- Innovation Dropdown -->
+            <li class="group relative">
+                <button
+                    class="text-lg"class="text-md block py-2 @if (Request::is('research*') || Request::is('partnership*') || Request::is('researcharticles*')) text-underline @elseif (App::getLocale() == 'mm') text-[1rem] font-bold @endif">@lang('navbar.innovation')</button>
+                <x-navlinkcontainer
+                    class="absolute left-0 hidden group-hover:flex flex-col bg-asokablue mt-2 p-2 rounded shadow-lg">
+                    <x-navlink href="/research">@lang('navbar.innovation_research')</x-navlink>
+                    <x-navlink href="/partnerships">@lang('navbar.innovation_partnerships')</x-navlink>
+                    <x-navlink href="/researcharticles">@lang('navbar.innovation_research_articles')</x-navlink>
                 </x-navlinkcontainer>
             </li>
 
@@ -101,10 +115,23 @@
         <!-- Learning -->
         <div class="group">
             <button
-                class="text-md block py-2 @if (Request::is('courses*') || Request::is('elibrary*')) text-underline @elseif (App::getLocale() == 'mm') text-[1rem] font-bold @endif">@lang('navbar.learning')</button>
+                class="text-md block py-2 @if (Request::is('courses*') || Request::is('classes*') || Request::is('elibrary*')) text-underline @elseif (App::getLocale() == 'mm') text-[1rem] font-bold @endif">@lang('navbar.learning')</button>
             <div class="flex flex-col space-y-1 pl-4">
                 <x-navlink href="/courses">@lang('navbar.learning_courses')</x-navlink>
+                <x-navlink href="/classes">@lang('navbar.learning_classes')</x-navlink>
                 <x-navlink href="/elibrary">@lang('navbar.learning_elibrary')</x-navlink>
+            </div>
+        </div>
+
+
+        <!-- Innovation -->
+        <div class="group">
+            <button
+                class="text-lg"class="text-md block py-2 @if (Request::is('research*') || Request::is('partnership*') || Request::is('researcharticles*')) text-underline @elseif (App::getLocale() == 'mm') text-[1rem] font-bold @endif">@lang('navbar.innovation')</button>
+            <div class="flex flex-col space-y-1 pl-4">
+                <x-navlink href="/research">@lang('navbar.innovation_research')</x-navlink>
+                <x-navlink href="/partnerships">@lang('navbar.innovation_partnerships')</x-navlink>
+                <x-navlink href="/researcharticles">@lang('navbar.innovation_research_articles')</x-navlink>
             </div>
         </div>
 
