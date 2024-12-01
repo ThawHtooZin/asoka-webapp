@@ -3,6 +3,9 @@
 return [
     'home' => 'Home',
     'about' => 'About Us',
+    'about_whoweare' => 'Who we are',
+    'about_websiteteam' => 'Website Team',
+    'about_esteemedlecturer' => 'Esteemed Lecturer',
     'learning' => 'Learning',
     'learning_courses' => 'Courses',
     'learning_elibrary' => 'E-Library',

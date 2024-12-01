@@ -6,8 +6,17 @@ use Illuminate\Http\Request;
 
 class AboutUsController extends Controller
 {
-    public function index()
+    public function whoweare()
     {
-        return view('aboutus');
+        return view('aboutus.whoweare');
+    }
+
+    public function websiteteam()
+    {
+        return view('aboutus.websiteteam');
+    }
+    public function esteemedlecturer()
+    {
+        return view('aboutus.esteemedlecturer');
     }
 }

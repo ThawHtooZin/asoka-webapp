@@ -42,7 +42,9 @@ Route::middleware('localMiddleware')->group(function () {
     Route::get('/', [HomePageController::class, 'index']);
 
     // About Us
-    Route::get('/aboutus', [AboutUsController::class, 'index']);
+    Route::get('/whoweare', [AboutUsController::class, 'whoweare']);
+    Route::get('/websiteteam', [AboutUsController::class, 'websiteteam']);
+    Route::get('/esteemedlecturer', [AboutUsController::class, 'esteemedlecturer']);
 
     // Language Route
 

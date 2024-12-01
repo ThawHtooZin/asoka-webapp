@@ -15,10 +15,17 @@
                     @lang('navbar.home')</a>
             </li>
 
-            <!-- About Dropdown -->
-            <li><a href="/aboutus"
-                    class="text-lg @if (Request::is('aboutus')) text-underline @endif @if (App::getLocale() == 'mm') text-[0.9rem] font-bold @endif">
-                    @lang('navbar.about')</a>
+            <!-- About Us Dropdown -->
+            <li class="group relative">
+                <button
+                    class="text-lg @if (Request::is('whoweare*') || Request::is('websiteteam*') || Request::is('esteemedlecturer*')) text-underline @endif @if (App::getLocale() == 'mm') text-[0.9rem] font-bold @endif">
+                    @lang('navbar.about')
+                </button>
+                <x-navlinkcontainer>
+                    <x-navlink href="/whoweare">@lang('navbar.about_whoweare')</x-navlink>
+                    <x-navlink href="/websiteteam">@lang('navbar.about_websiteteam')</x-navlink>
+                    <x-navlink href="/esteemedlecturer">@lang('navbar.about_esteemedlecturer')</x-navlink>
+                </x-navlinkcontainer>
             </li>
 
             <!-- Learning Dropdown -->
@@ -94,7 +101,7 @@
         <a href="/"
             class="text-md block py-2 @if (Request::is('/')) text-underline @endif @if (App::getLocale() == 'mm') text-[0.9rem] font-bold @endif">@lang('navbar.home')</a>
 
-        <!-- About -->
+        <!-- About Us -->
         <div class="group">
             <button
                 class="text-md block py-2 @if (Request::is('about*')) text-underline @endif @if (App::getLocale() == 'mm') text-[0.9rem] font-bold @endif">@lang('navbar.about')</button>

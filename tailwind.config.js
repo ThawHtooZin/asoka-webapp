@@ -32,6 +32,9 @@ export default {
             letterSpacing: {
                 'xxl': '0.4em',
               },
+            boxShadowColor: {
+                t5: '#FF9800',
+            }
         },
 
     },
