@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AboutUsController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\NewsandUpdateController;
 use App\Http\Controllers\ArticleController;
@@ -36,10 +37,12 @@ use App\Http\Controllers\ZoomController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('localMiddleware')->group(function () {
-    // Public Routes
+
+    // About Us
     Route::get('/', [HomePageController::class, 'index']);
-    Route::get('/logout', [LoginController::class, 'logout']);
-    Route::post('/logout', [LoginController::class, 'logout']);
+
+    // About Us
+    Route::get('/aboutus', [AboutUsController::class, 'index']);
 
     // Language Route
 
@@ -143,6 +146,9 @@ Route::middleware('localMiddleware')->group(function () {
     Route::post('/contactus', [ContactUsController::class, 'sentmail']);
 
     // Authentication Routes
+    Route::get('/logout', [LoginController::class, 'logout']);
+    Route::post('/logout', [LoginController::class, 'logout']);
+
     Route::middleware(['guest'])->group(function () {
         Route::get('/login', [LoginController::class, 'index'])->name('login'); // Show login form
         Route::post('/login', [LoginController::class, 'login']); // Process login

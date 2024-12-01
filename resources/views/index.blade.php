@@ -124,13 +124,14 @@
                                     class="w-full h-48 object-cover hover:scale-105 duration-300">
                             @endif
                         </div>
-                        <div class="p-4">
+                        <div class="p-5">
                             <p class="text-sm text-gray-500 mb-2">
                                 {{ Carbon\Carbon::parse($newsandupdate->created_at)->diffForHumans() }}</p>
-                            <h2 class="text-lg sm:text-xl md:text-2xl font-bold text-gray-800 mb-2">
+                            <h2 class=" text-gray-800 my-4 font-semibold sm:text-sm md:text-[18px]"
+                                style="line-height: 30px;">
                                 {{ $newsandupdate->title }}</h2>
                             <p class="text-gray-600 text-sm md:text-base">
-                                {{ Str::limit($newsandupdate->content, 100, '...') }}</p>
+                                {{ Str::limit($newsandupdate->content, 200, '...') }}</p>
                             <a href="/newsandupdate/{{ $newsandupdate->id }}/show"
                                 class="text-blue-500 font-semibold text-sm md:text-base mt-3 block">@lang('homepage.more_details')</a>
                         </div>

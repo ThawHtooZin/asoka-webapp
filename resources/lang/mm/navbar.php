@@ -3,12 +3,8 @@
 return [
     'home' => 'မူလစာမျက်နှာ',
     'about' => 'ကျွန်ုပ်တို့အကြောင်း',
-    'about_vision' => 'အမြင်',
-    'about_objectives' => 'ရည်မှန်းချက်များ',
-    'about_motto' => 'စကားပုံ',
     'learning' => 'သင်ယူမှု',
     'learning_courses' => 'သင်တန်းများ',
-    'learning_classes' => 'အတန်းများ',
     'learning_elibrary' => 'အီလက်ထရောနစ်စာကြည့်တိုက်',
     'resources' => 'အရင်းအမြစ်များ',
     'resources_articles' => 'ဆောင်းပါးများ',

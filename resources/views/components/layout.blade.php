@@ -9,6 +9,8 @@
     {{-- Jquery Of Course Why Not --}}
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     @vite('resources/css/app.css')
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Myanmar:wght@400;700&display=swap" rel="stylesheet">
+
 </head>
 <style>
     pre {

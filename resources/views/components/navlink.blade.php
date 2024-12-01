@@ -31,6 +31,7 @@
         /* Slide from left to right */
     }
 </style>
-<a {{ $attributes->merge(['href' => '#', 'class' => 'nav-link p-2 px-3 rounded-sm duration-300 hover:text-white']) }}>
+<a
+    {{ $attributes->merge(['href' => '#', 'class' => 'text-sm nav-link p-2 px-3 rounded-sm duration-300 hover:text-white']) }}>
     {{ $slot }}
 </a>
