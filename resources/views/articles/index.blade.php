@@ -40,8 +40,12 @@
         <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8">
             <!-- Articles Section (Left, 2/3) -->
             <div class="md:col-span-2">
-                <h2 class="text-3xl font-extrabold text-gray-800 text-center md:text-left" id="category-title">
-                    Articles
+                <h2 class="text-3xl font-extrabold text-gray-800 text-center md:text-left capitalize">
+                    @if (!empty(request('category')))
+                        {{ request('category') }}
+                    @else
+                        Articles
+                    @endif
                 </h2>
                 <div id="articles-container" class="space-y-2 mt-4">
                     @foreach ($articles as $article)
@@ -101,21 +105,4 @@
             </aside>
         </div>
     </div>
-
-    <script>
-        function showArticles(categoryId, categoryName) {
-            // Update the category title
-            document.getElementById('category-title').innerText = categoryName;
-
-            // Hide all article cards
-            document.querySelectorAll('.article-card').forEach(card => {
-                card.classList.add('hidden');
-            });
-
-            // Show only articles in the selected category
-            document.querySelectorAll(`#article-${categoryId}`).forEach(card => {
-                card.classList.remove('hidden');
-            });
-        }
-    </script>
 </x-layout>

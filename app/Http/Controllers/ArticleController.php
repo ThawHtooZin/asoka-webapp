@@ -10,20 +10,31 @@ class ArticleController extends Controller
 {
     public function index(Request $request)
     {
+        // Start building the article query
         $query = Article::query();
 
-        if ($request->has('search')) {
-            $search = $request->input('search');
-
-            // Filter articles by name or description based on search term
-            $query->where('title', 'LIKE', '%' . $search . '%')->orderBy('created_at', 'desc');
+        // Filter by search term if provided
+        if ($request->filled('search')) {
+            $searchTerm = $request->input('search');
+            $query->where('title', 'LIKE', '%' . $searchTerm . '%');
         }
 
-        $articles = $query->orderBy('created_at', 'desc')->get();
-        $categories = ArticleCategory::all(); // Assuming categories are displayed as well
+        // Filter by category if provided
+        if ($request->filled('category')) {
+            $categoryId = $request->input('category');
+            $query->where('article_category_id', $categoryId);
+        }
 
+        // Execute the query to get the articles
+        $articles = $query->orderByDesc('created_at')->get();
+
+        // Fetch only the categories that are used in the articles table
+        $categories = ArticleCategory::whereIn('id', Article::pluck('article_category_id'))->get();
+
+        // Return the view with articles and categories
         return view('articles.index', compact('articles', 'categories'));
     }
+
 
     public function show($id)
     {

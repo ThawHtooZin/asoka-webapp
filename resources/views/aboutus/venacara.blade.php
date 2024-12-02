@@ -3,7 +3,8 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
             <!-- Image Section -->
             <div class="flex justify-center">
-                <div class="rounded-lg shadow-lg w-[60%] md:w-[45%] lg:w-[50%] aspect-[4/5] overflow-hidden bg-gray-200">
+                <div
+                    class="rounded-lg shadow-lg w-[60%] md:w-[45%] lg:w-[50%] aspect-[4/5] overflow-hidden bg-gray-200 h-[50%]">
                     <img src="/images/chairpeople/venacara.png" alt=""
                         class="w-full h-full object-cover hover:scale-105 duration-200">
                 </div>

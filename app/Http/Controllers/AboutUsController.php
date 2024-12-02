@@ -40,4 +40,17 @@ class AboutUsController extends Controller
     {
         return view('aboutus.venvicitta');
     }
+
+    public function esteemedlecturervencandavara()
+    {
+        return view('aboutus.vencandavara');
+    }
+    public function esteemedlecturervenacara()
+    {
+        return view('aboutus.venacara');
+    }
+    public function esteemedlecturervenvicitta()
+    {
+        return view('aboutus.venvicitta');
+    }
 }
