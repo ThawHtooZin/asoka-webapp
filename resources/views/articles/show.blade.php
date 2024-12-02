@@ -18,7 +18,8 @@
 
                 <!-- Article Content -->
                 <div class="text-gray-700 mb-6">
-                    {!! $article->description !!}
+                    <iframe src="/{{ $article->pdf_url }}#toolbar=0&navpanes=0&scrollbar=0&oncontextmenu=0"
+                        frameborder="0" width="100%" height="90%"></iframe>
                 </div>
 
                 <!-- Tags (if applicable) -->

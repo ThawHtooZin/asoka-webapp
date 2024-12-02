@@ -61,7 +61,7 @@
                             <p class="text-sm text-gray-500 mb-1">By: {{ $article->user->name }}</p>
                             <p class="text-sm text-gray-500">Published on: {{ $article->created_at->format('F j, Y') }}
                             </p>
-                            <p class="text-gray-600 mt-4">{{ Str::limit($article->description, 200) }}</p>
+                            <p class="text-gray-600 mt-4">{{ Str::limit($article->intro, 200) }}</p>
 
                             <a href="/article/{{ $article->id }}"
                                 class="mt-4 inline-block px-4 py-2 bg-asokablue text-white text-center rounded-lg hover:bg-blue-700 transition duration-300 text-sm">
