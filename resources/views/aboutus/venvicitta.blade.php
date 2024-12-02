@@ -5,7 +5,7 @@
             <div class="flex justify-center">
                 <div
                     class="rounded-lg shadow-lg w-[60%] md:w-[45%] lg:w-[50%] aspect-[4/5] overflow-hidden bg-gray-200 h-[50%]">
-                    <img src="/images/chairpeople/venvicitta.jpg" alt="Ven. Vicitta"
+                    <img src="/images/chairpeople/venvicitta1.jpg" alt="Ven. Vicitta"
                         class="w-full h-full object-cover hover:scale-105 duration-200">
                 </div>
             </div>

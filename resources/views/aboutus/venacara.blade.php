@@ -5,7 +5,7 @@
             <div class="flex justify-center">
                 <div
                     class="rounded-lg shadow-lg w-[60%] md:w-[45%] lg:w-[50%] aspect-[4/5] overflow-hidden bg-gray-200 h-[50%]">
-                    <img src="/images/chairpeople/venacara.png" alt=""
+                    <img src="/images/chairpeople/venacara1.jpg" alt=""
                         class="w-full h-full object-cover hover:scale-105 duration-200">
                 </div>
             </div>

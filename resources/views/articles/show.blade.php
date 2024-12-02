@@ -1,6 +1,6 @@
 <x-layout>
-    <div class="container mx-auto p-6 px-72">
-        <div class="bg-white rounded-lg shadow-md overflow-hidden">
+    <div class="container mx-auto p-6 px-52">
+        <div class="bg-white rounded-lg shadow-md overflow-hidden px-10">
             <!-- Article Image -->
             @if ($article->image)
                 <img src="{{ asset($article->image) }}" alt="{{ $article->title }}" class="w-full h-60 object-cover">
@@ -18,7 +18,7 @@
 
                 <!-- Article Content -->
                 <div class="text-gray-700 mb-6">
-                    {!! nl2br(e($article->description)) !!} <!-- Convert new lines to <br> tags -->
+                    {!! $article->description !!}
                 </div>
 
                 <!-- Tags (if applicable) -->

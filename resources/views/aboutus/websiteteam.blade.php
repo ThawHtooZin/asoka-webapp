@@ -51,7 +51,7 @@
                 <div class="grid grid-rows-2 gap-4 my-auto">
                     <!-- Team Member 4 -->
                     <div class="bg-white text-center text-black p-6 rounded-lg shadow-lg hover:scale-105 duration-300">
-                        <img src="images/chairpeople/venacara.png" alt="Ann Smith"
+                        <img src="images/chairpeople/venacara1.jpg" alt="Ann Smith"
                             class="w-28 h-28 mx-auto rounded-full mb-4 object-cover">
                         <a href="/websiteteam/venacara" class="text-xl font-semibold hover:underline">Ven. Acara</a>
                         <p class="text-primary">Chief Monk, Moegok Monastery</p>
@@ -63,7 +63,7 @@
                     </div>
                     <!-- Team Member 3 -->
                     <div class="bg-white text-center text-black p-6 rounded-lg shadow-lg hover:scale-105 duration-300">
-                        <img src="images/chairpeople/venvicitta.jpg" alt="Connor Quinn"
+                        <img src="images/chairpeople/venvicitta1.jpg" alt="Connor Quinn"
                             class="w-28 h-28 mx-auto rounded-full mb-4 object-cover">
                         <a href="/websiteteam/venvicitta" class="text-xl font-semibold hover:underline">Ven. Vicitta</a>
                         <p class="text-primary">Chief Monk, Shwe Myin Thar Ywar Oo Monastery</p>

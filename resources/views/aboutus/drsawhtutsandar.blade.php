@@ -1,41 +1,49 @@
 <x-layout>
     <div class="px-24 py-16 bg-cover bg-center font-serif">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <!-- Image Section -->
-            <div class="flex justify-center">
+            <div class="relative flex justify-center md:justify-end mx-auto">
                 <div
-                    class="rounded-lg shadow-lg w-[60%] md:w-[45%] lg:w-[50%] aspect-[4/5] overflow-hidden bg-gray-200 h-[50%]">
-                    <img src="/images/chairpeople/drsawhtutsandar.png" alt=""
-                        class="w-full h-full object-cover hover:scale-105 duration-200">
+                    class="rounded-lg shadow-2xl border-4 border-primary p-2 w-[150px] h-[150px] md:w-[400] md:h-[400] overflow-hidden bg-gradient-to-br from-primary via-white to-gray-100">
+                    <img src="/images/chairpeople/profsawhtutsandar1.jpg" alt="Dr. Saw Htut Sandar"
+                        class="w-full h-full object-cover rounded-lg hover:scale-110 duration-300">
+                </div>
+                <!-- Decorative Background Effects -->
+                <div
+                    class="absolute w-[200px] h-[200px] md:w-[250px] md:h-[250px] bg-gradient-to-tl from-primary/20 to-gray-50 rounded-lg blur-xl -z-10">
                 </div>
             </div>
+
+            <!-- Text Content -->
             <div class="text-center md:text-left">
                 <!-- Title Section -->
-                <h1 class="text-2xl md:text-4xl font-extrabold leading-snug tracking-wide mb-4 text-gray-800">
+                <h1 class="text-3xl md:text-5xl font-extrabold leading-tight tracking-wide mb-4 text-gray-800">
                     Dr. Saw Htut Sandar
                 </h1>
-                <p class="text-lg text-primary font-semibold mb-4">
+                <p class="text-lg md:text-xl text-primary font-semibold mb-4">
                     Founder of the Asoka Center of Buddhist Studies
                 </p>
-                <p class="text-lg text-gray-800 leading-relaxed mb-6">
+                <p class="text-base md:text-lg text-gray-700 leading-relaxed mb-8">
                     Dr. Saw Htut Sandar is a highly accomplished scholar, educator, and practitioner of Buddhist
-                    teachings. With a profound commitment to promoting Buddhist studies, meditation, and mindfulness,
-                    she founded the Asoka Center for Buddhist Studies to serve as a platform for sharing the timeless
-                    wisdom of Buddhism with the global community.
+                    teachings.
+                    With a profound commitment to promoting Buddhist studies, meditation, and mindfulness, she founded
+                    the
+                    Asoka Center for Buddhist Studies to share the timeless wisdom of Buddhism with the global
+                    community.
                 </p>
 
                 <!-- Contact Information -->
-                <h2 class="text-xl font-bold text-gray-700 mb-4">Contact Information</h2>
-                <div class="text-left space-y-3">
+                <h2 class="text-lg md:text-2xl font-bold text-gray-800 mb-6">Contact Information</h2>
+                <div class="space-y-4">
                     <!-- Phone Numbers -->
                     <div class="flex items-center gap-4">
-                        <i class="fas fa-phone-alt text-primary"></i>
+                        <i class="fas fa-phone-alt text-primary text-lg"></i>
                         <p class="text-gray-800 font-medium">
                             +959 775 577 991
                         </p>
                     </div>
                     <div class="flex items-center gap-4">
-                        <i class="fas fa-phone-alt text-primary"></i>
+                        <i class="fas fa-phone-alt text-primary text-lg"></i>
                         <p class="text-gray-800 font-medium">
                             +91 836 819 7987
                         </p>
@@ -43,7 +51,7 @@
 
                     <!-- Email -->
                     <div class="flex items-center gap-4">
-                        <i class="fas fa-envelope text-primary"></i>
+                        <i class="fas fa-envelope text-primary text-lg"></i>
                         <p class="text-gray-800 font-medium">
                             <a href="mailto:sawhtutsandar18@gmail.com" class="hover:underline">
                                 sawhtutsandar18@gmail.com
@@ -53,7 +61,7 @@
 
                     <!-- Facebook Profile -->
                     <div class="flex items-center gap-4">
-                        <i class="fab fa-facebook text-primary"></i>
+                        <i class="fab fa-facebook text-primary text-lg"></i>
                         <p class="text-gray-800 font-medium">
                             <a href="https://www.facebook.com/charumati.asoka?mibextid=ZbWKwL" class="hover:underline">
                                 Dr. Saw Htut Sandar's Facebook Profile
@@ -62,8 +70,8 @@
                     </div>
                 </div>
             </div>
-
         </div>
+
 
         <div class="bg-gray-50 p-10 mt-28 rounded-lg shadow-lg mx-8 md:mx-14">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
