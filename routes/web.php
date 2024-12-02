@@ -45,6 +45,14 @@ Route::middleware('localMiddleware')->group(function () {
     Route::get('/whoweare', [AboutUsController::class, 'whoweare']);
     Route::get('/websiteteam', [AboutUsController::class, 'websiteteam']);
     Route::get('/esteemedlecturer', [AboutUsController::class, 'esteemedlecturer']);
+    Route::get('/websiteteam/drsawhtutsandar', [AboutUsController::class, 'drsawhtutsandar']);
+    Route::get('/websiteteam/vencandavara', [AboutUsController::class, 'vencandavara']);
+    Route::get('/websiteteam/uzinlinoo', [AboutUsController::class, 'uzinlinoo']);
+    Route::get('/websiteteam/venacara', [AboutUsController::class, 'venacara']);
+    Route::get('/websiteteam/venvicitta', [AboutUsController::class, 'venvicitta']);
+
+
+
 
     // Language Route
 

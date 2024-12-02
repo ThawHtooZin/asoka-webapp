@@ -30,7 +30,7 @@
         }
     </style>
     <section class="bg-gradient-to-r from-gray-100 via-blue-50 to-gray-100 py-16 px-10 md:24 xl:px-32"
-        style="background-image: url('images/waves/partnership.png'); background-repeat: no-repeat; background-size: cover">
+        style="background-image: url('images/waves/wave3.png'); background-repeat: no-repeat; background-size: cover">
         <!-- Partnership Benefits Section -->
         <div class="container mx-auto text-center">
             <h2 class="text-5xl font-bold text-white mb-6 glowing-text">Our Esteemed Partners</h2>
