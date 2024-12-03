@@ -129,17 +129,22 @@
                             </div>
 
                             <!-- View Details / Login Button at the Bottom -->
-                            @guest
-                                <a href="/login"
-                                    class="mt-4 block w-full px-4 py-2 bg-asokablue text-white text-center rounded-lg hover:bg-blue-700 transition duration-300">
-                                    Log in to View Details
+                            @if ($course->price == 0)
+                                <a href="/courses/{{ $course->id }}/show"
+                                    class="mt-4 block w-full px-4 py-2 bg-green-500 text-white text-center rounded-lg hover:bg-green-700 transition duration-300">
+                                    View Details (Free)
                                 </a>
-                            @else
+                            @elseif (empty($course->purchased()->first()->status))
                                 <a href="/courses/{{ $course->id }}/show"
                                     class="mt-4 block w-full px-4 py-2 bg-asokablue text-white text-center rounded-lg hover:bg-blue-700 transition duration-300">
                                     View Details
                                 </a>
-                            @endguest
+                            @elseif ($course->first()->purchased()->first()->status == 'confirmed')
+                                <a href="/courses/{{ $course->id }}/show"
+                                    class="mt-4 block w-full px-4 py-2 bg-green-500 text-white text-center rounded-lg hover:bg-green-700 transition duration-300">
+                                    View Details (Owned)
+                                </a>
+                            @endif
                         </div>
                     @endforeach
                 </div>
