@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AboutUsController;
+use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\NewsandUpdateController;
 use App\Http\Controllers\ArticleController;
@@ -54,9 +55,6 @@ Route::middleware('localMiddleware')->group(function () {
     Route::get('/esteemedlecturer/vencandavara', [AboutUsController::class, 'esteemedlecturervencandavara']);
     Route::get('/esteemedlecturer/venacara', [AboutUsController::class, 'esteemedlecturervenacara']);
     Route::get('/esteemedlecturer/venvicitta', [AboutUsController::class, 'esteemedlecturervenvicitta']);
-
-
-
 
     // Language Route
 
@@ -169,6 +167,9 @@ Route::middleware('localMiddleware')->group(function () {
         Route::get('/register', [RegisterController::class, 'index']); // Show registration form
         Route::post('/register', [RegisterController::class, 'register']); // Process registration
     });
+
+    // Gallery
+    Route::get('/gallery', [GalleryController::class, 'index']);
 });
 // Authenticated User Routes
 Route::middleware(['custom'])->group(function () {

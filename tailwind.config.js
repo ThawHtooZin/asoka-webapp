@@ -17,6 +17,7 @@ export default {
             },
             borderColor:{
                 primary: '#0018A8',
+                warning: '#FF9800',
             },
             textColor:{
                 primary: '#0018A8',
