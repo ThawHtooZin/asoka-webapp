@@ -1,6 +1,6 @@
 <x-layout>
     <div class="px-[105px] py-10" style="background-image: url('images/waves/wave3.png'); background-size: cover;">
-        <h1 class="text-4xl font-extrabold text-center text-white glowing-text mb-8">Who we are</h1>
+        <h1 class="text-4xl font-extrabold text-center text-white glowing-text mb-8">@lang('whoweare.whoweare')</h1>
         <hr class="border-t-2 my-4 w-20 mx-auto border-white">
         <div class="grid grid-cols-1 lg:grid-cols-2 mt-14">
             <div class="mx-auto p-4">

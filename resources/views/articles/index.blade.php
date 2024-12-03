@@ -44,8 +44,8 @@
     </style>
     <div class="container mx-auto p-6 space-y-8">
         <div class="px-6 py-3">
-            <a href="/" class="text-blue-800 font-bold hover:underline">Home</a> > <a href="/articles"
-                class="text-blue-800 font-bold hover:underline">Articles</a>
+            <a href="/" class="text-blue-800 font-bold hover:underline">@lang('article.home')</a> > <a href="/articles"
+                class="text-blue-800 font-bold hover:underline">@lang('article.articles')</a>
         </div>
         <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8">
             <!-- Articles Section (Left, 2/3) -->
@@ -58,7 +58,7 @@
                         @endphp
                         {{ $category?->name ?? 'Articles' }}
                     @else
-                        Articles
+                        @lang('article.articles')
                     @endif
 
 

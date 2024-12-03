@@ -56,8 +56,8 @@
     <div class="container mx-auto p-6 space-y-8">
         <!-- Title Section -->
         <div class="px-6">
-            <a href="/" class="text-blue-800 font-bold hover:underline">Home</a> > <a href="/courses"
-                class="text-blue-800 font-bold hover:underline">Courses</a>
+            <a href="/" class="text-blue-800 font-bold hover:underline">@lang('course.home')</a> > <a href="/courses"
+                class="text-blue-800 font-bold hover:underline">@lang('course.course')</a>
         </div>
         <!-- Main Content: Categories and Courses -->
         <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
@@ -97,7 +97,7 @@
 
             <!-- Courses Section -->
             <div class="md:col-span-3">
-                <h2 class="text-xl font-semibold mb-4 text-gray-700">Courses</h2>
+                <h2 class="text-xl font-semibold mb-4 text-gray-700">@lang('course.course')</h2>
                 <div id="courses-container" class="grid gap-4 sm:grid-cols-1 md:grid-cols-2">
                     @foreach ($courses as $course)
                         <div id="course-{{ $course->course_category_id }}"

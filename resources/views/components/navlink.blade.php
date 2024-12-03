@@ -32,6 +32,6 @@
     }
 </style>
 <a
-    {{ $attributes->merge(['href' => '#', 'class' => 'text-sm nav-link p-2 px-3 rounded-sm duration-300 hover:text-white']) }}>
+    {{ $attributes->merge(['href' => '#', 'class' => 'text-[16px] font-bold nav-link p-2 px-3 rounded-sm duration-300 hover:text-white']) }}>
     {{ $slot }}
 </a>

@@ -3,8 +3,8 @@
         {{-- Header --}}
         <div class="px-6 py-3 grid grid-cols-2" id="ForumHeader">
             <div class="">
-                <a href="/" class="text-blue-800 font-bold hover:underline">Home</a> > <a href="/forum"
-                    class="text-blue-800 font-bold hover:underline">Forums</a>
+                <a href="/" class="text-blue-800 font-bold hover:underline">@lang('forum.home')</a> > <a href="/forum"
+                    class="text-blue-800 font-bold hover:underline">@lang('forum.forums')</a>
             </div>
             <div>
                 <form action="" method="GET"
@@ -29,7 +29,8 @@
         {{-- Body --}}
         <div class="space-y-4 px-6" style="margin-top: 0px;">
             <div class="flex justify-between">
-                <h2 class="text-3xl font-extrabold text-gray-800 text-center md:text-left" id="category-title">Forums
+                <h2 class="text-3xl font-extrabold text-gray-800 text-center md:text-left" id="category-title">
+                    @lang('forum.forums')
                 </h2>
 
                 @auth

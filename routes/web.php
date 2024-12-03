@@ -72,6 +72,7 @@ Route::middleware('localMiddleware')->group(function () {
     Route::get('/research', [ResearchController::class, 'index'])->name('research.index');
     // PartnerShip
     Route::get('/partnerships', [PartnerShipController::class, 'index'])->name('partnerships.index');
+    Route::get('/partnerships/anandakaurna', [PartnerShipController::class, 'anandakaurna'])->name('partnerships.anandakaurna');
     // Research Article
     Route::get('/researcharticles', [ResearchArticlesController::class, 'index'])->name('researcharticle.index');
     Route::get('/researcharticles/{id}/show', [ResearchArticlesController::class, 'show'])->name('researcharticle.show');

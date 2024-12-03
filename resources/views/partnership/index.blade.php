@@ -44,11 +44,11 @@
                     <div class="text-6xl text-primary mb-4"><img class="h-24 mx-auto"
                             src="/images/partnership/anadagayunar.jpg" alt="">
                     </div>
-                    <h3 class="text-2xl font-semibold text-gray-800">Ananda Kaurna Association</h3>
+                    <h3 class="text-2xl font-semibold text-gray-800">Patrons of Buddha Sasana</h3>
                     <p class="text-gray-600 mt-4">The Ananda Kaurna Association, led by Prof. Dr. Saw Htut Sandar,
                         promotes Buddhist values, supports monks, aids disaster relief, and fosters compassion and
                         social welfare.</p>
-                    <a href="/" class="text-primary text-center hover:underline">View more</a>
+                    <a href="/partnerships/anandakaurna" class="text-primary text-center hover:underline">View more</a>
                 </div>
                 <!-- Benefit 2 -->
                 <div

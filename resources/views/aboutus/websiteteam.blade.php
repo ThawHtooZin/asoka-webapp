@@ -79,7 +79,7 @@
             <!-- Contact Section -->
             <div class="mt-20 items-center text-center">
                 <!-- Header -->
-                <h1 class="text-4xl font-extrabold text-center text-primary glowing-text mb-1">Website Team Members</h1>
+                <h1 class="text-4xl font-extrabold text-center text-primary glowing-text mb-1">@lang('websiteteam.websiteteam')</h1>
                 <hr class="border-t-2 my-4 w-20 mx-auto border-primary">
                 <p class="text-lg mb-6 text-gray-700">
                     Asoka Center for Buddhist Studies expresses deep gratitude to these dedicated individuals who enrich

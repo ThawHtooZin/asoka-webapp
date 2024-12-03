@@ -1,8 +1,8 @@
 <x-layout>
     <div class="container mx-auto p-6 space-y-8">
         <div class="px-6">
-            <a href="/" class="text-blue-800 font-bold hover:underline">Home</a> > <a href="/elibrary"
-                class="text-blue-800 font-bold hover:underline">Elibrary</a>
+            <a href="/" class="text-blue-800 font-bold hover:underline">@lang('elibrary.home')</a> > <a href="/elibrary"
+                class="text-blue-800 font-bold hover:underline">@lang('elibrary.elibrary')</a>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-5 gap-6">

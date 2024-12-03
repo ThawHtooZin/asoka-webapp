@@ -4,7 +4,7 @@ return [
     'home' => 'မူလစာမျက်နှာ',
     'about' => 'ကျွန်ုပ်တို့အကြောင်း',
     'about_whoweare' => 'ကျွန်ုပ်တို့ဘယ်သူလဲ',
-    'about_websiteteam' => 'ဝဘ်ဆိုဒ် အဖွဲ့ဝင်များ',
+    'about_websiteteam' => 'Website စီမံရေးအဖွဲ့ဝင်များ',
     'about_esteemedlecturer' => 'သင်ကြားရေး အဖွဲ့ဝင်များ',
     'learning' => 'သင်ယူမှု',
     'learning_courses' => 'သင်တန်းများ',

@@ -18,7 +18,9 @@
     </style>
 
     <div class="px-[260px] py-10">
-        <h1 class="text-4xl font-extrabold text-center text-primary glowing-text mb-8">Profiles of Esteemed Lecturer</h1>
+        <h1
+            class="@if (App::getLocale() == 'mm') text-3xl @else text-[33px] @endif font-extrabold text-center text-primary glowing-text mb-8 ">
+            @lang('esteemedlecturer.esteemedlecturer')</h1>
         <hr class="border-t-2 my-4 w-20 mx-auto border-primary">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-10">
             <?php

@@ -10,4 +10,9 @@ class PartnerShipController extends Controller
     {
         return view('partnership.index');
     }
+
+    public function anandakaurna()
+    {
+        return view('partnership.anandakaurna');
+    }
 }
