@@ -41,26 +41,4 @@
             </div>
         </div>
     </section>
-
-    <script>
-        $(document).ready(function() {
-            // Toggle description visibility on "Read more" or "Read less" click
-            $('.read-more').click(function() {
-                const $this = $(this);
-                const $fullDescription = $this.closest('.p-4').find('.description-full');
-                const $previewDescription = $this.closest('.p-4').find('.description-preview');
-
-                // Toggle between showing full and preview descriptions
-                $fullDescription.toggleClass('hidden');
-                $previewDescription.toggleClass('hidden');
-
-                // Change text based on whether full description is shown
-                if ($fullDescription.hasClass('hidden')) {
-                    $this.text('Read more'); // When full text is hidden, show "Read more"
-                } else {
-                    $this.text('Read less'); // When full text is visible, show "Read less"
-                }
-            });
-        });
-    </script>
 </x-layout>

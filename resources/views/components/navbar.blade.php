@@ -7,7 +7,7 @@
 <div
     class="py-3 px-6 sm:px-12 @if (App::getLocale() == 'mm') lg:px-20 @else lg:px-32 @endif bg-asokablue shadow-lg text-white sticky top-0 z-40">
     <!-- Desktop Navbar -->
-    <div class="lg:flex justify-around items-center">
+    <div class="lg:flex justify-around items-center hidden">
         <ul class="flex space-x-12">
             <!-- Home -->
             <li><a href="/"

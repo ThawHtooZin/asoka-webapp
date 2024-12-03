@@ -26,6 +26,16 @@
             transition: left 0.4s ease;
         }
 
+        /* Active category effect: show the blade by default */
+        .category-blade.active-category::before {
+            left: -17%;
+        }
+
+        /* Active category effect: show the blade by default */
+        .category-blade.active-category span {
+            color: white !important;
+        }
+
         /* Make sure text is above the blade effect */
         .category-blade span {
             position: relative;
@@ -42,10 +52,16 @@
             <div class="md:col-span-2">
                 <h2 class="text-3xl font-extrabold text-gray-800 text-center md:text-left capitalize">
                     @if (!empty(request('category')))
-                        {{ request('category') }}
+                        @php
+                            // Query category by ID directly based on the category request
+                            $category = App\Models\ArticleCategory::find(request('category'));
+                        @endphp
+                        {{ $category?->name ?? 'Articles' }}
                     @else
                         Articles
                     @endif
+
+
                 </h2>
                 <div id="articles-container" class="space-y-2 mt-4">
                     @foreach ($articles as $article)
@@ -93,12 +109,17 @@
                 <div class="bg-white rounded-lg p-6 shadow-md">
                     <h3 class="text-lg font-semibold text-gray-800 mb-4">Categories</h3>
                     <div class="flex flex-col space-y-4">
-                        @foreach ($categories as $category)
-                            <button onclick="showArticles({{ $category->id }}, '{{ $category->name }}')"
-                                class="category-blade relative text-left px-4 py-2 bg-gradient-to-r from-gray-50 to-white rounded-lg border border-asokablue shadow-md hover:text-white transition duration-300 overflow-hidden">
-                                <span class="relative z-10">{{ $category->name }}</span>
-                            </button>
+                        @foreach ($categories ?? [] as $category)
+                            <form action="" method="GET" class="mb-0">
+                                <input type="hidden" name="category" value="{{ $category->id }}">
+                                <button
+                                    class="capitalize category-blade relative text-left px-4 py-2 bg-gradient-to-r from-gray-50 to-white rounded-lg border border-asokablue shadow-md hover:text-white transition duration-300 overflow-hidden w-full {{ $category->id == request('category') ? 'active-category' : '' }}">
+                                    <span class="relative z-10">{{ $category->name }}</span>
+                                </button>
+                            </form>
                         @endforeach
+
+
                     </div>
                 </div>
 
