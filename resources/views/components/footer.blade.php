@@ -11,9 +11,9 @@
                 class="text-white hover:text-gray-300 transform transition-transform duration-200 hover:scale-110">
                 <i class="fab fa-twitter text-2xl"></i>
             </a>
-            <a href="https://linkedin.com" target="_blank"
+            <a href="https://web.whatsapp.com" target="_blank"
                 class="text-white hover:text-gray-300 transform transition-transform duration-200 hover:scale-110">
-                <i class="fab fa-linkedin-in text-2xl"></i>
+                <i class="fab fa-whatsapp text-2xl"></i>
             </a>
             <a href="https://instagram.com" target="_blank"
                 class="text-white hover:text-gray-300 transform transition-transform duration-200 hover:scale-110">
@@ -29,15 +29,18 @@
 
         <!-- Right Column: Links -->
         <div class="flex flex-col items-center col-span-2 space-y-1">
-            <a href="/aboutus" class="text-white hover:text-gray-300 text-sm transition-colors duration-200">About</a>
-            <a href="/courses" class="text-white hover:text-gray-300 text-sm transition-colors duration-200">Courses</a>
+            <a href="/whoweare"
+                class="text-white hover:text-gray-300 text-sm transition-colors duration-200">@lang('footer.whoweare')</a>
+            <a href="/courses"
+                class="text-white hover:text-gray-300 text-sm transition-colors duration-200">@lang('footer.courses')</a>
             <a href="/elibrary"
-                class="text-white hover:text-gray-300 text-sm transition-colors duration-200">E-Library</a>
-            <p class="text-white hover:text-gray-300 text-sm transition-colors duration-200"><a href="/news">News</a>
-                & <a href="/announcement">Announcement</a> </p>
-            <a href="/gallery" class="text-white hover:text-gray-300 text-sm transition-colors duration-200">Gallery</a>
-            <a href="/contactus" class="text-white hover:text-gray-300 text-sm transition-colors duration-200">Contact
-                Us</a>
+                class="text-white hover:text-gray-300 text-sm transition-colors duration-200">@lang('footer.elibrary')</a>
+            <a href="/newsandupdate"
+                class="text-white hover:text-gray-300 text-sm transition-colors duration-200">@lang('footer.news')</a>
+            <a href="/gallery"
+                class="text-white hover:text-gray-300 text-sm transition-colors duration-200">@lang('footer.gallery')</a>
+            <a href="/contactus"
+                class="text-white hover:text-gray-300 text-sm transition-colors duration-200">@lang('footer.contact')</a>
         </div>
     </div>
 
