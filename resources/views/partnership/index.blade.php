@@ -53,16 +53,26 @@
                 <!-- Benefit 2 -->
                 <div
                     class="bg-white p-8 rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
-                    <div class="text-6xl text-primary mb-4">🤝</div>
-                    <h3 class="text-2xl font-semibold text-gray-800">Collaborative Success</h3>
-                    <p class="text-gray-600 mt-4">Work together with us to create impactful, long-term results.</p>
+                    <div class="text-6xl text-primary mb-4"><img class="h-24 mx-auto"
+                            src="/images/partnership/anadagayunar.jpg" alt="">
+                    </div>
+                    <h3 class="text-2xl font-semibold text-gray-800">Patrons of Buddha Sasana</h3>
+                    <p class="text-gray-600 mt-4">The Ananda Kaurna Association, led by Prof. Dr. Saw Htut Sandar,
+                        promotes Buddhist values, supports monks, aids disaster relief, and fosters compassion and
+                        social welfare.</p>
+                    <a href="/partnerships/anandakaurna" class="text-primary text-center hover:underline">View more</a>
                 </div>
                 <!-- Benefit 3 -->
                 <div
                     class="bg-white p-8 rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
-                    <div class="text-6xl text-primary mb-4">🌍</div>
-                    <h3 class="text-2xl font-semibold text-gray-800">Global Exposure</h3>
-                    <p class="text-gray-600 mt-4">Reach a broader audience through our international presence.</p>
+                    <div class="text-6xl text-primary mb-4"><img class="h-24 mx-auto"
+                            src="/images/partnership/anadagayunar.jpg" alt="">
+                    </div>
+                    <h3 class="text-2xl font-semibold text-gray-800">Patrons of Buddha Sasana</h3>
+                    <p class="text-gray-600 mt-4">The Ananda Kaurna Association, led by Prof. Dr. Saw Htut Sandar,
+                        promotes Buddhist values, supports monks, aids disaster relief, and fosters compassion and
+                        social welfare.</p>
+                    <a href="/partnerships/anandakaurna" class="text-primary text-center hover:underline">View more</a>
                 </div>
             </div>
         </div>

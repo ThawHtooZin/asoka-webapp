@@ -71,7 +71,7 @@
 
     <!-- Mission & Vision Section -->
     <section class="py-16 bg-gradient-to-b from-gray-100 to-gray-300">
-        <div class="container mx-auto px-6 lg:px-8 grid grid-rows-2 gap-y-12">
+        <div class="container mx-auto px-6 lg:px-24 grid grid-rows-2 gap-y-12">
 
             <!-- Mission Section -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
@@ -109,10 +109,10 @@
 
     {{-- News and Update --}}
     <section class="py-16 bg-gradient-to-b from-gray-100 to-gray-300">
-        <div class="container mx-auto px-4">
+        <div class="container mx-auto px-6 lg:px-24">
             <h1 class="text-2xl sm:text-2gxl md:text-3xl text-center font-bold mb-12">@lang('homepage.news_and_updates')</h1>
 
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 @foreach ($newsandupdates as $newsandupdate)
                     <div class="rounded-lg shadow-lg overflow-hidden bg-white">
                         <div class="overflow-hidden">
@@ -138,7 +138,7 @@
                     </div>
                 @endforeach
 
-                <div class="pt-6 mt-6 border-t border-gray-300 text-center">
+                <div class="pt-6 mt-6 border-t border-gray-300 text-center sm:col-span-2 lg:col-span-3">
                     <a href="/newsandupdate"
                         class="text-blue-600 font-semibold text-md sm:text-lg hover:text-blue-800 transition duration-300 transform hover:scale-105">
                         @lang('homepage.check_more_news')
